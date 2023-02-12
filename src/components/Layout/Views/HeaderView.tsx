@@ -51,7 +51,6 @@ const HeaderView = ({ category, menu ,onSetMenu }: IHeaderProps) => {
             <div style={{display:'flex',justifyContent:'space-between'}}>
                 <Logo/>
                 
-                {/* <Button onClick={()=>navigate('/my')}>마이 페이지</Button> */}
                 <Link to="/my" style={{textDecoration:'none'}}>
                 <Button>마이 페이지</Button>
                 </Link>
