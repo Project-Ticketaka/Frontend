@@ -1,0 +1,23 @@
+.Logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    gap: 10px;
+    
+    font-family: 'Nanum Square Round';
+    font-weight: 700;
+    font-size: 2rem;
+
+    img{
+        width: 40px;
+    }
+
+    &.md{
+        font-weight: 700;
+        font-size: 1.5rem;
+        img{
+            width: 30px;
+        }
+    }
+}

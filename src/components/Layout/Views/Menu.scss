@@ -1,0 +1,52 @@
+.Menu{
+    margin-right: 2px;
+    cursor: pointer; 
+    
+    p{
+        display: inline-block; 
+        padding: 0px 10px;
+        margin-bottom: 0.7rem;
+    }
+    
+    &.home{
+        border-bottom: 3px solid #FF7F8F;
+        p {color: #FF7F8F;}
+    }
+
+    &.a4{
+        border-bottom: 3px solid #94B74B;
+        p {color: #94B74B;}
+    }
+
+    &.b3a{
+        border-bottom: 3px solid #B65C87;
+        p {color: #B65C87;}
+    }
+
+    &.c3a{
+        border-bottom: 3px solid #598A9E;
+        p {color: #598A9E;}
+    }
+
+    &.c4{
+        border-bottom: 3px solid #663578;
+        p {color: #663578;}
+    }
+
+    &.c3d{
+        border-bottom: 3px solid #CB5252;
+        p {color: #CB5252;}
+    }
+    &.e3a{
+        border-bottom: 3px solid #5A58D2;
+        p {color: #5A58D2;}
+    }
+    &.e3b{
+        border-bottom: 3px solid #F0CC86;
+        p {color: #F0CC86;}
+    }
+    &.g3a{
+        border-bottom: 3px solid #438B7A;
+        p {color: #438B7A;}
+    }
+}

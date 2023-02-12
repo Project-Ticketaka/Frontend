@@ -1,0 +1,18 @@
+import React from "react";
+import './Logo.scss'
+import logo from '../../assets/images/favicon.png';
+import classNames from "classnames";
+
+function Logo({children,size}:any) {
+    return (
+    <div className={classNames("Logo",size)}>
+        <img src={logo} alt="Ticketaka"></img>
+        <span>Ticketaka</span>
+    </div>
+    );
+}
+Logo.defaultProps={
+    size:'lg'
+}
+
+export default Logo; 
