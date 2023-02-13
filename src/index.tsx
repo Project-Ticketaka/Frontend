@@ -5,10 +5,28 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 
+
 const theme = createTheme({
   typography: {
     fontFamily: "'Nanum Square Round'"
-  }
+  },
+  palette: {
+    
+    primary: {
+      // Purple and green play nicely together.
+      main: '#FF7F8F',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#5A7A8D',
+    },
+    info: {
+      main: '#333'
+    },
+    error:{
+      main: '#ffffff',
+    }
+  },
 });
 
 const root = ReactDOM.createRoot(

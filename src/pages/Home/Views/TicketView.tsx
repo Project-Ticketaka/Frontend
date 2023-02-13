@@ -8,7 +8,7 @@ const TicketView = ({reservationInfo}:any) => {
     const navigate = useNavigate();
     useEffect(()=>{
         setTimeout(function() {
-            navigate('/my');
+            navigate('/my',{state:'reservationInfo'});
           }, 5000);
     },[])
   return (

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "@emotion/styled";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import { IHeaderProps, ILayoutProps } from "../types";
 import Footer from "../Footer";
@@ -21,6 +21,10 @@ const OutletContainer = styled.div`
 `;
 
 const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
+    const navigate=useNavigate();
+    const [search, setSearch] = useState("");
+    const [my, setMy] = useState("");
+
     const headerProps:IHeaderProps={
         menu,
         onSetMenu,
@@ -34,7 +38,23 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
             {title:'복합',id:'e3a'},
             {title:'서커스/마술',id:'e3b'},
             {title:'뮤지컬',id:'g3a'},
-        ]
+        ],
+        goMyPage: () => {
+            // window.localStorage.getItem('token')
+            // ?navigate('/my',{state:'userInfo'})
+            // :navigate('/login')
+            navigate('/my',{state:'userInfo'})
+        },
+        onSearchChange: (e) => {
+            setSearch(e.target.value);
+        },
+        onSearch: (e)=>{
+            if (e.key === 'Enter') {
+                //백엔드 검색 모듈 요청
+                navigate(`/search?keyword=${search}`,{state:search})
+            }
+        },
+        
     }
     return (
         <Container>

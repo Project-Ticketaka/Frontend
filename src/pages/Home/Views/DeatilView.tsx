@@ -23,7 +23,9 @@ const SessionButton = styled(Button)`
         background: #ffffff;
     }
 
-    &:active{
+    &.active{
+        border:0.2rem #FF7F8F solid;
+        color: #333;
     }
 
 `;
@@ -52,6 +54,7 @@ const DeatilView = ({detail}:any) => {
     registerLocale("ko", ko); //한국어 설정
     const [selectedDate,setSelectedDate] = useState(detail.prf_data.start_date)
     const [selectedTime,setSelectedTime] = useState('')
+    const [selectedTimeId,setSelectedTimeId] = useState('')
     const [sessionTime,setSessionTime] = useState(detail.prf_session_data.filter((data: { prf_session_date: any; })=>data.prf_session_date===selectedDate).map((data: { prf_session_time: any; })=>data.prf_session_time))
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
@@ -64,10 +67,11 @@ const DeatilView = ({detail}:any) => {
     useEffect(()=>{
         setSessionTime(detail.prf_session_data.filter((data: { prf_session_date: any; })=>data.prf_session_date===selectedDate).map((data: { prf_session_time: any; })=>data.prf_session_time))
     
-    },[]);
+    },[selectedDate]);
 
     const selectSessionTime = (idx:string, time:string) => {
         alert(`${idx}, ${time}`)
+        setSelectedTimeId(idx)
         setSelectedTime(time)
     }
 
@@ -142,16 +146,18 @@ const DeatilView = ({detail}:any) => {
             <div style={{display:'flex', flexDirection:'column'}}>
                 <div style={{display:'flex', flexDirection:'row',gap:'5rem'}}>
                     {/* 회차 시간 선택 */}
-                    <div style={{display:'grid',gridTemplateRows: 'repeat(4, minmax(0, 1fr))',gap:'1rem'}}>
+                    <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
+                    
                     {
                         sessionTime.map((time: string,idx: { toString: () => string; })=>{
                             return(
                             // <span style={{border:'0.2rem #FF7F8F solid', borderRadius:'2rem', padding:'0.3rem 1rem',fontSize:'1.3rem',color:'#858585'}}>{time}</span>
-                            <SessionButton size="large" variant="outlined" id={idx.toString()}  onClick={()=>selectSessionTime(idx.toString(),time)}>{time}</SessionButton>
+                                <SessionButton className={`${selectedDate.toString()} ${idx.toString()}`===selectedTimeId?'active':'inactive'} value={time} size="large" variant="outlined" id={`${selectedDate.toString()} ${idx.toString()}`}  onClick={()=>selectSessionTime(`${selectedDate.toString()} ${idx.toString()}`,time)}>{time}</SessionButton>
                             )
                         })
                     }
                     </div>
+                    
                     <div>
                     {/* 좌석 유형 선택 */}
                     {

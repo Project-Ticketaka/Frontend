@@ -1,13 +1,16 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
 import { IHeaderProps } from "./types"
 import HeaderView from "./Views/HeaderView"
 
-const Header = ({ menu,onSetMenu,category }: IHeaderProps) => {
+const Header = ({ menu,onSetMenu,category,goMyPage,onSearchChange,onSearch }: IHeaderProps) => {
+    
     const HeaderProps = {
         menu,
         onSetMenu,
         category,
+        goMyPage,
+        onSearchChange,
+        onSearch
     };
     return (
         <HeaderView {...HeaderProps}/>

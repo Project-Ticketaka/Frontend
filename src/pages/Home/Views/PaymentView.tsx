@@ -1,8 +1,61 @@
+import styled from "@emotion/styled";
 import { Button } from "@mui/material"
+import CustomButton from "../../../components/Common/Button";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+
+const PaymentWayButton = styled(Button)`
+    
+    width: fit-content;
+    height: fit-content;
+    padding: 0.8rem 2rem;
+    color: #858585;
+    
+    border:0.2rem #CACACA solid;
+    border-radius: 2rem;
+
+
+    &:hover {
+        border:0.2rem #FF7F8F solid;
+        background: #ffffff;
+    }
+
+    &.active{
+        border:0.2rem #FF7F8F solid;
+        color: #333;
+    }
+
+`;
+
+const ChargeButton = styled(Button)`
+    
+    height: fit-content;
+    width: 100%;
+    
+    padding: 0.3rem 3rem;
+    
+    color: #858585;
+    
+    border:0.2rem #CACACA solid;
+    border-radius: 2rem;
+
+    &:hover {
+        border:0.2rem #FF7F8F solid;
+        background: #ffffff;
+    }
+
+    &.active{
+        border:0.2rem #FF7F8F solid;
+        color: #333;
+    }
+
+`;
+
+
 
 const PaymentView = ({paymentInfo}:any) => {
     const navigate=useNavigate()
+    const [paymentWay,setPaymentWay]=useState('')
     const goCharge = () => {
         let reservationInfo = {
             "data": {
@@ -17,6 +70,7 @@ const PaymentView = ({paymentInfo}:any) => {
         };
         navigate('/reservation',{state: reservationInfo})
     }
+
   return (
     <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%'}}>
         <h1 style={{margin:'0', padding:'0'}}>₩ 결제하기</h1>
@@ -43,15 +97,17 @@ const PaymentView = ({paymentInfo}:any) => {
                 
                     <p style={{margin:'0',color:'#4A4A4A'}}>결제 방식 선택</p>
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',justifyContent:'end'}}>
-                        <Button>카드</Button>
-                        <Button>무통장 입금</Button>
+                        
+                        <PaymentWayButton className={paymentWay==="card"?'active':'inactive'} size="large" variant="outlined" id="card" onClick={()=>setPaymentWay('card')}>카드</PaymentWayButton>
+                        <PaymentWayButton className={paymentWay==="cash"?'active':'inactive'} size="large" variant="outlined" id="cash" onClick={()=>setPaymentWay('cash')}>무통장입금</PaymentWayButton>
+                        
                     </div>
                     <p style={{margin:'0',color:'#4A4A4A'}}>최종 결제 금액</p>
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center',justifyContent:'end'}}>
                         <p style={{margin:'0',fontSize:'1.7rem',color:'#5C7D92'}}>{paymentInfo.price}</p>
-                        <Button onClick={()=>goCharge()}>
+                        <CustomButton color="blue" size="lg" onClick={()=>goCharge()}>
                             결제하기
-                        </Button>
+                        </CustomButton>
                     </div>
                 </div>
         </div>

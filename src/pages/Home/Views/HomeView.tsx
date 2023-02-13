@@ -1,17 +1,31 @@
+import styled from "@emotion/styled"
+import { media } from "../../../styles/media"
 
+const MainContainer = styled.div`
+    padding: 1rem;
+    padding-top: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+
+    ${media.phone`
+        
+    `}
+`
 const HomeView = ({top10,goDetail}:any) => {
     return (
-        <div style={{padding:'1rem',paddingTop:'0',display:'flex',flexDirection:'column',width:'100%'}}>
-        <div style={{width:'100%', height:'20rem',backgroundColor:'#B65C87'}}>
+        <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
+        <div style={{width:'100%', height:'15rem',backgroundColor:'#B65C87'}}>
 
         </div>
-        <p style={{fontSize:'2rem',fontWeight:'300'}}>오늘의 TOP 10!</p>
-        <div style={{display:'grid',gridTemplateRows: 'repeat(2, 1fr)',gridTemplateColumns: 'repeat(5, 1fr)',width:'100%',gap:'1rem'}}>
+        <p style={{margin:'0 1rem',fontSize:'2rem',fontWeight:'300'}}>오늘의 TOP 10!</p>
+        {/* <div style={{padding:'1rem',paddingTop:'0',display:'grid' ,gridTemplateColumns: 'repeat(5, 1fr)',gap:'1rem'}}> */}
+        <MainContainer>
             {
                 top10.length!==0
                 ?top10.map((el:any)=>{
                     return(
-                        <div style={{width:'13rem',cursor:'pointer'}} onClick={()=>goDetail(el.mt20id._text)}>
+                        <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>goDetail(el.mt20id._text)}>
                             <div style={{textAlign: 'center'}}>
                                 <div style={{position:'relative'}}>
                                     <img src={`http://kopis.or.kr/${el.poster._text}`} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.prfnm._text}/>
@@ -30,7 +44,7 @@ const HomeView = ({top10,goDetail}:any) => {
                 :
                 Array(10).fill(0).map(()=>{
                     return(
-                    <div style={{width:'13rem'}}>
+                    <div style={{}}>
                         <div style={{justifyContent: 'center',display:'flex'}}>
                             
                             <div style={{width:'9rem',height:'11.7rem',borderRadius:'5px',backgroundColor:'#B8B8B8'}}></div>
@@ -42,10 +56,11 @@ const HomeView = ({top10,goDetail}:any) => {
                         {/* <Button 
                             size='md'
                             color='gray'>예매하기</Button> */}
-                    </div>)                
+                    </div>)              
                 })
             }
-        </div>
+        {/* </div> */}
+        </MainContainer>
     </div>
     )
 }

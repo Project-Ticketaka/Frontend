@@ -1,11 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import Empty from "../components/Common/Empty";
 import Layout from "../components/Layout/Layout";
+import Login from "../pages/Auth/Login";
+import SignUp from "../pages/Auth/SignUp";
 import Detail from "../pages/Home/Detail";
 import Home from "../pages/Home/Home";
 import Payment from "../pages/Home/Payment";
 import Ticket from "../pages/Home/Ticket";
 import My from "../pages/My/My";
+import Search from "../pages/Search/Search";
 
 const Router = () => {
     return (
@@ -23,11 +26,13 @@ const Router = () => {
           <Route path="/e3a" element={<h1>복합</h1>} />
           <Route path="/e3b" element={<h1>서커스/마술</h1>} />
           <Route path="/g3a" element={<h1>뮤지컬</h1>} />
-          {/* <Route path="/search" element={<Search/>} />*/}
+          <Route path="/search" element={<Search/>} />
           <Route path="/my" element={<My/>} /> 
           <Route path="/payment" element={<Payment/>} />
           <Route path="/reservation" element={<Ticket/>} />
         </Route>
+        <Route path="/login" element={<Login/>} />
+        <Route path="/sign-up" element={<SignUp/>} /> 
         <Route
         path="*"
         element={

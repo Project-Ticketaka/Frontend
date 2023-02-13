@@ -1,42 +1,15 @@
-import React from 'react'
-import styled from "styled-components";
+import React from "react";
+import './Button.scss'
+import classNames from "classnames";
 
-const StyledButton = styled.button`
-    /*공통 스타일*/
-    display: inline-flex;
-    align-items: center;
-    
-    border: 1px #CACACA solid;
-    border-radius: 2rem;
-    
-    color: #CACACA;
-    
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0 1rem;
-    
-
-
-    /*크기*/
-    height: 2.25rem;
-    font-size: 1rem;
-
-    /*색상 
-    
-
-    &:hover{
-        background: #339af0;
-    }
-    &:active{
-        background: #1c7ed6;
-    }
-`;
-
-const Button = ({children,...rest}:any) => {
-    
-    return (
-        <StyledButton {...rest}> {children} </StyledButton>
-    )
+function Button({children,color,state,size,...rest}:any) {
+    return <button className={classNames("Button",color,state,size)} {...rest}>{children}</button>;
 }
 
-export default Button
+Button.defaultProps = {
+    color: 'pink',
+    state: 'false',
+    size: 'lg'
+};
+
+export default Button;
