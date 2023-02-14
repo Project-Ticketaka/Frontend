@@ -55,6 +55,8 @@ const DeatilView = ({detail}:any) => {
     const [selectedDate,setSelectedDate] = useState(detail.prf_data.start_date)
     const [selectedTime,setSelectedTime] = useState('')
     const [selectedTimeId,setSelectedTimeId] = useState('')
+    const [seatType,setSeatType] = useState('')
+    const [seatPrice,setSeatPrice] = useState(0)
     const [sessionTime,setSessionTime] = useState(detail.prf_session_data.filter((data: { prf_session_date: any; })=>data.prf_session_date===selectedDate).map((data: { prf_session_time: any; })=>data.prf_session_time))
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
@@ -70,22 +72,26 @@ const DeatilView = ({detail}:any) => {
     },[selectedDate]);
 
     const selectSessionTime = (idx:string, time:string) => {
-        alert(`${idx}, ${time}`)
+        
         setSelectedTimeId(idx)
         setSelectedTime(time)
     }
 
+    const onSetSeatType = (seat_type:string, seat_price:string) => {
+        setSeatType(seat_type)
+        setSeatPrice(Number(seat_price))
+    }
     const [people,setPeople] = useState(1)
 
     const goReservation = () => {
-        // console.log(selectedDate)
-        // console.log(selectedTime)
-        // console.log(people)
-        alert(`${selectedDate} ${selectedTime}회차 ${people}명`)
+        alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
+        
         let paymentInfo = {
             selectedDate:selectedDate,
             selectedTime:selectedTime,
             people:people,
+            seatType: seatType,
+            seatPrice: seatPrice,
             detail:detail,
         }
         navigate('/payment',{state:paymentInfo})
@@ -105,7 +111,7 @@ const DeatilView = ({detail}:any) => {
             setPeople(people+1);
         }
     }
-
+    const seat_grade = ["#FF7F8F","#94B74B","#B65C87","#598A9E","#F0CC86"]
 
 
     return (
@@ -144,7 +150,7 @@ const DeatilView = ({detail}:any) => {
             
             
             <div style={{display:'flex', flexDirection:'column'}}>
-                <div style={{display:'flex', flexDirection:'row',gap:'5rem'}}>
+                <div style={{display:'flex', flexDirection:'row',gap:'4rem'}}>
                     {/* 회차 시간 선택 */}
                     <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
                     
@@ -161,9 +167,12 @@ const DeatilView = ({detail}:any) => {
                     <div>
                     {/* 좌석 유형 선택 */}
                     {
-                        detail.prf_data.ticket_price.map((seat: any)=>{
+                        detail.prf_data.ticket_price.map((seat: any,idx:number)=>{
                             return(
-                                <p style={{margin:'0 0 1rem 0'}}>{seat.seat_type} | {seat.price}</p>
+                                seatType===seat.seat_type
+                                ?<p style={{margin:'0 0 1rem 0',cursor:'pointer'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none'}}>■</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                :<p style={{margin:'0 0 1rem 0',cursor:'pointer'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none'}}>□</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                
                             )
                         })
                     }
@@ -171,7 +180,7 @@ const DeatilView = ({detail}:any) => {
                 </div>
                 <div style={{display:'flex',flexDirection:'row',gap:'2rem',alignItems:'center'}}>
                     {/* 인원 수 선택 */}
-                    <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'3rem',border:'0.3rem #CACACA solid', borderRadius:'2rem',padding:'0.5rem 1rem'}}>
+                    <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'3rem',border:'0.3rem #CACACA solid', borderRadius:'2rem',padding:'0.5rem 1rem',userSelect:'none'}}>
                         <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(-1)}>-</span>
                         <p style={{fontSize:'1.5rem', margin:'0'}}>{people}</p>
                         <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(+1)}>+</span>
@@ -194,13 +203,13 @@ const DeatilView = ({detail}:any) => {
             <>
                 <div>
             <ul style={{display: 'flex', flexWrap:'wrap', listStyle:'none',paddingLeft:'0px',margin:'0',paddingRight:'10rem',gap:'2rem'}}>
-                <li style={{cursor:'pointer'}} onClick={()=>onSetInform('pf')}>
+                <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pf')}>
                     
                         <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem',borderBottom:'0.35rem #597A8D solid'}}>공연 상세 정보</p>
                     
                     
                 </li>
-                <li style={{cursor:'pointer'}} onClick={()=>onSetInform('pl')}>
+                <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pl')}>
                     
                         <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem'}}>장소 정보</p>
                     
@@ -221,12 +230,12 @@ const DeatilView = ({detail}:any) => {
         <>
         <div>
             <ul style={{display: 'flex', flexWrap:'wrap', listStyle:'none',paddingLeft:'0px',margin:'0',paddingRight:'10rem',gap:'2rem'}}>
-                <li style={{cursor:'pointer'}} onClick={()=>onSetInform('pf')}>
+                <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pf')}>
                 
                     <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem'}}>공연 상세 정보</p>
                 
                 </li>
-                <li style={{cursor:'pointer'}} onClick={()=>onSetInform('pl')}>
+                <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pl')}>
                 
                     <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem',borderBottom:'0.35rem #597A8D solid'}}>장소 정보</p>
                     

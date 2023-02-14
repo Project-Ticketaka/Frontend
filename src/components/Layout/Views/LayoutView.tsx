@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import { IHeaderProps, ILayoutProps } from "../types";
 import Footer from "../Footer";
+import useGetMemberInfo from "../../../hooks/query/useGetMemberInfo";
 
 const Container = styled.div`
     display: flex;
@@ -22,9 +23,9 @@ const OutletContainer = styled.div`
 
 const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
     const navigate=useNavigate();
-    const [search, setSearch] = useState("");
+    const [keyword, setKeyword] = useState("");
     const [my, setMy] = useState("");
-
+    const { data, isLoading } = useGetMemberInfo();
     const headerProps:IHeaderProps={
         menu,
         onSetMenu,
@@ -40,20 +41,26 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
             {title:'뮤지컬',id:'g3a'},
         ],
         goMyPage: () => {
-            // window.localStorage.getItem('token')
-            // ?navigate('/my',{state:'userInfo'})
-            // :navigate('/login')
-            navigate('/my',{state:'userInfo'})
+            
+            window.localStorage.getItem('token')
+            ?navigate('/my',{state:data})
+            :navigate('/login')
+            
         },
         onSearchChange: (e) => {
-            setSearch(e.target.value);
+            setKeyword(e.target.value);
         },
         onSearch: (e)=>{
-            if (e.key === 'Enter') {
+            if (e.code === 'Enter') {
                 //백엔드 검색 모듈 요청
-                navigate(`/search?keyword=${search}`,{state:search})
+                e.preventDefault();
+                navigate(`/search/${keyword}`,{state:keyword})
             }
         },
+        keyword: keyword,
+        onSetKeyword: (k)=>{
+            setKeyword(k)
+        }
         
     }
     return (

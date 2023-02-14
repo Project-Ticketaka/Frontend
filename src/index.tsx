@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 
 const theme = createTheme({
@@ -29,13 +30,26 @@ const theme = createTheme({
   },
 });
 
+
+const queryOptions = {
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 0,
+    },
+  },
+};
+const queryClient = new QueryClient(queryOptions);
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <ThemeProvider theme={theme}>
     <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
         <App />
+      </QueryClientProvider>
     </BrowserRouter>
   </ThemeProvider>
 );

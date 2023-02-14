@@ -55,7 +55,7 @@ const MenuList = styled.ul`
     `}
 `;
 
-const Search = styled.form`
+const Search = styled.div`
     position: relative;
     flex: 1;
 
@@ -68,7 +68,7 @@ const Search = styled.form`
         line-height: 1.5rem;
         outline: none;
         
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     svg {
@@ -103,15 +103,18 @@ const Search = styled.form`
 `;
 
 
-const HeaderView = ({ category, menu ,onSetMenu,goMyPage,onSearchChange,onSearch }: IHeaderProps) => {
-    
+const HeaderView = ({ category, menu ,onSetMenu,goMyPage,onSearchChange,onSearch,keyword,onSetKeyword }: IHeaderProps) => {
+    const navigate = useNavigate();
+    const goHome = () => {
+        onSetKeyword("");
+        navigate('/')
+    }    
 
     return (
         <HeaderContainer>
             <div style={{display:'flex',justifyContent:'space-between'}}>
-                <Link to="/" style={{textDecoration:'none'}}>
-                    <Logo/>
-                </Link>
+                
+                <Logo onClick={goHome}/>
                 
                 <MypageButton color="info" onClick={goMyPage} startIcon={<PersonIcon/>}>마이 페이지</MypageButton>
             </div>
@@ -134,13 +137,13 @@ const HeaderView = ({ category, menu ,onSetMenu,goMyPage,onSearchChange,onSearch
                 </MenuList>
             
             
-                <Search id="form">
+                <Search>
                 
                     <svg fill="currentColor">
                         <path fillRule="evenodd" clipRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
                     </svg>
                     {/* <input style={{width:'100%',boxSizing:'border-box',border:'0px', borderBottom:'1px solid #333',padding:'0.5rem 0.5rem 0.5rem 1.5rem',lineHeight:'1.5rem'}} onChange={onSearchChange} onKeyUp={onSearch}/> */}
-                    <input onChange={onSearchChange} onKeyUp={onSearch} placeholder="검색어(제목)를 입력해주세요"  spellCheck="false"/>
+                    <input value={keyword} onChange={onSearchChange} onKeyUp={onSearch} placeholder="검색어(제목)를 입력해주세요"  spellCheck="false"/>
                 </Search>
 
             </HeaderMenu>

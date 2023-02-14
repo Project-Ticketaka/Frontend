@@ -8,5 +8,6 @@ export interface IHeaderProps extends ILayoutProps {
     goMyPage: () => void;
     onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSearch: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-
+    keyword: string;
+    onSetKeyword: (keyword: string)=>void;
 }

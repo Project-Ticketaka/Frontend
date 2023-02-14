@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { xml2json } from "xml-js";
+import useGetPerformanceById from "../../hooks/query/useGetPerformanceById";
 import HomeView from "./Views/HomeView"
 
 const Home = () => {
@@ -23,10 +24,10 @@ const Home = () => {
         });
     },[new Date().getDate()]);
 
-    const goDetail=(id:string)=>{
-        // axios.get(`localhost:8080/performance?p=${id}`)
-        // .then((res:any)=>{
-        //     //console.log(res.data)
+    
+
+    const goDetail=(prf_id:string)=>{
+        
         let detailInfoExample = {
             "prf_data": {
                 "id": "PF209894",
@@ -117,10 +118,9 @@ const Home = () => {
             }
         };
             
-        // }).catch((err) => {
-        //     console.log(err);
-        // });
-        navigate(`/detail/${id}`,{ state: detailInfoExample })
+        
+        
+        navigate(`/detail/${prf_id}`,{ state: detailInfoExample })
     }
 
     return (

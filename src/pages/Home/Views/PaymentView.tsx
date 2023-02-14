@@ -64,7 +64,7 @@ const PaymentView = ({paymentInfo}:any) => {
                 "reservation_ticket_count": paymentInfo.people,
                 "reservation_date": paymentInfo.selectedDate,
                 "reservation_time": paymentInfo.selectedTime,
-                "reservation_price": paymentInfo.price,
+                "reservation_price": paymentInfo.seatPrice*paymentInfo.people,
                 "reservation_poster": paymentInfo.detail.prf_data.poster
             }
         };
@@ -104,7 +104,7 @@ const PaymentView = ({paymentInfo}:any) => {
                     </div>
                     <p style={{margin:'0',color:'#4A4A4A'}}>최종 결제 금액</p>
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center',justifyContent:'end'}}>
-                        <p style={{margin:'0',fontSize:'1.7rem',color:'#5C7D92'}}>{paymentInfo.price}</p>
+                        <p style={{margin:'0',fontSize:'1.7rem',color:'#5C7D92'}}>₩ {Number(paymentInfo.seatPrice*paymentInfo.people).toLocaleString('ko-KR')}</p>
                         <CustomButton color="blue" size="lg" onClick={()=>goCharge()}>
                             결제하기
                         </CustomButton>

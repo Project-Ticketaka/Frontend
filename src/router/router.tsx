@@ -16,7 +16,7 @@ const Router = () => {
         <Route element={<Layout/>}>
           <Route path="/" element={<Home />} />
           <Route path="/detail">
-            <Route path=":pfId"  element={<Detail />}/>
+            <Route path=":prf_id"  element={<Detail />}/>
           </Route>
           <Route path="/a4" element={<h1>연극</h1>} />
           <Route path="/b3a" element={<h1>무용</h1>} />
@@ -26,7 +26,9 @@ const Router = () => {
           <Route path="/e3a" element={<h1>복합</h1>} />
           <Route path="/e3b" element={<h1>서커스/마술</h1>} />
           <Route path="/g3a" element={<h1>뮤지컬</h1>} />
-          <Route path="/search" element={<Search/>} />
+          <Route path="/search">
+            <Route path=":keyword" element={<Search/>}/>
+          </Route>
           <Route path="/my" element={<My/>} /> 
           <Route path="/payment" element={<Payment/>} />
           <Route path="/reservation" element={<Ticket/>} />
