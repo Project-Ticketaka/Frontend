@@ -1,7 +1,8 @@
 $disableBtn: #FFC0C8;
 $availableBtn: #FF7F8F;
 
-.Button { 
+.Button {
+    user-select: none;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -52,6 +53,11 @@ $availableBtn: #FF7F8F;
     &.true {
         background: $availableBtn;
     }
+
+    &.false {
+        cursor: not-allowed;
+    }
+    
 
     &.md{
         width: fit-content;

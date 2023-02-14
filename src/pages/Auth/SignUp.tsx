@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import useSignUp from "../../hooks/mutation/auth/useSignUp";
+import useCheckDuplicateMember from "../../hooks/mutation/auth/useCheckDuplicateMember";
 import { birthDateValidator, emailValidator, nameValidator, passwordValidator, phoneValidator } from "../../utils/validator";
 import { ISignUpProps } from "./types";
 import SignUpView from "./Views/SignUpView"
@@ -13,7 +15,7 @@ const SignUp = () => {
     const [passwordCheck, setPasswordCheck] = useState("");
     const [name, setName] = useState("");
     const [gender, setGender] = useState("M");
-    const [birthDate, setBirthDate] = useState("");
+    const [birth, setBirth] = useState("");
     const [phone, setPhone] = useState("");
     
     const [validData, setValidData] = useState({
@@ -28,15 +30,20 @@ const SignUp = () => {
     const isNotEnterEmail = email.length === 0;
     const isNotEnterPassword = (password.length === 0)&&(passwordCheck.length === 0);
     const isNotEnterName = name.length === 0;
-    const isNotEnterBirthDate = birthDate.length === 0;
+    const isNotEnterBirthDate = birth.length === 0;
     const isNotEnterPhone = phone.length === 0;
 
+
+
+    const { mutate: signUpMutate } = useSignUp(navigate);
+    const { mutate: checkDuplicateMemberMutate } = useCheckDuplicateMember();
+    
     const signUpProps: ISignUpProps = {
         email,
         password,
         passwordCheck,
         name,
-        birthDate,
+        birth,
         phone,
         gender,
         onEmailChange: (e) => {
@@ -46,8 +53,7 @@ const SignUp = () => {
             setEmail(e.target.value);
         },
         onEmailDuplicateCheck: ()=>{
-            console.log(email)
-            //이메일 중복 체크
+            checkDuplicateMemberMutate(email);
         },
         onPasswordChange: (e) => {
             passwordValidator(e.target.value)
@@ -75,7 +81,7 @@ const SignUp = () => {
             birthDateValidator(e.target.value)
                 ? setValidData((p) => ({ ...p, isBirthDateValid: true }))
                 : setValidData((p) => ({ ...p, isBirthDateValid: false }));
-            setBirthDate(e.target.value);
+            setBirth(e.target.value);
         },
         onPhoneChange: (e) => {
             phoneValidator(e.target.value)
@@ -84,10 +90,6 @@ const SignUp = () => {
             setPhone(e.target.value);
         },
         onSignUp: () => {
-            // 입력값 체크
-            console.log(`validData: ${{...validData}}`)
-            console.log(`gender: ${gender}`)
-
             // 필수 입력값을 다 입력하지 않았을때는 경고창
             if (isNotEnterEmail||isNotEnterPassword||isNotEnterName||isNotEnterBirthDate||isNotEnterPhone){
                 if (isNotEnterEmail&&isNotEnterPassword&&isNotEnterName&&isNotEnterBirthDate&&isNotEnterPhone) alert('이메일, 비밀번호, 이름, 생년월일, 핸드폰번호를 입력해주세요!')
@@ -97,7 +99,7 @@ const SignUp = () => {
                 else if (isNotEnterBirthDate) alert('생년월일을 입력해주세요!')
                 else  alert('핸드폰번호를 입력해주세요!')
             }else {
-                navigate('/login')
+                signUpMutate({ email, password, name, gender, birth, phone });
             }
             
         },

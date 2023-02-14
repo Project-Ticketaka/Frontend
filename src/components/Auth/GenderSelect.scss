@@ -1,5 +1,6 @@
 .male{
     cursor: pointer;
+    user-select: none;
     color: #FF7F8F;
     height: 100%;
     padding-left: 1rem;
@@ -19,6 +20,7 @@
 
 .female{
     cursor: pointer;
+    user-select: none;
     color: #FF7F8F;
     height: 100%;
     padding-left: 1rem;

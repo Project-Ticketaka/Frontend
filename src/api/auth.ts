@@ -8,6 +8,9 @@ const AuthAPI = {
   login: (data: IAuthData) => {
     return client.post("/member/login", data);
   },
+  checkDuplicateMember: (email: string) => {
+    return client.get(`/member/signup/${email}`);
+  }
 };
 
 export default AuthAPI;

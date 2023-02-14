@@ -1,15 +1,6 @@
-export interface IUserInfo {
-    email: string;
-    password: string;
-}
+import { IAuthData } from "../../types/auth";
 
-
-export interface IAuthResponse {
-    message: string;
-    token: string;
-}
-
-interface IAuthForm extends IUserInfo {
+interface IAuthForm extends IAuthData {
     onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     validData: { isEmailValid: boolean; isPasswordValid: boolean };
@@ -34,7 +25,7 @@ export interface ISignUpProps extends IAuthForm {
     passwordCheck: string;
     name: string;
     gender: string;
-    birthDate: string;
+    birth: string;
     phone: string;
     isNotEnterName: boolean;
     isNotEnterBirthDate: boolean;

@@ -6,13 +6,14 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Map from "../Map";
 import styled from "@emotion/styled";
+import './custom-datepicker.scss'
 
 const SessionButton = styled(Button)`
     
     height: fit-content;
-    width: 100%;
-    padding: 0.3rem 3rem;
     
+    padding: 0.2rem 0.4rem;
+    font-size: 1.1rem;
     color: #858585;
     
     border:0.2rem #CACACA solid;
@@ -35,7 +36,7 @@ const ReservationButton = styled(Button)`
     
     width: 100%;
     padding: 0.8rem 3rem;
-
+    font-size: 1.1rem;
     color: #ffffff;
     background: #5C7D92;
     
@@ -63,6 +64,7 @@ const DeatilView = ({detail}:any) => {
     
     const onChangeDate = (e:any) =>{
         setSelectedDate(`${new Date(e).getFullYear()}.${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}.${new Date(e).getDate()}`)
+        setSelectedTime('')
     }
     
 
@@ -72,7 +74,6 @@ const DeatilView = ({detail}:any) => {
     },[selectedDate]);
 
     const selectSessionTime = (idx:string, time:string) => {
-        
         setSelectedTimeId(idx)
         setSelectedTime(time)
     }
@@ -84,7 +85,11 @@ const DeatilView = ({detail}:any) => {
     const [people,setPeople] = useState(1)
 
     const goReservation = () => {
-        alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
+        if(selectedTime){
+            alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
+        }else{
+            alert('회차를 선택해 주세요!')
+        }
         
         let paymentInfo = {
             selectedDate:selectedDate,
@@ -94,7 +99,8 @@ const DeatilView = ({detail}:any) => {
             seatPrice: seatPrice,
             detail:detail,
         }
-        navigate('/payment',{state:paymentInfo})
+
+        //navigate('/payment',{state:paymentInfo})
     }
 
     
@@ -118,55 +124,51 @@ const DeatilView = ({detail}:any) => {
         <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%'}}>
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
         {/* InfoView {pfId} */}
-            <div style={{display:'flex',flexDirection:'row',gap:'1.3rem'}}>
+            <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',marginTop:'1rem'}}>
                 <img src={detail.prf_data.poster} alt={detail.prf_data.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
-                <div style={{display:'flex',flexDirection:'column',gap:'1.5rem'}}>
-                    <div>
-                        <p style={{fontSize:"1.6rem", fontWeight:'500', margin:'0'}}>{detail.prf_data.title}</p>
-                    </div>
-                    <div>
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'1rem 0 0 0'}}>장소 | {detail.fclty_data.facility_name}</p>
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'1rem 0 0 0'}}>관람시간 | {detail.prf_data.runtime}</p>
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'1rem 0 0 0'}}>관람등급 | {detail.prf_data.viewing_age}</p>
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'1rem 0 0 0'}}>기간 | {detail.prf_data.start_date} ~ {detail.prf_data.end_date}</p>
-                    </div>
+                <div style={{display:'flex',flexDirection:'column',gap:'1.5rem',width:'100%'}}>
+                    
+                    <p style={{fontSize:"1.5rem", fontWeight:'500', margin:'0',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{detail.prf_data.title}</p>
+                    
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {detail.fclty_data.facility_name}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {detail.prf_data.runtime}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {detail.prf_data.viewing_age}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {detail.prf_data.start_date} ~ {detail.prf_data.end_date}</p>
+                    
                 </div>
             </div>
-
-            <div style={{display:'flex', flexDirection:'row',gap:'3rem'}}>
             
-                {/* 회차정보 담고있는 캘린더 */}
-                <DatePicker
-                selected={new Date(selectedDate)}
-                highlightDates={detail.prf_session_data.map((data: { prf_session_date: string | number | Date; })=>new Date(data.prf_session_date))}
-                onChange={onChangeDate}
-                disabledKeyboardNavigation //다른 월의 같은 날짜시 자동 selected 되는 현상 방지
-                locale="ko" 
-                inline 
-                maxDate={new Date(detail.prf_data.end_date)}
+            <DatePicker
+                    wrapperClassName="datepicker"
+                    selected={new Date(selectedDate)}
+                    highlightDates={detail.prf_session_data.map((data: { prf_session_date: string | number | Date; })=>new Date(data.prf_session_date))}
+                    onChange={onChangeDate}
+                    disabledKeyboardNavigation //다른 월의 같은 날짜시 자동 selected 되는 현상 방지
+                    locale="ko" 
+                    inline
+                    minDate={new Date(detail.prf_data.start_date)}
+                    maxDate={new Date(detail.prf_data.end_date)}
+                    popperPlacement="auto" //화면 중앙에 팝업이 출현
+                    />
                 
-                popperPlacement="auto" //화면 중앙에 팝업이 출현 
-                />
-            
-            
-            <div style={{display:'flex', flexDirection:'column'}}>
-                <div style={{display:'flex', flexDirection:'row',gap:'4rem'}}>
-                    {/* 회차 시간 선택 */}
-                    <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
-                    
-                    {
-                        sessionTime.map((time: string,idx: { toString: () => string; })=>{
-                            return(
-                            // <span style={{border:'0.2rem #FF7F8F solid', borderRadius:'2rem', padding:'0.3rem 1rem',fontSize:'1.3rem',color:'#858585'}}>{time}</span>
-                                <SessionButton className={`${selectedDate.toString()} ${idx.toString()}`===selectedTimeId?'active':'inactive'} value={time} size="large" variant="outlined" id={`${selectedDate.toString()} ${idx.toString()}`}  onClick={()=>selectSessionTime(`${selectedDate.toString()} ${idx.toString()}`,time)}>{time}</SessionButton>
-                            )
-                        })
-                    }
+                <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gridTemplateRows:'repea(3,1fr)',gap:'1.3rem',marginTop:'0.5rem'}}>
+                    <div style={{gridRow:'span 2'}}>
+                        <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
+                        
+                        {
+                            sessionTime.map((time: string,idx: { toString: () => string; })=>{
+                                return(
+                                // <span style={{border:'0.2rem #FF7F8F solid', borderRadius:'2rem', padding:'0.3rem 1rem',fontSize:'1.3rem',color:'#858585'}}>{time}</span>
+                                    <SessionButton className={`${selectedDate.toString()} ${idx.toString()}`===selectedTimeId?'active':'inactive'} value={time} size="large" variant="outlined" id={`${selectedDate.toString()} ${idx.toString()}`}  onClick={()=>selectSessionTime(`${selectedDate.toString()} ${idx.toString()}`,time)}>{time}</SessionButton>
+                                )
+                            })
+                        }
+                        </div>
                     </div>
-                    
-                    <div>
-                    {/* 좌석 유형 선택 */}
-                    {
+                    <div style={{gridRow:'span 2'}}>
+                        <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
+                        
+                        {
                         detail.prf_data.ticket_price.map((seat: any,idx:number)=>{
                             return(
                                 seatType===seat.seat_type
@@ -176,23 +178,21 @@ const DeatilView = ({detail}:any) => {
                             )
                         })
                     }
+                        </div>
                     </div>
-                </div>
-                <div style={{display:'flex',flexDirection:'row',gap:'2rem',alignItems:'center'}}>
-                    {/* 인원 수 선택 */}
                     <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'3rem',border:'0.3rem #CACACA solid', borderRadius:'2rem',padding:'0.5rem 1rem',userSelect:'none'}}>
                         <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(-1)}>-</span>
                         <p style={{fontSize:'1.5rem', margin:'0'}}>{people}</p>
                         <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(+1)}>+</span>
                     </div>
 
-                    {/* 예매하기 버튼 */}
+                    
                     <ReservationButton size="large" onClick={()=>goReservation()}>
                         예매하기
                     </ReservationButton>
+
                 </div>
-            </div>
-            </div>
+
         </div>
 
         

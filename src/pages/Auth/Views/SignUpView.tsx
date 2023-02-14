@@ -8,6 +8,7 @@ import GenderSelect from "../../../components/Auth/GenderSelect"
 import { ISignUpProps } from "../types"
 
 import styled from "@emotion/styled"
+import { emailValidator } from "../../../utils/validator"
 
 const Row = styled.div`
     display: flex;
@@ -37,7 +38,7 @@ const SignUpView = ({
     passwordCheck,
     name,
     gender,
-    birthDate,
+    birth,
     phone,
     validData
   }: ISignUpProps) => {
@@ -55,7 +56,9 @@ const SignUpView = ({
                     />
                     <Button 
                         size='md'
-                        onClick={onEmailDuplicateCheck}>중복체크</Button>
+                        onClick={onEmailDuplicateCheck}
+                        state={`${validData.isEmailValid}`}
+                        disabled={!(validData.isEmailValid)}>중복체크</Button>
                 </Row>
                 
                 <Row>
@@ -89,7 +92,7 @@ const SignUpView = ({
                 <AuthInput 
                     type="text" 
                     placeholder="생년월일 8자리 ( YYYYMMDD )"
-                    value={birthDate}
+                    value={birth}
                     onChange={onBirthDateChange}
                 />
                 <AuthInput 

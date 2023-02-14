@@ -2,6 +2,9 @@
 #Specify a base image
 FROM node:19-alpine as builder
 
+ENV REACT_APP_NAVER_SECRET=whdi5vd7tp
+ENV REACT_APP_KOPIS_SECRET=b1f07d8905a945a4aff5a992dc1cbe76
+
 #Specify a working directory
 WORKDIR '/app'
 

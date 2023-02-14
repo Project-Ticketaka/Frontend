@@ -42,10 +42,10 @@ const LoginView = ({
                 onChange={onPasswordChange}
             />
             
-            <Button onClick={onLogin} state={`${validData.isEmailValid&&validData.isPasswordValid}`}>로그인</Button>
+            <Button onClick={onLogin} state={`${validData.isEmailValid&&validData.isPasswordValid}`} disabled={!(validData.isEmailValid&&validData.isPasswordValid)}>로그인</Button>
             <Row>
-                <span>아직 계정이 없으신가요?</span>
-                <Button color='white' size='md' onClick={onGoToSignUp}>가입하기</Button>
+                <span style={{userSelect:'none'}}>아직 계정이 없으신가요?</span>
+                <span style={{color:'#FF7F8F',fontWeight:'700',margin:'0 0.5rem',cursor:'pointer'}} onClick={onGoToSignUp}>가입하기</span>
             </Row>
         </FormContainer>
         

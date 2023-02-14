@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import useLogin from "../../hooks/mutation/auth/useLogin";
 import { emailValidator, passwordValidator } from "../../utils/validator";
 import { ILoginProps } from "./types";
 import LoginView from "./Views/LoginView"
@@ -18,6 +19,10 @@ const Login = () => {
     const isNotEnterEmail = email.length === 0;
     const isNotEnterPassword = password.length === 0;
 
+
+
+    const { mutate: loginMutate } = useLogin(navigate);
+    
     const loginProps: ILoginProps = {
         email,
         password,
@@ -33,7 +38,7 @@ const Login = () => {
                 : setValidData((p) => ({ ...p, isPasswordValid: false }));
             setPassword(e.target.value);
         },
-        onLogin: () => navigate("/"),
+        onLogin: () => loginMutate({ email, password }),
         onGoToSignUp: () => navigate("/sign-up"),
         validData,
         isNotEnterEmail,
