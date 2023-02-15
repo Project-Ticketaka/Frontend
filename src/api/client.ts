@@ -7,14 +7,14 @@ const client = axios.create({ baseURL });
 
 client.interceptors.request.use(
     (config: AxiosRequestConfig): any => {
-    const token = localStorage.getItem("token");
+       const token = localStorage.getItem("token");
 
-    if (token) {
-        config.headers = {};
-        config.headers.Authorization = token;
-    }
-    return config;
-},
+        if (token) {
+            config.headers = {};
+            config.headers.Authorization = token;
+        }
+        return config;
+    },
     (error:any) => Promise.reject(error)
 );
 
