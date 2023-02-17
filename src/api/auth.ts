@@ -9,7 +9,7 @@ const AuthAPI = {
     return client.post("/member/login", data);
   },
   checkDuplicateMember: (data: IAuthData) => {
-    return client.post("/member/checkEmail",data);
+    return client.post("/member/checkDuplicateEmail",data);
   }
 };
 

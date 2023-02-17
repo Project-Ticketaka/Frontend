@@ -6,8 +6,7 @@ export interface ILoginData extends IAuthData{
     password: string;
 }
 
-export interface ISignUpData extends IAuthData{
-    password: string;
+export interface ISignUpData extends ILoginData{
     name: string;
 	gender: string;
     birth: string;
