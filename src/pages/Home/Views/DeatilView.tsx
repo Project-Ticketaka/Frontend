@@ -172,8 +172,8 @@ const DeatilView = ({detail}:any) => {
                         detail.prf_data.ticket_price.map((seat: any,idx:number)=>{
                             return(
                                 seatType===seat.seat_type
-                                ?<p style={{margin:'0 0 1rem 0',cursor:'pointer'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none'}}>■</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
-                                :<p style={{margin:'0 0 1rem 0',cursor:'pointer'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none'}}>□</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                ?<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>■</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                :<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>□</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
                                 
                             )
                         })

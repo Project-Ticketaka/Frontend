@@ -2,14 +2,14 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 
 import AuthAPI from "../../../api/auth";
-import { IAuthResponse, IAuthData } from "../../../types/auth";
+import { IAuthResponse, IAuthData, ILoginData } from "../../../types/auth";
 import { TNavigate } from "../../../types/navigate";
 
 const useLogin = (navigate: TNavigate) => {
-    return useMutation((userInfo: IAuthData) => AuthAPI.login(userInfo), {
+    return useMutation((userInfo: ILoginData) => AuthAPI.login(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
-            console.log(data);
-            const token = data.data.token;
+            console.log(data.headers);
+            const token = data.headers["x-authorization"];
             localStorage.setItem("token", token);
             navigate("/", { replace: true });
         },

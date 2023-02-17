@@ -1,9 +1,9 @@
 import axios,{ AxiosRequestConfig} from "axios";
-import { IError } from "../types/axios";
 
 const baseURL: string = process.env.REACT_APP_BASE_URL as string;
 
 const client = axios.create({ baseURL });
+
 
 client.interceptors.request.use(
     (config: AxiosRequestConfig): any => {

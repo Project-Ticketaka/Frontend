@@ -15,6 +15,7 @@ const MypageButton = styled(Button)`
 `;
 const HeaderContainer = styled.div`
     padding: 1rem 1rem 0 1rem;
+    box-shadow(4px 2px 2px #4444dd);
 
     ${media.tablet`
         
@@ -33,9 +34,7 @@ const HeaderMenu = styled.div`
     min-width: 100%;
     
     ${media.phone`
-        
         width: 100%;
-        
     `}
 `;
 
@@ -51,7 +50,6 @@ const MenuList = styled.ul`
         padding-right: 0rem;
         width: 0;
         visibility: hidden;
-
     `}
 `;
 

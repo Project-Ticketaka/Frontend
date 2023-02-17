@@ -1,9 +1,13 @@
 export interface IAuthData {
     email: string;
+}
+
+export interface ILoginData extends IAuthData{
     password: string;
 }
 
 export interface ISignUpData extends IAuthData{
+    password: string;
     name: string;
 	gender: string;
     birth: string;

@@ -53,7 +53,7 @@ const SignUp = () => {
             setEmail(e.target.value);
         },
         onEmailDuplicateCheck: ()=>{
-            checkDuplicateMemberMutate(email);
+            checkDuplicateMemberMutate({"email":email});
         },
         onPasswordChange: (e) => {
             passwordValidator(e.target.value)

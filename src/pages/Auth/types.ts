@@ -1,6 +1,6 @@
-import { IAuthData } from "../../types/auth";
+import { ILoginData } from "../../types/auth";
 
-interface IAuthForm extends IAuthData {
+interface IAuthForm extends ILoginData {
     onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     validData: { isEmailValid: boolean; isPasswordValid: boolean };
