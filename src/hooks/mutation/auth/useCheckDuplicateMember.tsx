@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 
-import AuthAPI from "../../../api/auth";
-import { IAuthResponse, IAuthData } from "../../../types/auth";
+import MemberAPI from "../../../api/member";
+import { IAuthResponse, IAuthData } from "../../../types/member";
 
 const useCheckDuplicateMember = () => {
-    return useMutation((userInfo: IAuthData) => AuthAPI.checkDuplicateMember(userInfo), {
+    return useMutation((userInfo: IAuthData) => MemberAPI.checkDuplicateMember(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
             alert('사용 가능합니다!')
         },

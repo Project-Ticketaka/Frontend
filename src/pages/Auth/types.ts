@@ -1,4 +1,4 @@
-import { ILoginData } from "../../types/auth";
+import { ILoginData } from "../../types/member";
 
 interface IAuthForm extends ILoginData {
     onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

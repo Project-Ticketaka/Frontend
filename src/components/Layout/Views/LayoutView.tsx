@@ -42,10 +42,10 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
         ],
         goMyPage: () => {
             
-            // window.localStorage.getItem('token')
-            // ?navigate('/my',{state:data})
-            // :navigate('/login')
-            navigate('/my',{state:data})
+            window.localStorage.getItem('token')
+            ?navigate('/my',{state:data})
+            :navigate('/login')
+            
             
         },
         onSearchChange: (e) => {

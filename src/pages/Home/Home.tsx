@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { xml2json } from "xml-js";
-import useGetPerformanceById from "../../hooks/query/useGetPerformanceById";
+import useGetPerformanceById from "../../hooks/query/performance/useGetPerformanceById";
 import HomeView from "./Views/HomeView"
 
 const Home = () => {

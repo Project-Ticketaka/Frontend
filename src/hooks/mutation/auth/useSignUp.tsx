@@ -1,15 +1,13 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { useMutation } from "@tanstack/react-query";
 
-import AuthAPI from "../../../api/auth";
-import { IAuthResponse, ISignUpData } from "../../../types/auth";
+import MemberAPI from "../../../api/member";
+import { IAuthResponse, ISignUpData } from "../../../types/member";
 import { TNavigate } from "../../../types/navigate";
 
 const useSignUp = (navigate: TNavigate) => {
-    return useMutation((userInfo: ISignUpData) => AuthAPI.signUp(userInfo), {
+    return useMutation((userInfo: ISignUpData) => MemberAPI.signUp(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
-            const token = data.data.token;
-            localStorage.setItem("token", token);
             navigate("/login", { replace: true });
         },
         onError: ((error: unknown, variables: ISignUpData, context: unknown) =>{
