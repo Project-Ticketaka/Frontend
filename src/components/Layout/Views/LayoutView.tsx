@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import { IHeaderProps, ILayoutProps } from "../types";
 import Footer from "../Footer";
-import useGetMemberInfo from "../../../hooks/query/useGetMemberInfo";
+import useGetMemberInfo from "../../../hooks/query/member/useGetMemberInfo";
 
 const Container = styled.div`
     display: flex;

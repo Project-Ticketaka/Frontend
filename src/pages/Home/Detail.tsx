@@ -1,7 +1,7 @@
 
 import { useLocation } from "react-router";
 import { useParams } from "react-router-dom";
-import useGetPerformanceById from "../../hooks/query/useGetPerformanceById";
+import useGetPerformanceById from "../../hooks/query/performance/useGetPerformanceById";
 import DeatilView from "./Views/DeatilView"
 
 const Detail = () => {

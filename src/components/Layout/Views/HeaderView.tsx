@@ -15,7 +15,7 @@ const MypageButton = styled(Button)`
 `;
 const HeaderContainer = styled.div`
     padding: 1rem 1rem 0 1rem;
-    box-shadow(4px 2px 2px #4444dd);
+    boxShadow: 2px 2px 2px 2px #CACACA;
 
     ${media.tablet`
         
