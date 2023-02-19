@@ -5,7 +5,7 @@ import { IPerformanceByIdResponse } from "../../../types/performance";
 
 const useGetPerformanceById = (prf_id: string | undefined) => {
     return useQuery(["getPerformanceById", prf_id], () => PerformanceAPI.getPerformanceById(prf_id), {
-        select: (data: AxiosResponse<IPerformanceByIdResponse>) => {
+        select: (data: AxiosResponse) => {
             console.log(data)
             return data.data;
         },
