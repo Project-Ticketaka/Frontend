@@ -26,7 +26,7 @@ const SearchView = ({data,keyword}:any) => {
                 <li style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingBottom:'1.5rem',borderBottom:'1px #CACACA solid'}}>
                 
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center'}}>
-                    <img src="http://www.kopis.or.kr/upload/pfmPoster/PF_PF209894_230117_133614.gif" alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>
+                    <img src={el.poster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>
                     <div style={{display:'flex',flexDirection:'column',gap:'1rem',alignSelf:'center'}}>
                         <div>
                             <p style={{fontSize:"1.4rem", fontWeight:'500', margin:'0'}}>{el.title}</p>
@@ -38,7 +38,7 @@ const SearchView = ({data,keyword}:any) => {
                     </div>
                     </div>
                     <ReservationButton variant="contained" startIcon={<ReservationIcon/>} onClick={()=>navigate(`/detail/${el.prfId}`)}>예매하기</ReservationButton>
-            </li>
+                </li>
                 )
             })
         }
