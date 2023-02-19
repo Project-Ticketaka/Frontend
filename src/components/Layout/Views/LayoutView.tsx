@@ -55,7 +55,7 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
             if (e.code === 'Enter') {
                 //백엔드 검색 모듈 요청
                 e.preventDefault();
-                navigate(`/search/${keyword}`,{state:keyword})
+                navigate(`/search/${keyword}`)
             }
         },
         keyword: keyword,
