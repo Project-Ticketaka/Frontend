@@ -18,7 +18,7 @@ const CategoryView = (data:any) => {
         <MainContainer>
             {
                 
-                data.content.map((el:any)=>{
+                data.category.map((el:any)=>{
                     return(
                         <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>navigate(`/detail/${el.prfId}`)}>
                             <div style={{textAlign: 'center'}}>

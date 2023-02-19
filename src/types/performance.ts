@@ -61,7 +61,32 @@ export interface IPerformanceSearch {
 }
 
 export interface IPerformanceByCategoryResponse {
-	data: IPerformanceSearch;
+	data: {
+		content: IPerformanceSearch[];
+		pageable: {
+            sort: {
+                empty: boolean;
+                sorted: boolean;
+                unsorted: boolean;
+            },
+            offset: number;
+            pageNumber: number;
+            pageSize: number;
+            paged: boolean;
+            unpaged: boolean;
+        },
+        size: number;
+        number: number;
+        numberOfElements: number;
+        sort: {
+            empty: boolean;
+            sorted: boolean;
+            unsorted: boolean;
+        },
+        first: boolean;
+        last: boolean;
+        empty: boolean;
+	}
 }
 export interface IPerformanceReservationInfo {
 	selectedDate: string;
