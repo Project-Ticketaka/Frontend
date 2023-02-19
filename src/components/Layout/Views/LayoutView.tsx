@@ -42,7 +42,7 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
         ],
         goMyPage: () => {
             
-            window.localStorage.getItem('token')
+            window.localStorage.getItem('accessToken')
             ?navigate('/my',{state:data})
             :navigate('/login')
             
