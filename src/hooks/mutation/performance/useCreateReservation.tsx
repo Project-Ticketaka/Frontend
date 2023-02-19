@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from "react-query";
 
 import { TNavigate } from "../../../types/navigate";
 import ReservationAPI from "../../../api/reservation";

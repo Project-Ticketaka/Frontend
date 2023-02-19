@@ -1,4 +1,4 @@
-import { ICheckReservationData, IPerformanceData } from "../types/performance";
+import { ICheckReservationData } from "../types/performance";
 import client from "./client";
 
 const PerformanceAPI = {

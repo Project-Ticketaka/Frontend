@@ -1,14 +1,12 @@
-import React from 'react'
-import Button from "../../../components/Common/Button"
-import Logo from "../../../components/Common/Logo"
+import Button from "../../../components/Common/Button";
+import Logo from "../../../components/Common/Logo";
 import AuthInput from "../../../components/Auth/AuthInput"
 import Container from "../../../components/Auth/Container"
 import FormContainer from "../../../components/Auth/FormContainer"
 import GenderSelect from "../../../components/Auth/GenderSelect"
 import { ISignUpProps } from "../types"
 
-import styled from "@emotion/styled"
-import { emailValidator } from "../../../utils/validator"
+import styled from "@emotion/styled";
 
 const Row = styled.div`
     display: flex;

@@ -20,3 +20,7 @@ export interface ISignUpData extends ILoginData{
 export interface IMemberResponse {
     data: IMemberInfo;
   }
+
+  export interface IAuthResponse {
+    message: string;
+  }

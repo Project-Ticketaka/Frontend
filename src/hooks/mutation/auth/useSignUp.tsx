@@ -1,5 +1,5 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { useMutation } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
+import { useMutation } from "react-query";
 
 import MemberAPI from "../../../api/member";
 import { IAuthResponse, ISignUpData } from "../../../types/member";

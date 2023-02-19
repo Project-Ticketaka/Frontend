@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../Common/Logo";
 import { IHeaderProps } from "../types";

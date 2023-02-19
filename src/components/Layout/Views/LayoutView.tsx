@@ -24,7 +24,7 @@ const OutletContainer = styled.div`
 const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
     const navigate=useNavigate();
     const [keyword, setKeyword] = useState("");
-    const [my, setMy] = useState("");
+    
     const { data, isLoading } = useGetMemberInfo();
     const headerProps:IHeaderProps={
         menu,
