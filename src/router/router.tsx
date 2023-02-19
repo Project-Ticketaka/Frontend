@@ -3,6 +3,7 @@ import Empty from "../components/Common/Empty";
 import Layout from "../components/Layout/Layout";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
+import A4 from "../pages/Category/A4";
 import Detail from "../pages/Home/Detail";
 import Home from "../pages/Home/Home";
 import Payment from "../pages/Home/Payment";
@@ -18,7 +19,7 @@ const Router = () => {
           <Route path="/detail">
             <Route path=":prf_id"  element={<Detail />}/>
           </Route>
-          <Route path="/a4" element={<h1>연극</h1>} />
+          <Route path="/a4" element={<A4/>} />
           <Route path="/b3a" element={<h1>무용</h1>} />
           <Route path="/c3a" element={<h1>클래식</h1>} />
           <Route path="/c4" element={<h1>국악</h1>} />

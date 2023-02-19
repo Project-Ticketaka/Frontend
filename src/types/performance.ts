@@ -47,18 +47,22 @@ export interface IPerformanceByIdResponse {
 }
 
 
+
+
 export interface IPerformanceSearch {
-    performance_id: string;
+    prfId: string;
     title: string;
-    start_date: string;
-    end_date: string;
-	viewing_age: string;
+    startDate: string;
+    endDate: string;
+	viewingAge: string;
 	genre: string;
 	poster: string;
-	facility_name: string;
+	facilityName: string;
 }
 
-
+export interface IPerformanceByCategoryResponse {
+	data: IPerformanceSearch;
+}
 export interface IPerformanceReservationInfo {
 	selectedDate: string;
 	selectedTime: string;
