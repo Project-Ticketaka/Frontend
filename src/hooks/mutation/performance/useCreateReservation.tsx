@@ -5,7 +5,7 @@ import { TNavigate } from "../../../types/navigate";
 import ReservationAPI from "../../../api/reservation";
 import { IReservationInfo, IReservationResponse } from "../../../types/reservation";
 
-const useCreateReservation = (navigate: TNavigate) => {
+const useCreateReservation = () => {
     return useMutation((reservationInfo: IReservationInfo) => ReservationAPI.createReservation(reservationInfo), {
         onSuccess: (data: AxiosResponse<IReservationResponse>) => {
             alert('예매 완료!');

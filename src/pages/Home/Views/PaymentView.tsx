@@ -59,7 +59,7 @@ const ChargeButton = styled(Button)`
 const PaymentView = ({paymentInfo}:any) => {
     const navigate=useNavigate()
     const [paymentWay,setPaymentWay]=useState('')
-    const { mutate: createReservationMutate } = useCreateReservation(navigate);
+    const { mutate: createReservationMutate } = useCreateReservation();
     const goCharge = () => {
         let reservationInfo:IReservationInfo = {
                 "performanceId": paymentInfo.detail.performanceDetailInfo.prfId,
