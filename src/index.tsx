@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const theme = createTheme({
   typography: {
@@ -30,15 +31,7 @@ const theme = createTheme({
 });
 
 
-const queryOptions = {
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 0,
-    },
-  },
-};
-const queryClient = new QueryClient(queryOptions);
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -56,6 +49,7 @@ root.render(
   <ThemeProvider theme={theme}>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         <App />
       </QueryClientProvider>
     </BrowserRouter>
