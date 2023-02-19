@@ -7,10 +7,10 @@ import DeatilView from "./Views/DeatilView"
 const Detail = () => {
     const { state } = useLocation();
     console.log(state)
-    const params = useParams<'prf_id'>();
+    const params = useParams();
     const { data, isLoading } = useGetPerformanceById(params?.prf_id);
     return (
-        <DeatilView detail={state}/>
+        <DeatilView data={data}/>
     )
 }
 

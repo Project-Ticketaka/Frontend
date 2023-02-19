@@ -12,7 +12,7 @@ const MainContainer = styled.div`
         
     `}
 `
-const HomeView = ({top10,goDetail}:any) => {
+const HomeView = ({top10,onGoToDetail}:any) => {
     return (
         <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
         <div style={{width:'100%', height:'15rem',backgroundColor:'#B65C87'}}>
@@ -25,7 +25,7 @@ const HomeView = ({top10,goDetail}:any) => {
                 top10.length!==0
                 ?top10.map((el:any)=>{
                     return(
-                        <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>goDetail(el.mt20id._text)}>
+                        <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>onGoToDetail(el.mt20id._text)}>
                             <div style={{textAlign: 'center'}}>
                                 <div style={{position:'relative'}}>
                                     <img src={`http://kopis.or.kr/${el.poster._text}`} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.prfnm._text}/>

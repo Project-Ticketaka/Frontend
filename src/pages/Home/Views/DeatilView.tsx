@@ -50,15 +50,15 @@ const ReservationButton = styled(Button)`
     
 `;
 
-const DeatilView = ({detail}:any) => {
+const DeatilView = ({data}:any) => {
 
     registerLocale("ko", ko); //한국어 설정
-    const [selectedDate,setSelectedDate] = useState(detail.prf_data.start_date)
+    const [selectedDate,setSelectedDate] = useState(data.performanceDetailInfo.start_date)
     const [selectedTime,setSelectedTime] = useState('')
     const [selectedTimeId,setSelectedTimeId] = useState('')
     const [seatType,setSeatType] = useState('')
     const [seatPrice,setSeatPrice] = useState(0)
-    const [sessionTime,setSessionTime] = useState(detail.prf_session_data.filter((data: { prf_session_date: any; })=>data.prf_session_date===selectedDate).map((data: { prf_session_time: any; })=>data.prf_session_time))
+    const [sessionTime,setSessionTime] = useState(data.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
     
@@ -69,7 +69,7 @@ const DeatilView = ({detail}:any) => {
     
 
     useEffect(()=>{
-        setSessionTime(detail.prf_session_data.filter((data: { prf_session_date: any; })=>data.prf_session_date===selectedDate).map((data: { prf_session_time: any; })=>data.prf_session_time))
+        setSessionTime(data.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
     
     },[selectedDate]);
 
@@ -97,10 +97,10 @@ const DeatilView = ({detail}:any) => {
             people:people,
             seatType: seatType,
             seatPrice: seatPrice,
-            detail:detail,
+            detail:data,
         }
 
-        //navigate('/payment',{state:paymentInfo})
+        navigate('/payment',{state:paymentInfo})
     }
 
     
@@ -125,15 +125,15 @@ const DeatilView = ({detail}:any) => {
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
         {/* InfoView {pfId} */}
             <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',marginTop:'1rem'}}>
-                <img src={detail.prf_data.poster} alt={detail.prf_data.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
+                <img src={data.performanceDetailInfo.poster} alt={data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
                 <div style={{display:'flex',flexDirection:'column',gap:'1.5rem',width:'100%'}}>
                     
-                    <p style={{fontSize:"1.5rem", fontWeight:'500', margin:'0',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{detail.prf_data.title}</p>
+                    <p style={{fontSize:"1.5rem", fontWeight:'500', margin:'0',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{data.performanceDetailInfo.title}</p>
                     
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {detail.fclty_data.facility_name}</p>
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {detail.prf_data.runtime}</p>
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {detail.prf_data.viewing_age}</p>
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {detail.prf_data.start_date} ~ {detail.prf_data.end_date}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {data.facilityDTO.facilityName}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {data.performanceDetailInfo.runtime}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {data.performanceDetailInfo.viewingAge}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {data.performanceDetailInfo.startDate} ~ {data.performanceDetailInfo.endDate}</p>
                     
                 </div>
             </div>
@@ -141,13 +141,13 @@ const DeatilView = ({detail}:any) => {
             <DatePicker
                     wrapperClassName="datepicker"
                     selected={new Date(selectedDate)}
-                    highlightDates={detail.prf_session_data.map((data: { prf_session_date: string | number | Date; })=>new Date(data.prf_session_date))}
+                    highlightDates={data.prfSessionList.map((data: { prfSessionDate: string | number | Date; })=>new Date(data.prfSessionDate))}
                     onChange={onChangeDate}
                     disabledKeyboardNavigation //다른 월의 같은 날짜시 자동 selected 되는 현상 방지
                     locale="ko" 
                     inline
-                    minDate={new Date(detail.prf_data.start_date)}
-                    maxDate={new Date(detail.prf_data.end_date)}
+                    minDate={new Date(data.performanceDetailInfo.startDate)}
+                    maxDate={new Date(data.performanceDetailInfo.endDate)}
                     popperPlacement="auto" //화면 중앙에 팝업이 출현
                     />
                 
@@ -169,11 +169,11 @@ const DeatilView = ({detail}:any) => {
                         <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
                         
                         {
-                        detail.prf_data.ticket_price.map((seat: any,idx:number)=>{
+                        data.performanceDetailInfo.ticketPrice.map((seat: any,idx:number)=>{
                             return(
-                                seatType===seat.seat_type
-                                ?<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>■</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
-                                :<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seat_type,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>□</span>{seat.seat_type} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                seatType===seat.seatType
+                                ?<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seatType,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>■</span>{seat.seatType} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                :<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seatType,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>□</span>{seat.seatType} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
                                 
                             )
                         })
@@ -220,7 +220,7 @@ const DeatilView = ({detail}:any) => {
             <div style={{display:'flex',flexDirection:'column',justifyItems:'center'}}>
             
             {
-                detail.prf_data.styurls.map((url: string | undefined,idx: any)=>{
+                data.performanceDetailInfo.styUrls.map((url: string | undefined,idx: any)=>{
                     return(<img src={url} alt={`공연 상세 정보 ${idx}`} style={{display:'block',margin:'auto',width:'fit-content'}}/>)})
             }
             </div>
@@ -246,11 +246,11 @@ const DeatilView = ({detail}:any) => {
             <div style={{display:'flex',flexDirection:'row',justifyItems:'center',gap:'2rem'}}>
                 
                 
-                <Map lat={Number(detail.fclty_data.latitude)} lng={Number(detail.fclty_data.longitude)}/>
+                <Map lat={Number(data.facilityDTO.latitude)} lng={Number(data.facilityDTO.longitude)}/>
                 <div>
-                    <p>장소 | {detail.fclty_data.facility_name}</p>
-                    <p>주소 | {detail.fclty_data.address}</p>
-                    <p>대표번호 | {detail.fclty_data.telno}</p>
+                    <p>장소 | {data.facilityDTO.facilityName}</p>
+                    <p>주소 | {data.facilityDTO.address}</p>
+                    <p>대표번호 | {data.facilityDTO.telNo}</p>
                 </div>
             </div> 
         </>

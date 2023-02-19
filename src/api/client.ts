@@ -1,8 +1,9 @@
 import axios,{ AxiosRequestConfig} from "axios";
 
-const baseURL: string = process.env.REACT_APP_BASE_URL as string;
-
+//const baseURL: string = process.env.REACT_APP_BASE_URL as string;
+const baseURL: string = "/backend"
 const client = axios.create({ baseURL });
+
 
 
 client.interceptors.request.use(

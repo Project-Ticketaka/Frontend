@@ -1,21 +1,49 @@
-export interface IPerformanceData {
-    id: string;
+export interface IPerformanceDetailInfo {
+    prfId: string;
     title: string;
-    start_date: string;
-    end_date: string;
+    startDate: string;
+    endDate: string;
     cast: string;
     crew: string;
 	runtime: string;
-	prd_comp: string;
-	viewing_age: string;
-	ticket_price: {seat_type: string, price: number}[],
+	proComp: string;
+	viewingAge: string;
+	ticketPrice: Array<{seatType: string, price: number}>,
 	poster: string;
 	story: string;
 	genre: string;
 	openrun: boolean;
-	styurls: string[]; 
+	styUrls: Array<string>; 
 	state: string;
 }
+
+export interface IPerformanceSessionList {
+    prfSessionId: string;
+    prfSessionDate: string;
+	prfSessionTime: string;
+	available: string;
+}
+
+export interface IFacilityDTO {
+	facilityName: string;
+	telNo: string;
+	relateUrl: string;
+	address: string;
+	latitud: string;
+	longitude: string;
+}
+
+export interface IPerformanceData {
+	performanceDetailInfo: IPerformanceDetailInfo;
+	prfSessionList: Array<IPerformanceSessionList>;
+	facilityDTO: IFacilityDTO;
+}
+
+export interface IGetPerformanceData {
+	code: number;
+	data: IPerformanceData;
+}
+
 
 export interface IPerformanceSearch {
     performance_id: string;
