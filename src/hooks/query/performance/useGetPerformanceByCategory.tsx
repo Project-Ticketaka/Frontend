@@ -6,6 +6,7 @@ import { IPerformanceData } from "../../../types/performance";
 const useGetPerformanceByCategory = (genre: string | undefined) => {
     return useQuery(["getPerformanceByCategory", genre], () => PerformanceAPI.getPerformanceByCategory(genre), {
         select: (data: AxiosResponse<IPerformanceData>) => {
+            console.log(data)
             return data.data;
         },
     });
