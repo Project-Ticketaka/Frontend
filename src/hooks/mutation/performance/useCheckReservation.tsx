@@ -7,7 +7,7 @@ import { IReservationInfo, IReservationResponse } from "../../../types/reservati
 import { ICheckReservationData } from "../../../types/performance";
 
 const useCheckReservation = (navigate:TNavigate) => {
-    return useMutation((checkReservationData: ICheckReservationData) => PerformanceAPI.checkReservation(checkReservationData), {
+    return useMutation((checkReservationData: ICheckReservationData) => PerformanceAPI.checkReservation(checkReservationData.checkData), {
         onSuccess: (data: AxiosResponse<IReservationResponse>,variables: ICheckReservationData) => {
             alert('예매 가능!');
             console.log(variables);

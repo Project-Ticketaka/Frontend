@@ -107,7 +107,7 @@ const DeatilView = ({performanceData}:any) => {
             detail:performanceData,
         }
         
-        checkReservationMutate({"prfSessionId":selectedTimeId,"count":people,"reservationInfo":reservationInfo})
+        checkReservationMutate({checkData:{"prfSessionId":selectedTimeId,"count":people},"reservationInfo":reservationInfo})
     }
 
     

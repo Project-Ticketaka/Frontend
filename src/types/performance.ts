@@ -68,9 +68,11 @@ export interface IPerformanceReservationInfo {
 	detail: IPerformanceData;
 }
 
-
-export interface ICheckReservationData {
+export interface ICheckData {
 	prfSessionId: string;
 	count: number;
+}
+export interface ICheckReservationData {
+	checkData: ICheckData;
 	reservationInfo: IPerformanceReservationInfo;
 }

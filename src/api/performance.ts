@@ -1,4 +1,4 @@
-import { ICheckReservationData } from "../types/performance";
+import { ICheckData, ICheckReservationData } from "../types/performance";
 import client from "./client";
 
 const PerformanceAPI = {
@@ -15,7 +15,7 @@ const PerformanceAPI = {
     //공연의 회차를 클릭하면 남은 좌석에 대한 정보를 불러옴
     return client.get(`/performance/session/${prf_session_id}`);
   },
-  checkReservation: (data: ICheckReservationData) => {
+  checkReservation: (data: ICheckData) => {
     //예약하기 버튼을 눌렀을 때 유저가 선택한 회차에 선택한 인원 수 만큼 예약이 가능한지 확인 후 결제하기 페이지로 넘어감
     return client.post(`/performance/rsv/check`,data);
   },
