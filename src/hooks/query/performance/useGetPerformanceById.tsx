@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
 import { AxiosResponse } from "axios";
 import PerformanceAPI from "../../../api/performance";
 import { IPerformanceByIdResponse } from "../../../types/performance";

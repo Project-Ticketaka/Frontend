@@ -5,15 +5,18 @@ export interface IAuthData {
 export interface ILoginData extends IAuthData{
     password: string;
 }
-export interface IMemberInfo extends ILoginData{
+export interface IMemberInfo extends IAuthData{
     name: string;
     phone: string;
     birth: string;
 }
-export interface ISignUpData extends IMemberInfo{
+export interface ISignUpData extends ILoginData{
+    name: string;
+    phone: string;
+    birth: string;
 	gender: string;
 }
 
-export interface IAuthResponse {
-    message: string;
-}
+export interface IMemberResponse {
+    data: IMemberInfo;
+  }

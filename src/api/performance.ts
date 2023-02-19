@@ -1,4 +1,3 @@
-import axios from "axios";
 import { ICheckReservationData, IPerformanceData } from "../types/performance";
 import client from "./client";
 

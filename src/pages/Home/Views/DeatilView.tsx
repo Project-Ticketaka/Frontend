@@ -6,9 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Map from "../Map";
 import styled from "@emotion/styled";
-import './custom-datepicker.scss'
-import { IPerformanceData } from "../../../types/performance";
-import { IAuthData, IAuthResponse } from "../../../types/member";
+import './custom-datepicker.scss';
 
 const SessionButton = styled(Button)`
     
@@ -55,7 +53,7 @@ const ReservationButton = styled(Button)`
 const DeatilView = ({performanceData}:any) => {
 
     console.log(performanceData);
-    
+
     registerLocale("ko", ko); //한국어 설정
     const [selectedDate,setSelectedDate] = useState(performanceData.performanceDetailInfo.startDate)
     const [selectedTime,setSelectedTime] = useState('')
