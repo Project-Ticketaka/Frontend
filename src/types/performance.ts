@@ -43,7 +43,8 @@ export interface IPerformanceData {
 // 	data: IPerformanceData;
 // }
 export interface IPerformanceByIdResponse {
-    message: string;
+    code: number;
+	data: IPerformanceData;
 }
 
 
