@@ -5,9 +5,7 @@ import useGetPerformanceByKeyword from "../../hooks/query/performance/useGetPerf
 import CategoryView from "./Views/CategoryView"
 
 const A4 = () => {
-    
-    const params = useParams();
-    console.log(params?.id);
+
     let category=[
         {title:'홈',id:'home'},
         {title:'연극',id:'a4'},

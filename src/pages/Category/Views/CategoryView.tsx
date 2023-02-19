@@ -17,8 +17,8 @@ const CategoryView = (data:any) => {
     <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
         <MainContainer>
             {
-                data!==undefined
-                ?data.content.map((el:any)=>{
+                
+                data.content.map((el:any)=>{
                     return(
                         <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>navigate(`/detail/${el.prfId}`)}>
                             <div style={{textAlign: 'center'}}>
@@ -36,23 +36,23 @@ const CategoryView = (data:any) => {
                         </div>
                     )
                 })
-                :
-                Array(10).fill(0).map(()=>{
-                    return(
-                    <div style={{}}>
-                        <div style={{justifyContent: 'center',display:'flex'}}>
+                // :
+                // Array(10).fill(0).map(()=>{
+                //     return(
+                //     <div style={{}}>
+                //         <div style={{justifyContent: 'center',display:'flex'}}>
                             
-                            <div style={{width:'9rem',height:'11.7rem',borderRadius:'5px',backgroundColor:'#B8B8B8'}}></div>
+                //             <div style={{width:'9rem',height:'11.7rem',borderRadius:'5px',backgroundColor:'#B8B8B8'}}></div>
                             
-                        </div>
-                        <p style={{margin:'0.3rem 0',borderRadius:'5px',width:'100%',backgroundColor:'#B8B8B8',color:'#B8B8B8',fontSize:'1.25rem',fontWeight:'500',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>performance name</p>
-                        <p style={{margin:'0.3rem 0',borderRadius:'5px',width:'fit-content',backgroundColor:'#B8B8B8',color:'#B8B8B8',fontSize:'1rem',fontWeight:'300',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>performance place</p>
-                        <p style={{margin:'0.3rem 0',borderRadius:'5px',width:'fit-content',backgroundColor:'#B8B8B8',color:'#B8B8B8',fontSize:'1rem',fontWeight:'300'}}>yyyy.mm.dd~yyyy.mm.dd</p>
-                        {/* <Button 
-                            size='md'
-                            color='gray'>예매하기</Button> */}
-                    </div>)              
-                })
+                //         </div>
+                //         <p style={{margin:'0.3rem 0',borderRadius:'5px',width:'100%',backgroundColor:'#B8B8B8',color:'#B8B8B8',fontSize:'1.25rem',fontWeight:'500',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>performance name</p>
+                //         <p style={{margin:'0.3rem 0',borderRadius:'5px',width:'fit-content',backgroundColor:'#B8B8B8',color:'#B8B8B8',fontSize:'1rem',fontWeight:'300',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>performance place</p>
+                //         <p style={{margin:'0.3rem 0',borderRadius:'5px',width:'fit-content',backgroundColor:'#B8B8B8',color:'#B8B8B8',fontSize:'1rem',fontWeight:'300'}}>yyyy.mm.dd~yyyy.mm.dd</p>
+                //         {/* <Button 
+                //             size='md'
+                //             color='gray'>예매하기</Button> */}
+                //     </div>)              
+                // })
             }
         {/* </div> */}
         </MainContainer>
