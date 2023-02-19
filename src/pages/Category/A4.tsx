@@ -1,7 +1,4 @@
-import React from 'react'
-import { useParams } from "react-router-dom";
 import useGetPerformanceByCategory from "../../hooks/query/performance/useGetPerformanceByCategory";
-import useGetPerformanceByKeyword from "../../hooks/query/performance/useGetPerformanceByKeyword";
 import CategoryView from "./Views/CategoryView"
 
 const A4 = () => {
@@ -20,9 +17,10 @@ const A4 = () => {
     
     const { data, isLoading } = useGetPerformanceByCategory('연극');
     console.log(data)
-  return (
-    isLoading?<></>:<CategoryView data={data}/>
-  )
+
+    return (
+            isLoading ? <></> :<CategoryView data={data}/>
+    )
 }
 
 export default A4

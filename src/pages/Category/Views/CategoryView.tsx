@@ -11,7 +11,7 @@ const MainContainer = styled.div`
     gap: 1rem;
 
 `
-const CategoryView = (data:any) => {
+const CategoryView = ({data}:any) => {
     const navigate = useNavigate();
   return (
     <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
