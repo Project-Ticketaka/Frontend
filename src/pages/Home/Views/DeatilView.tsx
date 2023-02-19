@@ -75,8 +75,9 @@ const DeatilView = ({performanceData}:any) => {
         setSessionTime(performanceData.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionId:string,prfSessionTime: string; })=>data))
     },[selectedDate]);
 
-    const selectSessionTime = (idx:string, time:string) => {
-        setSelectedTimeId(idx)
+    const selectSessionTime = (id:string, time:string) => {
+        alert(`${id}, ${time}`);
+        setSelectedTimeId(id)
         setSelectedTime(time)
     }
 
@@ -165,7 +166,7 @@ const DeatilView = ({performanceData}:any) => {
                             sessionTime.map((session:any)=>{
                                 return(
                                 // <span style={{border:'0.2rem #FF7F8F solid', borderRadius:'2rem', padding:'0.3rem 1rem',fontSize:'1.3rem',color:'#858585'}}>{time}</span>
-                                    <SessionButton className={`${session.prfSessionId}`===selectedTimeId?'active':'inactive'} value={session.prfSessionTime} size="large" variant="outlined" id={`${session.prfSessionId}`}  onClick={()=>selectSessionTime(session.prfSessionId,session.prfSessionTime)}>{session.prfSessionTime}</SessionButton>
+                                    <SessionButton className={session.prfSessionId===selectedTimeId?'active':'inactive'} value={session.prfSessionTime} size="large" variant="outlined" id={session.prfSessionId}  onClick={()=>selectSessionTime(session.prfSessionId,session.prfSessionTime)}>{session.prfSessionTime}</SessionButton>
                                 )
                             })
                         }
