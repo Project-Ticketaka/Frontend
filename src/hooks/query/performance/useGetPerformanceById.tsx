@@ -7,7 +7,7 @@ const useGetPerformanceById = (prf_id: string | undefined) => {
     return useQuery(["getPerformanceById", prf_id], () => PerformanceAPI.getPerformanceById(prf_id), {
         select: (data: AxiosResponse<IGetPerformanceData>) => {
             console.log(data)
-            return data.data.data;
+            return data.data;
         },
     });
 }
