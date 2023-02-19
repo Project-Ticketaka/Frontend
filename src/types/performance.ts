@@ -58,8 +58,19 @@ export interface IPerformanceSearch {
 	facility_name: string;
 }
 
+
+export interface IPerformanceReservationInfo {
+	selectedDate: string;
+	selectedTime: string;
+	people: number;
+	seatType: string;
+	seatPrice: number;
+	detail: IPerformanceData;
+}
+
+
 export interface ICheckReservationData {
-	memberId: string;
-	prfSessionId: number;
+	prfSessionId: string;
 	count: number;
+	reservationInfo: IPerformanceReservationInfo;
 }

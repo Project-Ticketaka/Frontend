@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Map from "../Map";
 import styled from "@emotion/styled";
 import './custom-datepicker.scss';
+import useCheckReservation from "../../../hooks/mutation/performance/useCheckReservation";
 
 const SessionButton = styled(Button)`
     
@@ -71,8 +72,7 @@ const DeatilView = ({performanceData}:any) => {
     
 
     useEffect(()=>{
-        setSessionTime(performanceData.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
-    
+        setSessionTime(performanceData.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionId:string,prfSessionTime: string; })=>data))
     },[selectedDate]);
 
     const selectSessionTime = (idx:string, time:string) => {
@@ -86,14 +86,18 @@ const DeatilView = ({performanceData}:any) => {
     }
     const [people,setPeople] = useState(1)
 
+
+    const { mutate: checkReservationMutate } = useCheckReservation(navigate);
+
     const goReservation = () => {
+
         if(selectedTime){
             alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
         }else{
             alert('회차를 선택해 주세요!')
         }
         
-        let paymentInfo = {
+        let reservationInfo = {
             selectedDate:selectedDate,
             selectedTime:selectedTime,
             people:people,
@@ -101,8 +105,8 @@ const DeatilView = ({performanceData}:any) => {
             seatPrice: seatPrice,
             detail:performanceData,
         }
-
-        navigate('/payment',{state:paymentInfo})
+        
+        checkReservationMutate({"prfSessionId":selectedTimeId,"count":people,"reservationInfo":reservationInfo})
     }
 
     
@@ -158,10 +162,10 @@ const DeatilView = ({performanceData}:any) => {
                         <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
                         
                         {
-                            sessionTime.map((time: string,idx: { toString: () => string; })=>{
+                            sessionTime.map((session:any)=>{
                                 return(
                                 // <span style={{border:'0.2rem #FF7F8F solid', borderRadius:'2rem', padding:'0.3rem 1rem',fontSize:'1.3rem',color:'#858585'}}>{time}</span>
-                                    <SessionButton className={`${selectedDate.toString()} ${idx.toString()}`===selectedTimeId?'active':'inactive'} value={time} size="large" variant="outlined" id={`${selectedDate.toString()} ${idx.toString()}`}  onClick={()=>selectSessionTime(`${selectedDate.toString()} ${idx.toString()}`,time)}>{time}</SessionButton>
+                                    <SessionButton className={`${session.prfSessionId}`===selectedTimeId?'active':'inactive'} value={session.prfSessionTime} size="large" variant="outlined" id={`${session.prfSessionId}`}  onClick={()=>selectSessionTime(session.prfSessionId,session.prfSessionTime)}>{session.prfSessionTime}</SessionButton>
                                 )
                             })
                         }
