@@ -13,7 +13,7 @@ const Detail = () => {
     
 
     return (
-        <DeatilView/>
+        isLoading ? <></> :<DeatilView performanceData={data}/>
     )
 }
 
