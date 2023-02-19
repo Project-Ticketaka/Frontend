@@ -79,7 +79,7 @@ const DeatilView = ({performanceData}:any) => {
 
     useEffect(()=>{
         setSessionTimeList(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
-    },[selectedDate]);
+    },[setSelectedDate]);
 
     
     const selectSessionTime = (id:string, time:string) => {
