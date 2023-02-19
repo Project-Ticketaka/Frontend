@@ -11,13 +11,5 @@ module.exports = function (app){
             }
         })
     )
-
-	app.use(
-    	"/backend",
-      	createProxyMiddleware({
-        	target: 'http://13.125.4.192/',
-          	changeOrigin: true,
-        })
-    )
 	
 }

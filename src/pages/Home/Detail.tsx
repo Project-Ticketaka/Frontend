@@ -5,13 +5,13 @@ import useGetPerformanceById from "../../hooks/query/performance/useGetPerforman
 import DeatilView from "./Views/DeatilView"
 
 const Detail = () => {
-    
     const params = useParams();
-    console.log(params?.prf_id)
+    console.log(params?.prf_id);
     const { data, isLoading } = useGetPerformanceById(params?.prf_id);
     console.log(data)
+
     return (
-        <DeatilView performanceData={data}/>
+        <DeatilView />
     )
 }
 

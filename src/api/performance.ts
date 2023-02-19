@@ -1,9 +1,10 @@
+import axios from "axios";
 import { ICheckReservationData, IPerformanceData } from "../types/performance";
 import client from "./client";
 
 const PerformanceAPI = {
-  getPerformanceById: (prf_id: string | undefined) => {
-    return client.get(`/performance?p=${prf_id}`);
+  getPerformanceById: (prfId: string|undefined) => {
+    return client.get(`/performance?p=${prfId}`);
   },
   getPerformanceByKeyword: (keyword: string | undefined) => {
     return client.get(`/performance/search?keyword=${keyword}`);
