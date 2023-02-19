@@ -61,7 +61,9 @@ const DeatilView = ({performanceData}:any) => {
     const [selectedTimeId,setSelectedTimeId] = useState('')
     const [seatType,setSeatType] = useState('')
     const [seatPrice,setSeatPrice] = useState(0)
-    const [sessionTime,setSessionTime] = useState(performanceData.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
+    
+    const [sessionTimeList,setSessionTimeList] = useState(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate).map((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data))
+
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
     
@@ -72,9 +74,10 @@ const DeatilView = ({performanceData}:any) => {
     
 
     useEffect(()=>{
-        setSessionTime(performanceData.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionId:string,prfSessionTime: string; })=>data))
+        setSessionTimeList(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate).map((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data))
     },[selectedDate]);
 
+    
     const selectSessionTime = (id:string, time:string) => {
         alert(`${id}, ${time}`);
         setSelectedTimeId(id)
@@ -85,6 +88,7 @@ const DeatilView = ({performanceData}:any) => {
         setSeatType(seat_type)
         setSeatPrice(Number(seat_price))
     }
+
     const [people,setPeople] = useState(1)
 
 
@@ -163,10 +167,10 @@ const DeatilView = ({performanceData}:any) => {
                         <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
                         
                         {
-                            sessionTime.map((session:any)=>{
+                            sessionTimeList.map((sessionTime:any)=>{
                                 return(
                                 // <span style={{border:'0.2rem #FF7F8F solid', borderRadius:'2rem', padding:'0.3rem 1rem',fontSize:'1.3rem',color:'#858585'}}>{time}</span>
-                                    <SessionButton className={session.prfSessionId===selectedTimeId?'active':'inactive'} value={session.prfSessionTime} size="large" variant="outlined" id={session.prfSessionId}  onClick={()=>selectSessionTime(session.prfSessionId,session.prfSessionTime)}>{session.prfSessionTime}</SessionButton>
+                                    <SessionButton className={sessionTime.prfSessionId===selectedTimeId?'active':'inactive'} value={sessionTime.prfSessionTime} size="large" variant="outlined" id={sessionTime.prfSessionId}  onClick={()=>selectSessionTime(sessionTime.prfSessionId,sessionTime.prfSessionTime)}>{sessionTime.prfSessionTime}</SessionButton>
                                 )
                             })
                         }
