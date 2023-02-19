@@ -60,12 +60,12 @@ const PaymentView = ({paymentInfo}:any) => {
         let reservationInfo = {
             "data": {
                 "member_id": 1234,
-                "performance_id": paymentInfo.detail.prf_data.id,
+                "performance_id": paymentInfo.detail.performanceDetailInfo.prfId,
                 "reservation_ticket_count": paymentInfo.people,
                 "reservation_date": paymentInfo.selectedDate,
                 "reservation_time": paymentInfo.selectedTime,
                 "reservation_price": paymentInfo.seatPrice*paymentInfo.people,
-                "reservation_poster": paymentInfo.detail.prf_data.poster
+                "reservation_poster": paymentInfo.detail.performanceDetailInfo.poster
             }
         };
         navigate('/reservation',{state: reservationInfo})
@@ -78,10 +78,10 @@ const PaymentView = ({paymentInfo}:any) => {
             
                 
                 <div style={{display:'flex',flexDirection:'row',gap:'1.5rem',alignItems:'center',flex:'2'}}>
-                    <img src={paymentInfo.detail.prf_data.poster} alt={paymentInfo.detail.prf_data.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
+                    <img src={paymentInfo.detail.performanceDetailInfo.poster} alt={paymentInfo.detail.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
                     
                     <div >
-                        <p style={{fontSize:"1.6rem", fontWeight:'500', margin:'0'}}>{paymentInfo.detail.prf_data.title}</p>
+                        <p style={{fontSize:"1.6rem", fontWeight:'500', margin:'0'}}>{paymentInfo.detail.performanceDetailInfo.title}</p>
                         <p style={{fontSize:"1rem", fontWeight:'500'}}>{paymentInfo.selectedDate}</p>
                         <p style={{fontSize:"1rem", fontWeight:'500'}}>{paymentInfo.selectedTime}</p>
                         <div style={{display:'flex', alignItems:'center',gap:'0.4rem'}}>
