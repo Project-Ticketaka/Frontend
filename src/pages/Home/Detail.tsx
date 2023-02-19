@@ -10,8 +10,6 @@ const Detail = () => {
     const { data, isLoading } = useGetPerformanceById(params?.prf_id);
     console.log(data)
 
-    
-
     return (
         isLoading ? <></> :<DeatilView performanceData={data}/>
     )
