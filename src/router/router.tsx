@@ -4,6 +4,13 @@ import Layout from "../components/Layout/Layout";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import A4 from "../pages/Category/A4";
+import B3C from "../pages/Category/B3C";
+import C3A from "../pages/Category/C3A";
+import C3D from "../pages/Category/C3D";
+import C4 from "../pages/Category/C4";
+import E3A from "../pages/Category/E3A";
+import E3B from "../pages/Category/E3B";
+import G3A from "../pages/Category/G3A";
 import Detail from "../pages/Home/Detail";
 import Home from "../pages/Home/Home";
 import Payment from "../pages/Home/Payment";
@@ -20,13 +27,13 @@ const Router = () => {
             <Route path=":prf_id"  element={<Detail />}/>
           </Route>
           <Route path="/a4" element={<A4/>} />
-          <Route path="/b3a" element={<h1>무용</h1>} />
-          <Route path="/c3a" element={<h1>클래식</h1>} />
-          <Route path="/c4" element={<h1>국악</h1>} />
-          <Route path="/c3d" element={<h1>대중음악</h1>} />
-          <Route path="/e3a" element={<h1>복합</h1>} />
-          <Route path="/e3b" element={<h1>서커스/마술</h1>} />
-          <Route path="/g3a" element={<h1>뮤지컬</h1>} />
+          <Route path="/b3c" element={<B3C/>} />
+          <Route path="/c3a" element={<C3A/>} />
+          <Route path="/c4" element={<C4/>} />
+          <Route path="/c3d" element={<C3D/>} />
+          <Route path="/e3a" element={<E3A/>} />
+          <Route path="/e3b" element={<E3B/>} />
+          <Route path="/g3a" element={<G3A/>} />
           <Route path="/search">
             <Route path=":keyword" element={<Search/>}/>
           </Route>

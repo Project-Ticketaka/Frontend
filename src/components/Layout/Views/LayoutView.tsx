@@ -32,7 +32,7 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
         category:[
             {title:'홈',id:'home'},
             {title:'연극',id:'a4'},
-            {title:'무용',id:'b3a'},
+            {title:'무용',id:'b3c'},
             {title:'클래식',id:'c3a'},
             {title:'국악',id:'c4'},
             {title:'대중음악',id:'c3d'},

@@ -1,8 +1,8 @@
+import React from 'react'
 import useGetPerformanceByCategory from "../../hooks/query/performance/useGetPerformanceByCategory";
-import CategoryView from "./Views/CategoryView"
+import CategoryView from "./Views/CategoryView";
 
-const A4 = () => {
-
+const C4 = () => {
     let category=[
         {title:'연극',id:'a4'},
         {title:'무용(서양/한국무용)',id:'b3a'},
@@ -14,7 +14,7 @@ const A4 = () => {
         {title:'뮤지컬',id:'g3a'},
     ]
     
-    const { data, isLoading } = useGetPerformanceByCategory('연극');
+    const { data, isLoading } = useGetPerformanceByCategory('한국음악(국악)');
     console.log(data)
 
     return (
@@ -22,4 +22,4 @@ const A4 = () => {
     )
 }
 
-export default A4
+export default C4

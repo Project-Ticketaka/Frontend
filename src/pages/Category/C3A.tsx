@@ -1,7 +1,7 @@
 import useGetPerformanceByCategory from "../../hooks/query/performance/useGetPerformanceByCategory";
 import CategoryView from "./Views/CategoryView"
 
-const A4 = () => {
+const C3A = () => {
 
     let category=[
         {title:'연극',id:'a4'},
@@ -14,7 +14,7 @@ const A4 = () => {
         {title:'뮤지컬',id:'g3a'},
     ]
     
-    const { data, isLoading } = useGetPerformanceByCategory('연극');
+    const { data, isLoading } = useGetPerformanceByCategory('서양음악(클래식)');
     console.log(data)
 
     return (
@@ -22,4 +22,4 @@ const A4 = () => {
     )
 }
 
-export default A4
+export default C3A
