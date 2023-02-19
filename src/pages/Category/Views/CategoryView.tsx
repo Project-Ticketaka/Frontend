@@ -24,8 +24,8 @@ const CategoryView = ({data}:any) => {
                         <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>navigate(`/detail/${el.prfId}`)}>
                             <div style={{textAlign: 'center'}}>
                                 <div>
-                                    <img src={`http://kopis.or.kr/${el.poster}`} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.title}/>
-                                    {/* <span style={{position:'absolute',color:'#ffffff',left:'2rem',bottom:'-0.3rem',fontSize:'3.5rem',fontWeight:'700',letterSpacing:'-0.5rem'}}>{el.rnum._text}</span> */}
+                                    <img src={el.poster} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.title}/>
+                                    
                                 </div>
                             </div>
                             <p style={{margin:'0.3rem 0',fontSize:'1.25rem',fontWeight:'500',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{el.title}</p>
