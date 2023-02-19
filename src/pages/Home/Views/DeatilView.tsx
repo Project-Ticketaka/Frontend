@@ -57,25 +57,28 @@ const DeatilView = ({performanceData}:any) => {
 
     registerLocale("ko", ko); //한국어 설정
     const [selectedDate,setSelectedDate] = useState(performanceData.performanceDetailInfo.startDate)
+    
     const [selectedTime,setSelectedTime] = useState('')
     const [selectedTimeId,setSelectedTimeId] = useState('')
+    
     const [seatType,setSeatType] = useState('')
     const [seatPrice,setSeatPrice] = useState(0)
     
-    const [sessionTimeList,setSessionTimeList] = useState(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate).map((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data))
+    const [sessionTimeList,setSessionTimeList] = useState(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
 
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
     
     const onChangeDate = (e:any) =>{
+        console.log(`${new Date(e).getFullYear()}.${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}.${new Date(e).getDate()}`)
         setSelectedDate(`${new Date(e).getFullYear()}.${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}.${new Date(e).getDate()}`)
         setSelectedTime('')
     }
     
 
     useEffect(()=>{
-        setSessionTimeList(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate).map((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data))
-    },[selectedDate]);
+        setSessionTimeList(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
+    },[selectedDate,setSelectedDate]);
 
     
     const selectSessionTime = (id:string, time:string) => {
