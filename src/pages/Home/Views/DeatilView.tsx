@@ -71,6 +71,7 @@ const DeatilView = ({performanceData}:any) => {
     
     const onChangeDate = (e:any) =>{
         console.log(`${new Date(e).getFullYear()}.${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}.${new Date(e).getDate()}`)
+        console.log(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===`${new Date(e).getFullYear()}.${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}.${new Date(e).getDate()}`))
         setSelectedDate(`${new Date(e).getFullYear()}.${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}.${new Date(e).getDate()}`)
         setSelectedTime('')
     }
@@ -78,7 +79,7 @@ const DeatilView = ({performanceData}:any) => {
 
     useEffect(()=>{
         setSessionTimeList(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
-    },[selectedDate,setSelectedDate]);
+    },[onChangeDate]);
 
     
     const selectSessionTime = (id:string, time:string) => {
