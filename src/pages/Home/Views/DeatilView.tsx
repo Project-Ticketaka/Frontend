@@ -53,7 +53,7 @@ const ReservationButton = styled(Button)`
 const DeatilView = ({data}:any) => {
 
     registerLocale("ko", ko); //한국어 설정
-    const [selectedDate,setSelectedDate] = useState(data.performanceDetailInfo.start_date)
+    const [selectedDate,setSelectedDate] = useState(data.performanceDetailInfo.startDate)
     const [selectedTime,setSelectedTime] = useState('')
     const [selectedTimeId,setSelectedTimeId] = useState('')
     const [seatType,setSeatType] = useState('')
