@@ -8,6 +8,7 @@ import { TNavigate } from "../../../types/navigate";
 const useLogin = (navigate: TNavigate) => {
     return useMutation((userInfo: ILoginData) => MemberAPI.login(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
+            console.log(data);
             console.log(data.headers);
             const token = data.headers["x-authorization"];
             localStorage.setItem("token", token);

@@ -17,12 +17,12 @@ client.interceptors.request.use(
     (error:any) => Promise.reject(error)
 );
 
-client.interceptors.response.use(
-  (res: AxiosResponse) => res,
-  (error: AxiosError) => {
+// client.interceptors.response.use(
+//   (res: AxiosResponse) => res,
+//   (error: AxiosError) => {
 
-    return Promise.reject(error);
-  }
-);
+//     return Promise.reject(error);
+//   }
+// );
 
 export default client;
