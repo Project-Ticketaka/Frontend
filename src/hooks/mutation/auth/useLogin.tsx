@@ -10,8 +10,10 @@ const useLogin = (navigate: TNavigate) => {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
             console.log(data);
             console.log(data.headers);
-            const token = data.headers["x-authorization"];
-            localStorage.setItem("token", token);
+            const accessToken = data.headers["x-authorization"];
+            const refreshToken = data.headers["r-authorization"];
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
             navigate("/", { replace: true });
         },
         onError: ((error: unknown, variables: IAuthData, context: unknown) =>{

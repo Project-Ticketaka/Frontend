@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import bg_ticket_start from '../../../assets/images/bg_ticket_start.png'
 import bg_ticket from '../../../assets/images/bg_ticket.png'
 import barcode_example from '../../../assets/images/barcode_example.png'
+import useLogout from "../../../hooks/mutation/auth/useLogout"
 const MyView = ({state,my}:any) => {
 
     const onSetMy = (m:string) => {
@@ -11,9 +12,11 @@ const MyView = ({state,my}:any) => {
     }
 
     const navigate = useNavigate();
+    const { mutate: logoutMutate } = useLogout(navigate);
+
     const onLogout = () => {
         alert('Logout!')
-        navigate('/')
+        logoutMutate({});
     }
     
     return (
