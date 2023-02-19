@@ -31,29 +31,39 @@ const theme = createTheme({
 });
 
 
-const queryClient = new QueryClient();
+const queryOptions = {
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 0,
+    },
+  },
+};
+
+const queryClient = new QueryClient(queryOptions);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  // <React.StrictMode>
-  //   <ThemeProvider theme={theme}>
-  //   <BrowserRouter>
-  //     <QueryClientProvider client={queryClient}>
-  //       <App />
-  //     </QueryClientProvider>
-  //   </BrowserRouter>
-  // </ThemeProvider>  
-  // </React.StrictMode>
-  <ThemeProvider theme={theme}>
+  <React.StrictMode>
+<ThemeProvider theme={theme}>
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+    <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
         <App />
       </QueryClientProvider>
     </BrowserRouter>
   </ThemeProvider>
+  </React.StrictMode>
+  // <ThemeProvider theme={theme}>
+  //   <BrowserRouter>
+  //   <QueryClientProvider client={queryClient}>
+  //       <ReactQueryDevtools />
+  //       <App />
+  //     </QueryClientProvider>
+  //   </BrowserRouter>
+  // </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
