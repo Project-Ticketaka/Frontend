@@ -1,6 +1,4 @@
 export interface IReservationInfo {
-    memberId: string;
-	memberEmail: string;
 	performanceId: string;
 	prf_poster: string;
 	prfSessionId: string;

@@ -3,6 +3,8 @@ import { Button } from "@mui/material"
 import CustomButton from "../../../components/Common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
+import useCreateReservation from "../../../hooks/mutation/performance/useCreateReservation";
+import { IReservationInfo } from "../../../types/reservation";
 
 const PaymentWayButton = styled(Button)`
     
@@ -53,21 +55,20 @@ const ChargeButton = styled(Button)`
 
 
 
+
 const PaymentView = ({paymentInfo}:any) => {
     const navigate=useNavigate()
     const [paymentWay,setPaymentWay]=useState('')
+    const { mutate: createReservationMutate } = useCreateReservation(navigate);
     const goCharge = () => {
-        let reservationInfo = {
-            "data": {
-                "member_id": 1234,
-                "performance_id": paymentInfo.detail.performanceDetailInfo.prfId,
-                "reservation_ticket_count": paymentInfo.people,
-                "reservation_date": paymentInfo.selectedDate,
-                "reservation_time": paymentInfo.selectedTime,
-                "reservation_price": paymentInfo.seatPrice*paymentInfo.people,
-                "reservation_poster": paymentInfo.detail.performanceDetailInfo.poster
-            }
+        let reservationInfo:IReservationInfo = {
+                "performanceId": paymentInfo.detail.performanceDetailInfo.prfId,
+                "prf_poster": paymentInfo.detail.performanceDetailInfo.poster,
+                "prfSessionId": paymentInfo.detail.prfSessionList[0].prfSessionId,
+                "price": paymentInfo.seatPrice*paymentInfo.people
         };
+        
+        createReservationMutate(reservationInfo);
         navigate('/reservation',{state: reservationInfo})
     }
 
