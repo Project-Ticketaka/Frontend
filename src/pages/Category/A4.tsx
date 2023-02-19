@@ -23,7 +23,7 @@ const A4 = () => {
     const { data, isLoading } = useGetPerformanceByCategory('연극');
     console.log(data)
   return (
-    isLoading?<CategoryView />:<CategoryView data={data}/>
+    isLoading?<></>:<CategoryView data={data}/>
   )
 }
 
