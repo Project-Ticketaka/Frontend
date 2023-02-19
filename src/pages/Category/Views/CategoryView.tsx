@@ -13,12 +13,13 @@ const MainContainer = styled.div`
 `
 const CategoryView = ({data}:any) => {
     const navigate = useNavigate();
+    console.log(data);
   return (
     <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
         <MainContainer>
             {
                 
-                data.category.map((el:any)=>{
+                data.content.map((el:any)=>{
                     return(
                         <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>navigate(`/detail/${el.prfId}`)}>
                             <div style={{textAlign: 'center'}}>
