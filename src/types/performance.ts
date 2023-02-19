@@ -39,8 +39,7 @@ export interface IPerformanceData {
 	facilityDTO: IFacilityDTO;
 }
 
-export interface IGetPerformanceData {
-	code: number;
+export interface IPerformanceByIdResponse {
 	data: IPerformanceData;
 }
 

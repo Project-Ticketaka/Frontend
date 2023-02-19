@@ -50,15 +50,15 @@ const ReservationButton = styled(Button)`
     
 `;
 
-const DeatilView = ({data}:any) => {
+const DeatilView = ({performanceData}:any) => {
 
     registerLocale("ko", ko); //한국어 설정
-    const [selectedDate,setSelectedDate] = useState(data.performanceDetailInfo.startDate)
+    const [selectedDate,setSelectedDate] = useState(performanceData.performanceDetailInfo.startDate)
     const [selectedTime,setSelectedTime] = useState('')
     const [selectedTimeId,setSelectedTimeId] = useState('')
     const [seatType,setSeatType] = useState('')
     const [seatPrice,setSeatPrice] = useState(0)
-    const [sessionTime,setSessionTime] = useState(data.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
+    const [sessionTime,setSessionTime] = useState(performanceData.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
     
@@ -69,7 +69,7 @@ const DeatilView = ({data}:any) => {
     
 
     useEffect(()=>{
-        setSessionTime(data.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
+        setSessionTime(performanceData.prfSessionList.filter((data: { prfSessionDate: string; })=>data.prfSessionDate===selectedDate).map((data: { prfSessionTime: string; })=>data.prfSessionTime))
     
     },[selectedDate]);
 
@@ -97,7 +97,7 @@ const DeatilView = ({data}:any) => {
             people:people,
             seatType: seatType,
             seatPrice: seatPrice,
-            detail:data,
+            detail:performanceData,
         }
 
         navigate('/payment',{state:paymentInfo})
@@ -125,15 +125,15 @@ const DeatilView = ({data}:any) => {
         <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
         {/* InfoView {pfId} */}
             <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',marginTop:'1rem'}}>
-                <img src={data.performanceDetailInfo.poster} alt={data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
+                <img src={performanceData.performanceDetailInfo.poster} alt={performanceData.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
                 <div style={{display:'flex',flexDirection:'column',gap:'1.5rem',width:'100%'}}>
                     
-                    <p style={{fontSize:"1.5rem", fontWeight:'500', margin:'0',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{data.performanceDetailInfo.title}</p>
+                    <p style={{fontSize:"1.5rem", fontWeight:'500', margin:'0',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{performanceData.performanceDetailInfo.title}</p>
                     
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {data.facilityDTO.facilityName}</p>
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {data.performanceDetailInfo.runtime}</p>
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {data.performanceDetailInfo.viewingAge}</p>
-                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {data.performanceDetailInfo.startDate} ~ {data.performanceDetailInfo.endDate}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {performanceData.facilityDTO.facilityName}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {performanceData.performanceDetailInfo.runtime}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {performanceData.performanceDetailInfo.viewingAge}</p>
+                    <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {performanceData.performanceDetailInfo.startDate} ~ {performanceData.performanceDetailInfo.endDate}</p>
                     
                 </div>
             </div>
@@ -141,13 +141,13 @@ const DeatilView = ({data}:any) => {
             <DatePicker
                     wrapperClassName="datepicker"
                     selected={new Date(selectedDate)}
-                    highlightDates={data.prfSessionList.map((data: { prfSessionDate: string | number | Date; })=>new Date(data.prfSessionDate))}
+                    highlightDates={performanceData.prfSessionList.map((data: { prfSessionDate: string | number | Date; })=>new Date(data.prfSessionDate))}
                     onChange={onChangeDate}
                     disabledKeyboardNavigation //다른 월의 같은 날짜시 자동 selected 되는 현상 방지
                     locale="ko" 
                     inline
-                    minDate={new Date(data.performanceDetailInfo.startDate)}
-                    maxDate={new Date(data.performanceDetailInfo.endDate)}
+                    minDate={new Date(performanceData.performanceDetailInfo.startDate)}
+                    maxDate={new Date(performanceData.performanceDetailInfo.endDate)}
                     popperPlacement="auto" //화면 중앙에 팝업이 출현
                     />
                 
@@ -169,7 +169,7 @@ const DeatilView = ({data}:any) => {
                         <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
                         
                         {
-                        data.performanceDetailInfo.ticketPrice.map((seat: any,idx:number)=>{
+                        performanceData.performanceDetailInfo.ticketPrice.map((seat: any,idx:number)=>{
                             return(
                                 seatType===seat.seatType
                                 ?<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seatType,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>■</span>{seat.seatType} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
@@ -220,7 +220,7 @@ const DeatilView = ({data}:any) => {
             <div style={{display:'flex',flexDirection:'column',justifyItems:'center'}}>
             
             {
-                data.performanceDetailInfo.styUrls.map((url: string | undefined,idx: any)=>{
+                performanceData.performanceDetailInfo.styUrls.map((url: string | undefined,idx: any)=>{
                     return(<img src={url} alt={`공연 상세 정보 ${idx}`} style={{display:'block',margin:'auto',width:'fit-content'}}/>)})
             }
             </div>
@@ -246,11 +246,11 @@ const DeatilView = ({data}:any) => {
             <div style={{display:'flex',flexDirection:'row',justifyItems:'center',gap:'2rem'}}>
                 
                 
-                <Map lat={Number(data.facilityDTO.latitude)} lng={Number(data.facilityDTO.longitude)}/>
+                <Map lat={Number(performanceData.facilityDTO.latitude)} lng={Number(performanceData.facilityDTO.longitude)}/>
                 <div>
-                    <p>장소 | {data.facilityDTO.facilityName}</p>
-                    <p>주소 | {data.facilityDTO.address}</p>
-                    <p>대표번호 | {data.facilityDTO.telNo}</p>
+                    <p>장소 | {performanceData.facilityDTO.facilityName}</p>
+                    <p>주소 | {performanceData.facilityDTO.address}</p>
+                    <p>대표번호 | {performanceData.facilityDTO.telNo}</p>
                 </div>
             </div> 
         </>
