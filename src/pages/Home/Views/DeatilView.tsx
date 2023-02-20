@@ -37,7 +37,8 @@ const ReservationButton = styled(Button)`
     
     
     width: 100%;
-    padding: 0.8rem 3rem;
+    height: fit-content;
+    padding: 0.7rem 3rem;
     font-size: 1.1rem;
     color: #ffffff;
     background: #5C7D92;
@@ -85,8 +86,8 @@ const DeatilView = ({performanceData}:any) => {
     const { data, isLoading } = useGetPerformanceSession(selectedTimeId);
 
     const selectSessionTime = (id:string, time:string) => {
-        alert(`${id}, ${time}`);
-        isLoading?console.log("Loading..."):console.log(data);
+        // alert(`${id}, ${time}`);
+        
         setSelectedTimeId(id)
         setSelectedTime(time)
     }
@@ -178,10 +179,9 @@ const DeatilView = ({performanceData}:any) => {
                     popperPlacement="auto" //화면 중앙에 팝업이 출현
                     />
                 
-                <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gridTemplateRows:'repea(3,1fr)',gap:'1.3rem',marginTop:'0.5rem'}}>
-                    <div style={{gridRow:'span 2'}}>
+                <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gridTemplateRows:'repea(4,1fr)',gap:'1.3rem',marginTop:'0.5rem'}}>
+                    <div style={{gridRow:'span 3'}}>
                         <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
-                        
                         {
                             sessionTimeList.map((sessionTime:any)=>{
                                 return(
@@ -192,7 +192,7 @@ const DeatilView = ({performanceData}:any) => {
                         }
                         </div>
                     </div>
-                    <div style={{gridRow:'span 2'}}>
+                    <div style={{gridRow:'span 3'}}>
                         <div style={{display:'flex', flexDirection:'column',gap:'0.5rem'}}>
                         
                         {
@@ -207,16 +207,21 @@ const DeatilView = ({performanceData}:any) => {
                     }
                         </div>
                     </div>
-                    <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'3rem',border:'0.3rem #CACACA solid', borderRadius:'2rem',padding:'0.3rem 1rem',userSelect:'none'}}>
-                        <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(-1)}>-</span>
-                        <p style={{fontSize:'1.5rem', margin:'0'}}>{people}</p>
-                        <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(+1)}>+</span>
-                    </div>
+                    
+                        <div style={{display:'flex',flexDirection:'row',height:'fit-content',alignItems:'center',gap:'3rem',border:'0.3rem #CACACA solid', borderRadius:'2rem',padding:'0.5rem 1rem',userSelect:'none'}}>
+                            <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(-1)}>-</span>
+                            <p style={{fontSize:'1.5rem', margin:'0'}}>{people}</p>
+                            <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(+1)}>+</span>
+                        </div>
+                    
+                        <ReservationButton size="large" onClick={()=>goReservation()}>
+                            예매하기
+                        </ReservationButton>
+                    
+                    
 
                     
-                    <ReservationButton size="large" onClick={()=>goReservation()}>
-                        예매하기
-                    </ReservationButton>
+                    
 
                 </div>
 
