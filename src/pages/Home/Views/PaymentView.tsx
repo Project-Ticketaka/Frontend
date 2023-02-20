@@ -59,7 +59,7 @@ const ChargeButton = styled(Button)`
 const PaymentView = ({paymentInfo}:any) => {
     const navigate=useNavigate()
     const [paymentWay,setPaymentWay]=useState('')
-    const { mutate: createReservationMutate } = useCreateReservation();
+    const { mutate: createReservationMutate } = useCreateReservation(navigate);
     const goCharge = () => {
         let reservationInfo:IReservationInfo = {
                 "memberId": paymentInfo.memberId,
@@ -71,7 +71,7 @@ const PaymentView = ({paymentInfo}:any) => {
         };
         
         createReservationMutate(reservationInfo);
-        navigate('/reservation',{state: reservationInfo})
+        
     }
 
   return (
