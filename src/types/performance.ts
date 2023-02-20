@@ -45,7 +45,12 @@ export interface IPerformanceData {
 export interface IPerformanceByIdResponse {
 	data: IPerformanceData;
 }
-
+export interface IPerformanceSessionResponse {
+	data:{
+		remainingSeat: number;
+		totalSeat: number;
+	}
+}
 
 
 

@@ -8,6 +8,7 @@ import Map from "../Map";
 import styled from "@emotion/styled";
 import './custom-datepicker.scss';
 import useCheckReservation from "../../../hooks/mutation/performance/useCheckReservation";
+import useGetPerformanceSession from "../../../hooks/query/performance/useGetPerformanceSession";
 
 const SessionButton = styled(Button)`
     
@@ -81,9 +82,11 @@ const DeatilView = ({performanceData}:any) => {
         setSessionTimeList(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
     },[selectedDate]);
 
-    
+    const { data, isLoading } = useGetPerformanceSession(selectedTimeId);
+
     const selectSessionTime = (id:string, time:string) => {
         alert(`${id}, ${time}`);
+        console.log(data);
         setSelectedTimeId(id)
         setSelectedTime(time)
     }
