@@ -86,7 +86,7 @@ const DeatilView = ({performanceData}:any) => {
 
     const selectSessionTime = (id:string, time:string) => {
         alert(`${id}, ${time}`);
-        console.log(data);
+        isLoading?console.log("Loading..."):console.log(data);
         setSelectedTimeId(id)
         setSelectedTime(time)
     }
