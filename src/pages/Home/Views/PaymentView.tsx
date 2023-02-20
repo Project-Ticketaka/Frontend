@@ -62,6 +62,8 @@ const PaymentView = ({paymentInfo}:any) => {
     const { mutate: createReservationMutate } = useCreateReservation();
     const goCharge = () => {
         let reservationInfo:IReservationInfo = {
+                "memberId": paymentInfo.memberId,
+                "memberEmail":paymentInfo.memberEmail,
                 "performanceId": paymentInfo.detail.performanceDetailInfo.prfId,
                 "prf_poster": paymentInfo.detail.performanceDetailInfo.poster,
                 "prfSessionId": paymentInfo.detail.prfSessionList[0].prfSessionId,
