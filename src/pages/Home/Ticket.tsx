@@ -4,6 +4,7 @@ import TicketView from "./Views/TicketView"
 
 const Ticket = () => {
     const {state} = useLocation();
+    console.log(state);
     return (
         <TicketView reservationInfo={state}/>
     )

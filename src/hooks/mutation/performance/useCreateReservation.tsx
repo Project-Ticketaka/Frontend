@@ -16,7 +16,7 @@ const useCreateReservation = (navigate:TNavigate) => {
         
         onSuccess: (data: AxiosResponse<IReservationResponse>,variables:ICheckReservationData) => {
             alert('예매 완료!');
-            console.log(data);
+            
             navigate('/reservation',{state: variables.reservationInfo})
         },
         onError: ((error: unknown, variables: ICheckReservationData, context: unknown) =>{
