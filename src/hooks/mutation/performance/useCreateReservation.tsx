@@ -7,12 +7,12 @@ import { IReservationInfo, IReservationResponse } from "../../../types/reservati
 import { ICheckReservationData } from "../../../types/performance";
 
 const useCreateReservation = (navigate:TNavigate) => {
-    return useMutation((reservationInfo: ICheckReservationData) => ReservationAPI.createReservation({"memberId": reservationInfo.checkData.memberId,
-    "memberEmail": reservationInfo.checkData.memberId,
-    "performanceId": reservationInfo.reservationInfo.detail.performanceDetailInfo.prfId,
-    "prf_poster": reservationInfo.reservationInfo.detail.performanceDetailInfo.poster,
-    "prfSessionId": reservationInfo.reservationInfo.detail.prfSessionList[0].prfSessionId,
-    "price": reservationInfo.reservationInfo.seatPrice*reservationInfo.reservationInfo.people}), {
+    return useMutation((paymentInfo: ICheckReservationData) => ReservationAPI.createReservation({"memberId": paymentInfo.checkData.memberId,
+    "memberEmail": paymentInfo.checkData.memberId,
+    "performanceId": paymentInfo.reservationInfo.detail.performanceDetailInfo.prfId,
+    "prf_poster": paymentInfo.reservationInfo.detail.performanceDetailInfo.poster,
+    "prfSessionId": paymentInfo.reservationInfo.detail.prfSessionList[0].prfSessionId,
+    "price": paymentInfo.reservationInfo.seatPrice*paymentInfo.reservationInfo.people}), {
         
         onSuccess: (data: AxiosResponse<IReservationResponse>,variables:ICheckReservationData) => {
             alert('예매 완료!');
