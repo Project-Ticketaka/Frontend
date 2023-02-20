@@ -98,6 +98,7 @@ export interface IPerformanceReservationInfo {
 }
 
 export interface ICheckData {
+	memberId: string|null;
 	prfSessionId: string;
 	count: number;
 }

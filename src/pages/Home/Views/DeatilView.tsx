@@ -106,16 +106,25 @@ const DeatilView = ({performanceData}:any) => {
             alert('회차를 선택해 주세요!')
         }
         
-        let reservationInfo = {
-            selectedDate:selectedDate,
-            selectedTime:selectedTime,
-            people:people,
-            seatType: seatType,
-            seatPrice: seatPrice,
-            detail:performanceData,
-        }
         
-        checkReservationMutate({checkData:{"prfSessionId":selectedTimeId,"count":people},"reservationInfo":reservationInfo})
+        if(localStorage.getItem("memberEmail")){
+            let reservationInfo = {
+                memberId: localStorage.getItem("memberEmail"),
+                memberEmail: localStorage.getItem("memberEmail"), 
+                selectedDate:selectedDate,
+                selectedTime:selectedTime,
+                people:people,
+                seatType: seatType,
+                seatPrice: seatPrice,
+                detail:performanceData,
+            }
+            checkReservationMutate({checkData:{"memberId":localStorage.getItem("memberEmail"),"prfSessionId":selectedTimeId,"count":people},"reservationInfo":reservationInfo})
+        }else{
+            alert('로그인해주세요!')
+            navigate('/login')
+        }
+
+        
     }
 
     
@@ -195,7 +204,7 @@ const DeatilView = ({performanceData}:any) => {
                     }
                         </div>
                     </div>
-                    <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'3rem',border:'0.3rem #CACACA solid', borderRadius:'2rem',padding:'0.5rem 1rem',userSelect:'none'}}>
+                    <div style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'3rem',border:'0.3rem #CACACA solid', borderRadius:'2rem',padding:'0.3rem 1rem',userSelect:'none'}}>
                         <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(-1)}>-</span>
                         <p style={{fontSize:'1.5rem', margin:'0'}}>{people}</p>
                         <span style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={()=>onSetPeople(+1)}>+</span>

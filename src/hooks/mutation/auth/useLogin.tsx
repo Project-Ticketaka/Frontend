@@ -7,13 +7,14 @@ import { TNavigate } from "../../../types/navigate";
 
 const useLogin = (navigate: TNavigate) => {
     return useMutation((userInfo: ILoginData) => MemberAPI.login(userInfo), {
-        onSuccess: (data: AxiosResponse<IAuthResponse>) => {
-            console.log(data);
-            console.log(data.headers);
-            const accessToken = data.headers["x-authorization"];
-            const refreshToken = data.headers["r-authorization"];
-            localStorage.setItem("accessToken", accessToken);
-            localStorage.setItem("refreshToken", refreshToken);
+        onSuccess: (data: AxiosResponse<IAuthResponse>,variables:ILoginData) => {
+            // console.log(data);
+            // console.log(data.headers);
+            
+            localStorage.setItem("accessToken", data.headers["x-authorization"]);
+            localStorage.setItem("refreshToken", data.headers["r-authorization"]);
+            localStorage.setItem("memberEmail", variables.email);
+            
             navigate("/", { replace: true });
         },
         onError: ((error: unknown, variables: IAuthData, context: unknown) =>{
