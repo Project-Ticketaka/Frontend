@@ -1,3 +1,4 @@
+import { ICheckReservationData } from "../types/performance";
 import { IReservationInfo } from "../types/reservation";
 import client from "./client";
 

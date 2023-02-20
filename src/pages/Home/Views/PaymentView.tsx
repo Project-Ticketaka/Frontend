@@ -60,17 +60,21 @@ const PaymentView = ({paymentInfo}:any) => {
     const navigate=useNavigate()
     const [paymentWay,setPaymentWay]=useState('')
     const { mutate: createReservationMutate } = useCreateReservation(navigate);
+
     const goCharge = () => {
-        let reservationInfo:IReservationInfo = {
-                "memberId": paymentInfo.memberId,
-                "memberEmail":paymentInfo.memberEmail,
-                "performanceId": paymentInfo.detail.performanceDetailInfo.prfId,
-                "prf_poster": paymentInfo.detail.performanceDetailInfo.poster,
-                "prfSessionId": paymentInfo.detail.prfSessionList[0].prfSessionId,
-                "price": paymentInfo.seatPrice*paymentInfo.people
-        };
         
-        createReservationMutate(reservationInfo);
+        // let reservationInfo:IReservationInfo = {
+            // "memberId": paymentInfo.checkData.memberId,
+            // "memberEmail": paymentInfo.checkData.memberId,
+            // "performanceId": paymentInfo.reservationInfo.detail.performanceDetailInfo.prfId,
+            // "prf_poster": paymentInfo.reservationInfo.detail.performanceDetailInfo.poster,
+            // "prfSessionId": paymentInfo.reservationInfo.detail.prfSessionList[0].prfSessionId,
+            // "price": paymentInfo.reservationInfo.seatPrice*paymentInfo.people,
+            // "reservationInfo": paymentInfo.reservationInfo
+        // };
+        
+        
+        createReservationMutate(paymentInfo);
         
     }
 

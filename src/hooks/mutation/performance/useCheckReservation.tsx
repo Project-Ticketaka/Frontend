@@ -13,7 +13,7 @@ const useCheckReservation = (navigate:TNavigate) => {
         onSuccess: (data: AxiosResponse<IReservationResponse>,variables: ICheckReservationData) => {
             alert('예매 가능!');
             console.log(variables);
-            navigate('/payment',{state:variables.reservationInfo})
+            navigate('/payment',{state:variables})
         },
         onError: ((error: unknown, variables: ICheckReservationData, context: unknown) =>{
             alert('예매 실패!');

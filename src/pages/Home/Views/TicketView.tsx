@@ -13,7 +13,7 @@ const TicketView = ({reservationInfo}:any) => {
     },[])
   return (
     <div style={{padding:'2rem 1rem',width:'100%',justifyContent:'center',alignItems:'center',display:'flex',position:'relative'}}>
-        <img src={reservationInfo.data.reservation_poster} alt="poster" style={{height:'20rem',width:'13rem',borderRadius:'1rem 0 0 1rem'}}/>
+        <img src={reservationInfo.reservationInfo.detail.performanceDetailInfo.poster} alt="poster" style={{height:'20rem',width:'13rem',borderRadius:'1rem 0 0 1rem'}}/>
         <img src={bg_ticket} alt="poster" style={{height:'22rem'}}/>
         
         <div style={{display:'grid',gridTemplateColumns: 'repeat(2, 1fr)',position:'absolute',top:'51%',left:'60%',transform:'translate(-50%,-50%)',justifyContent:'center',alignItems:'center'}} >
@@ -21,22 +21,22 @@ const TicketView = ({reservationInfo}:any) => {
                 <p style={{gridColumn:'span 2/ span 2',fontSize:'1.4rem',fontWeight:'700'}}>오페라의 유령 [부산]</p>
                 <div style={{display:'flex',flexDirection:'column'}}>
                     <p>일시</p>
-                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.data.reservation_date}</p>
+                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.reservationInfo.selectedDate}</p>
                 </div>
 
                 <div style={{display:'flex',flexDirection:'column'}}>
                     <p>회차</p>
-                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.data.reservation_time}</p>
+                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.reservationInfo.selectedTime}</p>
                 </div>
 
                 <div style={{display:'flex',flexDirection:'column'}}>
                     <p>인원</p>
-                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.data.reservation_ticket_count} 명</p>
+                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.reservationInfo.people} 명</p>
                 </div>
 
                 <div style={{display:'flex',flexDirection:'column'}}>
                     <p>가격</p>
-                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.data.reservation_price}</p>
+                    <p style={{fontSize:'1.4rem',fontWeight:'700'}}>{reservationInfo.reservationInfo.seatPrice*reservationInfo.reservationInfo.people}</p>
                 </div>
             </div>
             
