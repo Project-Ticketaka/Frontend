@@ -122,3 +122,10 @@ export interface ICheckReservationData {
 	checkData: ICheckData;
 	reservationInfo: IPerformanceReservationInfo;
 }
+
+export interface ICreateReservationData{
+	performanceId: string;
+	prfPoster: string;
+	prfSessionId: number;
+	price: number;
+}

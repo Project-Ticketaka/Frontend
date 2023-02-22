@@ -1,4 +1,4 @@
-import { ICheckData, ICheckReservationData } from "../types/performance";
+import { ICheckData, ICheckReservationData, ICreateReservationData } from "../types/performance";
 import client from "./client";
 
 const PerformanceAPI = {
@@ -23,7 +23,9 @@ const PerformanceAPI = {
     //결제 페이지에서 취소를 눌렀을 때 또는 브라우저 상태 변경(종료, 새로고침, 이동 등) 이벤트가 발생할 때 대기열에서 사용자 삭제 
     return client.post(`/performance/rsv/withdraw`,data);
   },
-  
+  createReservation: (data: ICreateReservationData) => {
+    return client.post(`/performance/rsv/create`,data);
+  },
 };
 
 export default PerformanceAPI;

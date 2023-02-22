@@ -11,7 +11,6 @@ const useWithdrawReservation = () => {
         
         onSuccess: (data: AxiosResponse<IReservationResponse>,variables:ICheckData) => {
             console.log('예매 대기열에서 사용자 삭제');
-            
         },
         onError: ((error: unknown, variables: ICheckData, context: unknown) =>{
             alert('예매 대기열에서 사용자 삭제 실패!');

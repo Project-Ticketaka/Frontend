@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ILayoutProps } from "./types";
 import LayoutView from "./Views/LayoutView"
 
 const Layout = () => {
-    const [menu,setMenu] = useState("home");
+    const params = useParams();
+    //console.log(params.cat);
+    const [menu,setMenu] = useState(params.cat||'home');
     const navigate = useNavigate();
     
     const layoutProps: ILayoutProps = {

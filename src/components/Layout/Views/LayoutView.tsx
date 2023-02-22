@@ -40,13 +40,10 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
             {title:'서커스/마술',id:'e3b'},
             {title:'뮤지컬',id:'g3a'},
         ],
-        goMyPage: () => {
-            
+        goMyPage: () => {  
             window.localStorage.getItem('accessToken')
-            ?navigate('/my',{state:data})
+            ?navigate('/my/info',{state:'info'})
             :navigate('/login')
-            
-            
         },
         onSearchChange: (e) => {
             setKeyword(e.target.value);

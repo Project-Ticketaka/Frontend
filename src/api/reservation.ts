@@ -1,11 +1,7 @@
-import { ICheckReservationData } from "../types/performance";
-import { IReservationInfo } from "../types/reservation";
+
 import client from "./client";
 
 const ReservationAPI = {
-    createReservation: (data: IReservationInfo) => {
-        return client.post(`/performance/rsv/create`,data);
-    },
     getAllReservationInfo: () => {
         return client.get(`/reservation/create`);
     },

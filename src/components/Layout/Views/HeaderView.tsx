@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../Common/Logo";
 import { IHeaderProps } from "../types";
@@ -107,7 +107,7 @@ const HeaderView = ({ category, menu ,onSetMenu,goMyPage,onSearchChange,onSearch
     const goHome = () => {
         onSetKeyword("");
         navigate('/')
-    }    
+    }
 
     return (
         <HeaderContainer>
@@ -129,7 +129,6 @@ const HeaderView = ({ category, menu ,onSetMenu,goMyPage,onSearchChange,onSearch
                         <Menu id={el.id} key={el.id} menu={el.id} onClick={()=>onSetMenu(el.id)}>{el.title}</Menu>
                     :
                         <Menu id={el.id} key={el.id} menu={el.title} onClick={()=>onSetMenu(el.id)}>{el.title}</Menu>
-                    
                     )
                     })
                 }

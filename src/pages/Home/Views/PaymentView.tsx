@@ -93,23 +93,21 @@ const PaymentView = ({paymentInfo}:any) => {
     })
 
   return (
-    <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%'}}>
+    <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%',gap:'1.5rem'}}>
         <h1 style={{margin:'0', padding:'0'}}>₩ 결제하기</h1>
-        <div style={{paddingTop :'2rem',display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center',justifyContent:'space-between'}}>
-            
-                
+        <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center',justifyContent:'space-between'}}>
                 <div style={{display:'flex',flexDirection:'row',gap:'1.5rem',alignItems:'center',flex:'2'}}>
                     <img src={paymentInfo.reservationInfo.detail.data.performanceDetailInfo.poster} alt={paymentInfo.reservationInfo.detail.data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
                     
                     <div >
                         <p style={{fontSize:"1.6rem", fontWeight:'500', margin:'0'}}>{paymentInfo.reservationInfo.detail.data.performanceDetailInfo.title}</p>
-                        <p style={{fontSize:"1rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedDate}</p>
-                        <p style={{fontSize:"1rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedTime}</p>
+                        <p style={{fontSize:"1.2rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedDate}</p>
+                        <p style={{fontSize:"1.2rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedTime}</p>
                         <div style={{display:'flex', alignItems:'center',gap:'0.4rem'}}>
-                            <svg style={{width:'1.3rem'}} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg style={{width:'1.2rem'}} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.6461 8.64708C10.9752 8.64708 12.8617 6.76059 12.8617 4.43145C12.8617 2.10231 10.9752 0.21582 8.6461 0.21582C6.31697 0.21582 4.43047 2.10231 4.43047 4.43145C4.43047 6.76059 6.31697 8.64708 8.6461 8.64708ZM8.6461 10.7549C5.83217 10.7549 0.214844 12.1671 0.214844 14.9705V17.0783H17.0774V14.9705C17.0774 12.1671 11.46 10.7549 8.6461 10.7549Z" fill="black"/>
                             </svg>
-                            <p style={{fontSize:"1rem", fontWeight:'500', margin:'0'}}>{paymentInfo.reservationInfo.people}</p>
+                            <p style={{fontSize:"1.2rem", fontWeight:'500', margin:'0'}}>{paymentInfo.reservationInfo.people}</p>
                         </div>
                     </div>
                 </div>
@@ -120,7 +118,7 @@ const PaymentView = ({paymentInfo}:any) => {
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',justifyContent:'end'}}>
                         
                         <PaymentWayButton className={paymentWay==="card"?'active':'inactive'} size="large" variant="outlined" id="card" onClick={()=>setPaymentWay('card')}>카드</PaymentWayButton>
-                        <PaymentWayButton className={paymentWay==="cash"?'active':'inactive'} size="large" variant="outlined" id="cash" onClick={()=>setPaymentWay('cash')}>무통장입금</PaymentWayButton>
+                        <PaymentWayButton className={paymentWay==="cash"?'active':'inactive'} size="large" variant="outlined" id="cash" onClick={()=>setPaymentWay('cash')}>무통장 입금</PaymentWayButton>
                         
                     </div>
                     <p style={{margin:'0',color:'#4A4A4A'}}>최종 결제 금액</p>
@@ -133,7 +131,11 @@ const PaymentView = ({paymentInfo}:any) => {
                 </div>
         </div>
             
-        
+        <div style={{border:'2px #C8C8C8 solid',borderRadius:'11px',padding:'1rem'}}>
+            <p>⚠️ 결제 시 유의 사항</p>
+            <p>카드 결제 : 카드취소 승인일로부터 5~7일 (카드사 업무일기준) 이내에 취소 승인확인이 가능합니다.(카드결제는 결제하신 수단 그대로만 환불 가능)</p>
+            <p>무통장 입금 : 취소 승인일로부터 5~7일 후 결제한 은행으로 자동 입금</p>
+        </div>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { AxiosResponse } from "axios";
 import MemberAPI from "../../../api/member";
 import { IAuthResponse, IAuthData, ILoginData } from "../../../types/member";
 import { TNavigate } from "../../../types/navigate";
+import customHistory from "../../../utils/history";
 
 const useLogin = (navigate: TNavigate) => {
     return useMutation((userInfo: ILoginData) => MemberAPI.login(userInfo), {
@@ -15,7 +16,8 @@ const useLogin = (navigate: TNavigate) => {
             localStorage.setItem("refreshToken", data.headers["r-authorization"]);
             localStorage.setItem("memberEmail", variables.email);
             
-            navigate("/", { replace: true });
+            //navigate("/", { replace: true });
+            customHistory.back();
         },
         onError: ((error: unknown, variables: IAuthData, context: unknown) =>{
             alert('로그인 실패!');

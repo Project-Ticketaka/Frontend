@@ -6,6 +6,7 @@ import { IReservationInfo } from "../../../types/reservation";
 const useGetAllReservationInfo = () => {
     return useQuery(["getAllReservationInfo"], () => ReservationAPI.getAllReservationInfo(), {
         select: (data: AxiosResponse<IReservationInfo>) => {
+            console.log(data)
             return data.data;
         },
     });

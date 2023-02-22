@@ -112,12 +112,12 @@ const DeatilView = ({performanceData}:any) => {
 
     const goReservation = () => {
 
-        if(selectedTime){
+        if(selectedTime&&seatType){
             alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
         }else{
-            alert('회차를 선택해 주세요!')
+            alert('회차 및 좌석을 선택해 주세요!')
+            return;
         }
-        
         
         if(localStorage.getItem("memberEmail")){
             let reservationInfo = {
@@ -282,8 +282,6 @@ const DeatilView = ({performanceData}:any) => {
             </div>
             
                 <div style={{display:'flex',flexDirection:'row',justifyItems:'center',gap:'2rem'}}>
-                    
-                    
                     <Map lat={Number(performanceData.data.facilityDTO.latitude)} lng={Number(performanceData.data.facilityDTO.longitude)}/>
                     <div>
                         <p>장소 | {performanceData.data.facilityDTO.facilityName}</p>
