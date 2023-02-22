@@ -35,4 +35,4 @@ const Map = ({lat,lng}:any) => {
     )
 }
 
-export default Map
+export default React.memo(Map)

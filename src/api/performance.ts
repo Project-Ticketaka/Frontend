@@ -2,8 +2,8 @@ import { ICheckData, ICheckReservationData } from "../types/performance";
 import client from "./client";
 
 const PerformanceAPI = {
-  getPerformanceById: (prfId: string|undefined) => {
-    return client.get(`/performance?p=${prfId}`);
+  getPerformanceById: (prf_id: string | undefined) => {
+    return client.get(`/performance?p=${prf_id}`);
   },
   getPerformanceByKeyword: (keyword: string | undefined) => {
     return client.get(`/performance/search?keyword=${keyword}`);
@@ -19,7 +19,7 @@ const PerformanceAPI = {
     //예약하기 버튼을 눌렀을 때 유저가 선택한 회차에 선택한 인원 수 만큼 예약이 가능한지 확인 후 결제하기 페이지로 넘어감
     return client.post(`/performance/rsv/check`,data);
   },
-  widthdrawReservation: (data: ICheckReservationData) => {
+  withdrawReservation: (data: ICheckData) => {
     //결제 페이지에서 취소를 눌렀을 때 또는 브라우저 상태 변경(종료, 새로고침, 이동 등) 이벤트가 발생할 때 대기열에서 사용자 삭제 
     return client.post(`/performance/rsv/withdraw`,data);
   },

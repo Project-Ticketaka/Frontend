@@ -6,4 +6,4 @@ const MapView = ({mapElement}:any) => {
   )
 }
 
-export default MapView
+export default React.memo(MapView)

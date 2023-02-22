@@ -9,8 +9,7 @@ const Search = () => {
     const { data, isLoading } = useGetPerformanceByKeyword(params?.keyword);
     console.log(data)
     return (
-        isLoading?<></>:<SearchView data={data} keyword={params?.keyword
-        }/>
+        isLoading?<></>:<SearchView data={data} keyword={params?.keyword}/>
     )
 }
 

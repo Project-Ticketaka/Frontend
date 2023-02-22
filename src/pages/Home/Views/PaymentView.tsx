@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material"
 import CustomButton from "../../../components/Common/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import useCreateReservation from "../../../hooks/mutation/performance/useCreateReservation";
 import { IReservationInfo } from "../../../types/reservation";
+import customHistory from "../../../utils/history";
+import useWithdrawReservation from "../../../hooks/mutation/performance/useWithdrawReservation";
 
 const PaymentWayButton = styled(Button)`
     
@@ -60,23 +62,35 @@ const PaymentView = ({paymentInfo}:any) => {
     const navigate=useNavigate()
     const [paymentWay,setPaymentWay]=useState('')
     const { mutate: createReservationMutate } = useCreateReservation(navigate);
+    const { mutate: withdrawReservation } = useWithdrawReservation();
 
     const goCharge = () => {
-        
-        // let reservationInfo:IReservationInfo = {
-            // "memberId": paymentInfo.checkData.memberId,
-            // "memberEmail": paymentInfo.checkData.memberId,
-            // "performanceId": paymentInfo.reservationInfo.detail.performanceDetailInfo.prfId,
-            // "prf_poster": paymentInfo.reservationInfo.detail.performanceDetailInfo.poster,
-            // "prfSessionId": paymentInfo.reservationInfo.detail.prfSessionList[0].prfSessionId,
-            // "price": paymentInfo.reservationInfo.seatPrice*paymentInfo.people,
-            // "reservationInfo": paymentInfo.reservationInfo
-        // };
-        
-        
         createReservationMutate(paymentInfo);
         
     }
+
+    const unlisten = customHistory.listen((location) => {
+        if (customHistory.action === 'POP') {
+            withdrawReservation(paymentInfo.checkData)
+        }
+    });
+
+    const preventClose = (e:BeforeUnloadEvent) => {
+        e.preventDefault();
+        e.returnValue = "정말?"; // chrome에서는 설정이 필요해서 넣은 코드
+    }
+    useEffect(()=>{
+        //뒤로가기 이벤트
+        unlisten();
+        //창 닫기 및 새로고침 이벤트
+        (() => {
+            window.addEventListener("beforeunload", preventClose);    
+        })();
+    
+        return () => {
+            window.removeEventListener("beforeunload", preventClose);
+        };
+    })
 
   return (
     <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%'}}>
@@ -85,10 +99,10 @@ const PaymentView = ({paymentInfo}:any) => {
             
                 
                 <div style={{display:'flex',flexDirection:'row',gap:'1.5rem',alignItems:'center',flex:'2'}}>
-                    <img src={paymentInfo.reservationInfo.detail.performanceDetailInfo.poster} alt={paymentInfo.reservationInfo.detail.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
+                    <img src={paymentInfo.reservationInfo.detail.data.performanceDetailInfo.poster} alt={paymentInfo.reservationInfo.detail.data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
                     
                     <div >
-                        <p style={{fontSize:"1.6rem", fontWeight:'500', margin:'0'}}>{paymentInfo.reservationInfo.detail.performanceDetailInfo.title}</p>
+                        <p style={{fontSize:"1.6rem", fontWeight:'500', margin:'0'}}>{paymentInfo.reservationInfo.detail.data.performanceDetailInfo.title}</p>
                         <p style={{fontSize:"1rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedDate}</p>
                         <p style={{fontSize:"1rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedTime}</p>
                         <div style={{display:'flex', alignItems:'center',gap:'0.4rem'}}>

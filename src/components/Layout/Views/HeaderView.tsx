@@ -6,6 +6,7 @@ import { IHeaderProps } from "../types";
 import Menu from "./Menu";
 import PersonIcon from '@mui/icons-material/Person';
 import { media } from "../../../styles/media";
+import React from "react";
 
 const MypageButton = styled(Button)`
     color: #333;
@@ -150,4 +151,4 @@ const HeaderView = ({ category, menu ,onSetMenu,goMyPage,onSearchChange,onSearch
     )
 }
 
-export default HeaderView
+export default React.memo(HeaderView)

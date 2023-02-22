@@ -1,3 +1,4 @@
+import React from "react";
 import Logo from "../../Common/Logo";
 import './Footer.scss'
 
@@ -38,4 +39,4 @@ const FooterView = () => {
     )
 }
 
-export default FooterView
+export default React.memo(FooterView)

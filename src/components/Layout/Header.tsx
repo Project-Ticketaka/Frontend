@@ -19,4 +19,4 @@ const Header = ({ menu,onSetMenu,category,goMyPage,onSearchChange,onSearch,keywo
     )
 }
 
-export default Header
+export default React.memo(Header)

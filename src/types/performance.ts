@@ -38,12 +38,18 @@ export interface IPerformanceData {
 	prfSessionList: Array<IPerformanceSessionList>;
 	facilityDTO: IFacilityDTO;
 }
-
-// export interface IPerformanceByIdResponse {
-// 	data: IPerformanceData;
-// }
+export interface IPerformanceByIdBadResponse {
+	code: number;
+	description: string;
+}
 export interface IPerformanceByIdResponse {
-	data: IPerformanceData;
+	code: number;
+	data: {
+		performanceDetailInfo: IPerformanceDetailInfo;
+		prfSessionList: Array<IPerformanceSessionList>;
+		facilityDTO: IFacilityDTO;
+	};
+	description: string;
 }
 export interface IPerformanceSessionResponse {
 	data:{
@@ -66,6 +72,7 @@ export interface IPerformanceSearch {
 }
 
 export interface IPerformanceByCategoryResponse {
+	code: number;
 	data: {
 		content: IPerformanceSearch[];
 		pageable: {
@@ -91,7 +98,8 @@ export interface IPerformanceByCategoryResponse {
         first: boolean;
         last: boolean;
         empty: boolean;
-	}
+	};
+	description: string;
 }
 export interface IPerformanceReservationInfo {
 	selectedDate: string;

@@ -15,7 +15,7 @@ module.exports = function (app){
 	app.use(
     	"/performance",
       	createProxyMiddleware({
-        	target: 'http://3.39.25.197:8081/',
+        	target: 'http://3.39.24.183/',
           	changeOrigin: true,
         })
     )
@@ -23,7 +23,7 @@ module.exports = function (app){
 	app.use(
     	"/reservation",
       	createProxyMiddleware({
-        	target: 'http://3.39.25.197/',
+        	target: 'http://3.39.24.183:8081/',
           	changeOrigin: true,
         })
     )
@@ -31,7 +31,7 @@ module.exports = function (app){
 	app.use(
     	"/member",
       	createProxyMiddleware({
-        	target: 'http://3.39.25.197/',
+        	target: 'http://3.39.24.183/',
           	changeOrigin: true,
         })
     )

@@ -3,6 +3,7 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { Button } from "@mui/material";
 import red from '@mui/icons-material'
 import { useNavigate } from "react-router-dom";
+import NoData from "../../../components/Common/NoData";
 
 const ReservationButton = styled(Button)`
     color: #ffffff;
@@ -14,14 +15,16 @@ const ReservationIcon = styled(ReceiptLongIcon)`
 
 const SearchView = ({data,keyword}:any) => {
     const navigate= useNavigate();
+    if (data.code!==202){
   return (
+    
     <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
         <div>
-            <span style={{color:'#FF7F8F', fontSize:'1.3rem',margin:'0 0.5rem'}}>“{keyword}”</span> 에 대한 검색결과 총 <span style={{color:'#FF7F8F', fontSize:'1.3rem',margin:'0 0.5rem'}}>{data.content.length}</span>건
+            <span style={{color:'#FF7F8F', fontSize:'1.3rem',margin:'0 0.5rem'}}>“{keyword}”</span> 에 대한 검색결과 총 <span style={{color:'#FF7F8F', fontSize:'1.3rem',margin:'0 0.5rem'}}>{data.data.content.length}</span>건
         </div>
         <ul style={{margin:'0',padding:'0'}}>
             {
-            data.content.map((el:any)=>{
+            data.data.content.map((el:any)=>{
                 return(
                 <li style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingBottom:'1.5rem',borderBottom:'1px #CACACA solid'}}>
                 
@@ -45,7 +48,19 @@ const SearchView = ({data,keyword}:any) => {
             
         </ul>
     </div>
-  )
+  )}else{
+    return(
+            
+    <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
+    <div>
+        <span style={{color:'#FF7F8F', fontSize:'1.3rem',margin:'0 0.5rem'}}>“{keyword}”</span> 에 대한 검색결과 총 <span style={{color:'#FF7F8F', fontSize:'1.3rem',margin:'0 0.5rem'}}>0</span>건
+    </div>
+    
+    <NoData data={data}/>
+    
+</div>
+    )
+  }
 }
 
 export default SearchView
