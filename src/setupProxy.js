@@ -23,7 +23,7 @@ module.exports = function (app){
 	app.use(
     	"/reservation",
       	createProxyMiddleware({
-        	target: 'http://3.39.24.183:8081/',
+        	target: 'http://3.39.24.183/',
           	changeOrigin: true,
         })
     )

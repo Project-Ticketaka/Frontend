@@ -34,9 +34,12 @@ export interface IFacilityDTO {
 }
 
 export interface IPerformanceData {
-	performanceDetailInfo: IPerformanceDetailInfo;
-	prfSessionList: Array<IPerformanceSessionList>;
-	facilityDTO: IFacilityDTO;
+	data:{
+		performanceDetailInfo: IPerformanceDetailInfo;
+		prfSessionList: Array<IPerformanceSessionList>;
+		facilityDTO: IFacilityDTO;
+	}
+	
 }
 export interface IPerformanceByIdBadResponse {
 	code: number;

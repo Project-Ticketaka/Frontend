@@ -9,9 +9,9 @@ import { ICheckReservationData } from "../../../types/performance";
 const useCreateReservation = (navigate:TNavigate) => {
     return useMutation((paymentInfo: ICheckReservationData) => ReservationAPI.createReservation({"memberId": paymentInfo.checkData.memberId,
     "memberEmail": paymentInfo.checkData.memberId,
-    "performanceId": paymentInfo.reservationInfo.detail.performanceDetailInfo.prfId,
-    "prf_poster": paymentInfo.reservationInfo.detail.performanceDetailInfo.poster,
-    "prfSessionId": paymentInfo.reservationInfo.detail.prfSessionList[0].prfSessionId,
+    "performanceId": paymentInfo.reservationInfo.detail.data.performanceDetailInfo.prfId,
+    "prf_poster": paymentInfo.reservationInfo.detail.data.performanceDetailInfo.poster,
+    "prfSessionId": paymentInfo.reservationInfo.detail.data.prfSessionList[0].prfSessionId,
     "price": paymentInfo.reservationInfo.seatPrice*paymentInfo.reservationInfo.people}), {
         
         onSuccess: (data: AxiosResponse<IReservationResponse>,variables:ICheckReservationData) => {
