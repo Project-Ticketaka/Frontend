@@ -7,6 +7,24 @@ export interface IReservationInfo {
 	price: number;
 }
 
+export interface IGetAllReservationInfo {
+	code: number;
+    data: {
+		reservationId: number;
+        reservationTicketCount: number;
+        reservationDate: string;
+        reservationTime: string;
+        reservationPrice: number;
+        reservationTotalPrice: number;
+        reservationPoster: string;
+        reservationDeleted: string;
+        reservationCreateAt: string;
+    }[];
+    description: string;
+}
+export interface ICancelData{
+    rsvId: number;
+}
 export interface IReservationResponse {
     code: string;
 }

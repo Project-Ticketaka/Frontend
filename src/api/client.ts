@@ -14,6 +14,7 @@ client.interceptors.request.use(
             config.headers["x-authorization"] = accessToken;
             config.headers["r-authorization"] = refreshToken;
         }
+        
         return config;
     },
     (error:any) => Promise.reject(error)

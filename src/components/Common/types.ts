@@ -9,3 +9,16 @@ export interface IEmptyProps {
 export interface IEmptyContainerProps {
     containerHeight?: string;
 }
+
+
+
+
+export interface IChildrenProps {
+  children?: React.ReactNode;
+}
+export interface IModalProps extends IChildrenProps {
+  open: boolean;
+  onClose: () => void;
+  footer: React.ReactElement;
+}
+
