@@ -8,7 +8,7 @@ import { TNavigate } from "../../../types/navigate";
 const useSignUp = (navigate: TNavigate) => {
     return useMutation((userInfo: ISignUpData) => MemberAPI.signUp(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
-            navigate("/login", { replace: true });
+            navigate("/login", {state:'signup'});
         },
         onError: ((error: unknown, variables: ISignUpData, context: unknown) =>{
             alert('회원가입 실패!');
