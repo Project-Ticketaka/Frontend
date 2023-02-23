@@ -95,7 +95,6 @@ const DeatilView = ({performanceData}:any) => {
 
     const selectSessionTime = (id:string, time:string) => {
         // alert(`${id}, ${time}`);
-        
         setSelectedTimeId(id)
         setSelectedTime(time)
     }
@@ -130,7 +129,7 @@ const DeatilView = ({performanceData}:any) => {
                 seatPrice: seatPrice,
                 detail:performanceData,
             }
-            checkReservationMutate({checkData:{"memberId":localStorage.getItem("memberEmail"),"prfSessionId":selectedTimeId,"count":people},"reservationInfo":reservationInfo})
+            checkReservationMutate({checkData:{"prfSessionId":selectedTimeId,"count":people},"reservationInfo":reservationInfo})
         }else{
             alert('로그인해주세요!')
             navigate('/login')

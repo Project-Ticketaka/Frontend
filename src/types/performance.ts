@@ -114,7 +114,6 @@ export interface IPerformanceReservationInfo {
 }
 
 export interface ICheckData {
-	memberId: string|null;
 	prfSessionId: string;
 	count: number;
 }
@@ -125,6 +124,7 @@ export interface ICheckReservationData {
 
 export interface ICreateReservationData{
 	performanceId: string;
+	prfTitle: string;
 	prfPoster: string;
 	prfSessionId: number;
 	price: number;

@@ -10,8 +10,9 @@ import customHistory from "../../../utils/history";
 const useCreateReservation = (navigate:TNavigate) => {
     return useMutation((paymentInfo: ICheckReservationData) => PerformanceAPI.createReservation({
         "performanceId": paymentInfo.reservationInfo.detail.data.performanceDetailInfo.prfId,
+        "prfTitle": paymentInfo.reservationInfo.detail.data.performanceDetailInfo.title,
         "prfPoster": paymentInfo.reservationInfo.detail.data.performanceDetailInfo.poster,
-        "prfSessionId": Number(paymentInfo.reservationInfo.detail.data.prfSessionList[0].prfSessionId),
+        "prfSessionId": Number(paymentInfo.checkData.prfSessionId),
         "price": paymentInfo.reservationInfo.seatPrice*paymentInfo.reservationInfo.people}), {
         
         onSuccess: (data: AxiosResponse<IReservationResponse>,variables:ICheckReservationData) => {

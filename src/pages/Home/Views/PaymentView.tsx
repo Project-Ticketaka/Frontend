@@ -56,8 +56,6 @@ const ChargeButton = styled(Button)`
 `;
 
 
-
-
 const PaymentView = ({paymentInfo}:any) => {
     const navigate=useNavigate()
     const [paymentWay,setPaymentWay]=useState('')
@@ -65,8 +63,8 @@ const PaymentView = ({paymentInfo}:any) => {
     const { mutate: withdrawReservation } = useWithdrawReservation();
 
     const goCharge = () => {
+        console.log(paymentInfo)
         createReservationMutate(paymentInfo);
-        
     }
 
     const unlisten = customHistory.listen((location) => {
