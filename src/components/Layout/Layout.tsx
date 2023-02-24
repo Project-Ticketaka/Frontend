@@ -19,7 +19,6 @@ const Layout = () => {
             }else {
                 navigate('/')
                 window.location.reload();
-                setMenu('home')
             }
         }    
     };

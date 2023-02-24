@@ -3,12 +3,11 @@
     user-select: none;
     color: #FF7F8F;
     height: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.5rem 1rem;
     background: #ffffff;
     border: 1.5px solid #FF7F8F;
     border-radius: 5px 0px 0px 5px;
-    
+
     &.F{
         color: #888888;
         border-color: #888888;
@@ -23,12 +22,11 @@
     user-select: none;
     color: #FF7F8F;
     height: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0.5rem 1rem;
     background: #ffffff;
     border: 1.5px solid #FF7F8F;
     border-radius: 0px 5px 5px 0px;
-
+    
     &.M {
         cursor: pointer;
         color: #888888;

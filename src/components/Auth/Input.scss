@@ -15,7 +15,7 @@ $focus: #FF7F8F;
     font-weight: 500;
     
     padding: 10px 10px;
-
+    overflow: auto;
     flex-grow: 1;
     
     &::placeholder{
@@ -26,5 +26,11 @@ $focus: #FF7F8F;
     &:focus {
         border: 1.5px solid $focus;
         outline: none;
+    }
+
+    @media (max-width: 767px){
+        /* 브라우저 사이즈 767px 이하일때*/
+        
+        
     }
 }

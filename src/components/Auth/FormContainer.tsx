@@ -3,9 +3,9 @@ import './FormContainer.scss'
 
 function FormContainer({children}:any) {
     return (
-    <div className="FormContainer">
+    <table className="FormContainer">
         {children}
-    </div>
+    </table>
     );
 }
 
