@@ -37,7 +37,7 @@ const TicketView = ({reservationInfo}:any) => {
                         <p style={{fontSize:'1.4rem',fontWeight:'500'}}>{reservationInfo.people} 명</p>
                     </div>
                 </div>
-                <img src={barcode_example} alt="barcode" style={{height:'13rem',padding:'2rem',borderLeft:'3px dashed #ffffff'}}/>
+                {/* <img src={barcode_example} alt="barcode" style={{height:'13rem',padding:'2rem',borderLeft:'3px dashed #ffffff'}}/> */}
         </div>
     </div>
   )

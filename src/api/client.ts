@@ -13,7 +13,12 @@ client.interceptors.request.use(
             config.headers = {};
             config.headers["x-authorization"] = accessToken;
             config.headers["r-authorization"] = refreshToken;
+            // config.headers["X-Requested-With"]='XMLHttpRequest';
+            // config.headers['X-CSRF-TOKEN'] = '{{ csrf_token() }}';
+            // // config.headers['Content-Type']= '{}';
+            
         }
+        
         
         return config;
     },

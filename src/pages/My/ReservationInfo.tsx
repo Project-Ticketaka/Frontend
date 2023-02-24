@@ -9,7 +9,7 @@ const ReservationInfo = () => {
   console.log(data);
 
   return (
-    isLoading?<></>:data?<ReservationInfoView data={data}/>:<NoData data={{code:404,description:'예매 내역이 없습니다.'}}/>
+    isLoading?<></>:data?.length?<ReservationInfoView data={data}/>:<NoData data={{code:404,description:'예매 내역이 없습니다.'}}/>
   )
 }
 

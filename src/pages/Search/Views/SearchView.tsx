@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import red from '@mui/icons-material'
 import { useNavigate } from "react-router-dom";
 import NoData from "../../../components/Common/NoData";
+import { useEffect, useState } from "react";
 
 const ReservationButton = styled(Button)`
     color: #ffffff;
@@ -12,9 +13,21 @@ const ReservationIcon = styled(ReceiptLongIcon)`
     color: #ffffff;
     fill: #ffffff;
 `
-
+const LoadingButton = styled(Button)`
+    color: #B8B8B8;
+`
+const LoadingIcon = styled(ReceiptLongIcon)`
+    color: #B8B8B8;
+    fill: #B8B8B8;
+`
 const SearchView = ({data,keyword}:any) => {
     const navigate= useNavigate();
+    const [searchResult,setSearchResult]=useState([]);
+    useEffect(()=>{
+        setTimeout(()=>{
+            setSearchResult(data.data.content)
+        },2000)
+    })
     if (data.code!==202){
   return (
     
@@ -24,9 +37,31 @@ const SearchView = ({data,keyword}:any) => {
         </div>
         <ul style={{margin:'0',padding:'0'}}>
             {
-            data.data.content.map((el:any)=>{
+                searchResult.length=== 0?
+                Array(data.data.content.length).fill(0).map(()=>{
+                    return(
+                        <li style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'1.5rem 0',borderBottom:'1px #CACACA solid'}}>
+                        
+                            <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center'}}>
+                            {/* <img src={el.poster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>*/}
+                            <div style={{width:'7rem',height:'9rem',borderRadius:'5px',backgroundColor:'#B8B8B8'}}></div>
+                            <div style={{display:'flex',flexDirection:'column',gap:'1rem',alignSelf:'center'}}>
+                                <div>
+                                    <p style={{fontSize:"1.4rem", fontWeight:'500', margin:'0',borderRadius:'5px',backgroundColor:'#B8B8B8',color:'#B8B8B8'}}>searchResult</p>
+                                </div>
+                                <div>
+                                    <p style={{fontSize:"0.9rem", padding:'0', margin:'1rem 0 0 0',borderRadius:'5px',backgroundColor:'#B8B8B8',color:'#B8B8B8'}}>장소 | searchResult</p>
+                                    <p style={{fontSize:"0.9rem", padding:'0', margin:'1rem 0 0 0',borderRadius:'5px',backgroundColor:'#B8B8B8',color:'#B8B8B8'}}>기간 | yyyy-mm-dd ~ yyyy-mm-dd</p>
+                                </div>
+                            </div>
+                            </div>
+                            <LoadingButton variant="contained" color="warning" startIcon={<LoadingIcon/>}>예매하기</LoadingButton>
+                        </li>
+                        )
+                })
+            :data.data.content.map((el:any)=>{
                 return(
-                <li style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingBottom:'1.5rem',borderBottom:'1px #CACACA solid'}}>
+                <li style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'1.5rem 0',borderBottom:'1px #CACACA solid'}}>
                 
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center'}}>
                     <img src={el.poster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>

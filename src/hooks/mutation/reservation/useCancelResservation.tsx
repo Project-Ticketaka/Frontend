@@ -1,19 +1,20 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { useMutation } from "react-query";
-
-import { TNavigate } from "../../../types/navigate";
 import ReservationAPI from "../../../api/reservation";
-import { ICancelData, IReservationResponse } from "../../../types/reservation";
+import { useMutation } from "react-query";
+import { AxiosResponse } from "axios";
+import { TNavigate } from "../../../types/navigate";
 
-const useCancelReservation = () => {
-    return useMutation((rsvId: ICancelData) => ReservationAPI.cancelReservation(rsvId), {
-        onSuccess: (data: AxiosResponse<IReservationResponse>) => {
+const useCancelReservation = (navigate:TNavigate) => {
+    return useMutation((rsvId: number) => ReservationAPI.cancelReservation(rsvId), {
+        
+        onSuccess: (data: AxiosResponse<any>) => {
             console.log(data);
+            navigate('/my/rsv',{state:'rsv'});
+            window.location.reload()
         },
-        onError: ((error: unknown, variables: ICancelData, context: unknown) =>{
+        onError: ((error: unknown, variables: number, context: unknown) =>{
             alert('예약 취소 실패!');
             console.log(error);
-            console.log(variables);
+            
         })
     });
 };

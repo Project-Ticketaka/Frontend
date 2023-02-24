@@ -22,7 +22,7 @@ const Category = () => {
     // console.log(data)
 
     return (
-            isLoading ? <></> :<CategoryView data={data}/>
+            isLoading ? <></> :<CategoryView isLoading={isLoading} data={data}/>
     )
 }
 

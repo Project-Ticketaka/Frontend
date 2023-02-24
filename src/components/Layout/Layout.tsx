@@ -13,7 +13,14 @@ const Layout = () => {
         menu,
         onSetMenu: (id:string)=>{
             setMenu(id)
-            id!=='home'?navigate(`/${id}`):navigate('/')
+            if(id!=='home'){
+                navigate(`/${id}`)
+                window.location.reload();
+            }else {
+                navigate('/')
+                window.location.reload();
+                setMenu('home')
+            }
         }    
     };
     return (

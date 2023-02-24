@@ -45,13 +45,13 @@ const ReservationButton = styled(Button)`
     padding: 0.7rem 3rem;
     font-size: 1.1rem;
     color: #ffffff;
-    background: #5C7D92;
+    background: #FF7F8F;
     
     
     border-radius: 2rem;
 
     &:hover {
-        background: #5C7D92;
+        background: #E57583;
     }
 
     

@@ -17,7 +17,7 @@ const MypageButton = styled(Button)`
 const HeaderContainer = styled.div`
     padding: 1rem 1rem 0 1rem;
     boxShadow: 2px 2px 2px 2px #CACACA;
-
+    borderBottom: 1px #CACACA solid;
     ${media.tablet`
         
     `}
@@ -106,7 +106,8 @@ const HeaderView = ({ category, menu ,onSetMenu,goMyPage,onSearchChange,onSearch
     const navigate = useNavigate();
     const goHome = () => {
         onSetKeyword("");
-        navigate('/')
+        onSetMenu('home')
+        navigate('/');
     }
 
     return (
