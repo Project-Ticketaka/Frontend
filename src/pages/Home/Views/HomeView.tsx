@@ -8,9 +8,10 @@ const MainContainer = styled.div`
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
 
-    ${media.phone`
-        
-    `}
+    @media (max-width: 767px){
+        grid-template-columns: repeat(2, 1fr);
+        width: fit-content;
+    }
 `
 const HomeView = ({top10,onGoToDetail}:any) => {
     return (
