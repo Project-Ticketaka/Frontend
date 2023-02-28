@@ -2,7 +2,10 @@
 #Specify a base image
 FROM node:19-alpine as builder
 
-ENV REACT_APP_KOPIS_SECRET=$(cat /run/secrets/REACT_APP_KOPIS_SECRET) 
+RUN --mount=type=secret,id=react_app_kopis_secret \
+    export REACT_APP_KOPIS_SECRET=$(cat /run/secrets/REACT_APP_KOPIS_SECRET)
+
+ENV REACT_APP_KOPIS_SECRET= $REACT_APP_KOPIS_SECRET 
 #Specify a working directory
 WORKDIR '/app'
 
