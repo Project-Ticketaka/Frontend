@@ -2,7 +2,7 @@
 #Specify a base image
 FROM node:19-alpine as builder
 
-ENV REACT_APP_KOPIS_SECRET $REACT_APP_KOPIS_SECRET 
+ENV REACT_APP_KOPIS_SECRET= ${REACT_APP_KOPIS_SECRET}
 #Specify a working directory
 WORKDIR '/app'
 
