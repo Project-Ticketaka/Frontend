@@ -46,6 +46,8 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          secrets: | 
+            "REACT_APP_KOPIS_SECRET=${{ secrets.KOPIS_SECRET }}"
           platforms: linux/amd64
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/ticketaka-front:${{ steps.tag_version.outputs.new_tag }}
