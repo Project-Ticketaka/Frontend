@@ -2,12 +2,13 @@
 #Specify a base image
 FROM node:19-alpine as builder
 
+ENV REACT_APP_KOPIS_SECRET=$(cat /run/secrets/REACT_APP_KOPIS_SECRET) 
 #Specify a working directory
 WORKDIR '/app'
 
 #Copy the dependencies file
 COPY package.json .
-COPY .env ./
+
 #Install dependencies
 RUN npm install
 
