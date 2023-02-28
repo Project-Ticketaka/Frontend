@@ -46,7 +46,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          secrets: | 
+          build-args: |
             "REACT_APP_KOPIS_SECRET=${{ secrets.KOPIS_SECRET }}"
           platforms: linux/amd64
           push: true
