@@ -2,6 +2,9 @@ import { ICheckData, ICheckReservationData, ICreateReservationData } from "../ty
 import client from "./client";
 
 const PerformanceAPI = {
+  getPerformanceByRank: () => {
+    return client.get(`/performance/rank`);
+  },
   getPerformanceById: (prf_id: string | undefined) => {
     return client.get(`/performance?p=${prf_id}`);
   },

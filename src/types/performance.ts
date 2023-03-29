@@ -74,6 +74,25 @@ export interface IPerformanceSearch {
 	facilityName: string;
 }
 
+export interface IPerformanceRank {
+    rNum: string;
+	prfId: string;
+	title: string;
+	start_date: string;
+	end_date: string;
+	viewingAge: string;
+	genre: string;
+	poster: string;
+	facilityName: string;
+}
+
+export interface IPerformanceByRankResponse {
+	code: string;
+	data: {
+		content: IPerformanceRank[];
+	}
+}
+
 export interface IPerformanceByCategoryResponse {
 	code: number;
 	data: {

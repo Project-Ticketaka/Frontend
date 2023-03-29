@@ -9,10 +9,7 @@ import styled from "@emotion/styled";
 import './custom-datepicker.scss';
 import useCheckReservation from "../../../hooks/mutation/performance/useCheckReservation";
 import useGetPerformanceSession from "../../../hooks/query/performance/useGetPerformanceSession";
-import customHistory from "../../../utils/history";
 import React from "react";
-import { Retryer } from "react-query/types/core/retryer";
-import NoData from "../../../components/Common/NoData";
 
 const SessionButton = styled(Button)`
     

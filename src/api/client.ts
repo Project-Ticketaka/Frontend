@@ -5,20 +5,13 @@ const client = axios.create({ baseURL });
 
 
 client.interceptors.request.use(
-    (config: AxiosRequestConfig): any => {
-       const accessToken = localStorage.getItem("accessToken");
-       const refreshToken = localStorage.getItem("refreshToken");
+  (config: AxiosRequestConfig): any => {
+    const accessToken = localStorage.getItem("accessToken");
         
-       if (accessToken&&refreshToken) {
-            config.headers = {};
-            config.headers["x-authorization"] = accessToken;
-            config.headers["r-authorization"] = refreshToken;
-            // config.headers["X-Requested-With"]='XMLHttpRequest';
-            // config.headers['X-CSRF-TOKEN'] = '{{ csrf_token() }}';
-            // // config.headers['Content-Type']= '{}';
-            
-        }
-        
+    if (accessToken) {
+      config.headers = {};
+      config.headers["Authorization"] = accessToken;
+    }
         
         return config;
     },

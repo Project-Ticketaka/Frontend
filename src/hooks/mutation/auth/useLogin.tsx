@@ -18,9 +18,7 @@ const useLogin = (navigate: TNavigate) => {
             // console.log(data);
             // console.log(data.headers);
             
-            localStorage.setItem("accessToken", data.headers["x-authorization"]);
-            localStorage.setItem("refreshToken", data.headers["r-authorization"]);
-            localStorage.setItem("memberEmail", variables.email);
+            localStorage.setItem("accessToken", data.headers["Authorization"]);
             
             // console.log(state);
             if(state){
