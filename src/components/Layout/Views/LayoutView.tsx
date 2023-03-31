@@ -4,7 +4,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import { IHeaderProps, ILayoutProps } from "../types";
 import Footer from "../Footer";
-import useGetMemberInfo from "../../../hooks/query/member/useGetMemberInfo";
 
 const Container = styled.div`
     display: flex;
@@ -25,7 +24,6 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
     const navigate=useNavigate();
     const [keyword, setKeyword] = useState("");
     
-    const { data, isLoading } = useGetMemberInfo();
     const headerProps:IHeaderProps={
         menu,
         onSetMenu,
