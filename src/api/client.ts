@@ -10,7 +10,7 @@ client.interceptors.request.use(
         
     if (accessToken) {
       config.headers = {};
-      config.headers["Authorization"] = accessToken;
+      config.headers["authorization"] = accessToken;
     }
         
         return config;

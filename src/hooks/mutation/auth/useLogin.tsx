@@ -16,9 +16,9 @@ const useLogin = (navigate: TNavigate) => {
     return useMutation((userInfo: ILoginData) => MemberAPI.login(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>,variables:ILoginData) => {
             // console.log(data);
-            // console.log(data.headers);
+            console.log(data.headers);
             
-            localStorage.setItem("accessToken", data.headers["Authorization"]);
+            localStorage.setItem("accessToken", data.headers["authorization"]);
             
             // console.log(state);
             if(state){

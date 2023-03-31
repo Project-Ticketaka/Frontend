@@ -115,7 +115,7 @@ const DeatilView = ({performanceData}:any) => {
             return;
         }
         
-        if(localStorage.getItem("memberEmail")){
+        if(localStorage.getItem("accessToken")){
             let reservationInfo = {
                 memberId: localStorage.getItem("memberEmail"),
                 memberEmail: localStorage.getItem("memberEmail"), 
