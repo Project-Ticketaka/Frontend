@@ -15,7 +15,7 @@ module.exports = function (app){
 	app.use(
     	"/performance",
       	createProxyMiddleware({
-        	target: 'http://13.125.254.153/',
+        	target: 'http://a705ec0d1338843baa8c7c38234753cf-1514463484.ap-northeast-2.elb.amazonaws.com/',
           	changeOrigin: true,
         })
     )
@@ -23,14 +23,14 @@ module.exports = function (app){
 	app.use(
     	"/reservation",
       	createProxyMiddleware({
-        	target: 'http://13.125.254.153/',
+        	target: 'http://a705ec0d1338843baa8c7c38234753cf-1514463484.ap-northeast-2.elb.amazonaws.com/',
         })
     )
 
 	app.use(
     	"/member",
       	createProxyMiddleware({
-        	target: 'http://13.125.254.153/',
+        	target: 'http://a705ec0d1338843baa8c7c38234753cf-1514463484.ap-northeast-2.elb.amazonaws.com/',
           	changeOrigin: true,
         })
     )

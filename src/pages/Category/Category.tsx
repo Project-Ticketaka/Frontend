@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import NoData from "../../components/Common/NoData";
 import useGetPerformanceByCategory from "../../hooks/query/performance/useGetPerformanceByCategory";
 import CategoryView from "./Views/CategoryView"
 
@@ -19,7 +20,7 @@ const Category = () => {
     // console.log(category[params.cat||''])
     
     const { data, isLoading } = useGetPerformanceByCategory(category[params.cat||'']);
-    // console.log(data)
+    
 
     return (
             isLoading ? <></> :<CategoryView isLoading={isLoading} data={data}/>

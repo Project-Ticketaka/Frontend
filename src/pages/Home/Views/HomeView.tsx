@@ -26,16 +26,16 @@ const HomeView = ({top10,onGoToDetail}:any) => {
                 top10.length!==0
                 ?top10.map((el:any)=>{
                     return(
-                        <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>onGoToDetail(el.mt20id._text)}>
+                        <div key={el.prfId} style={{width:'13rem',cursor:'pointer'}}  onClick={()=>onGoToDetail(el.prfId)}>
                             <div style={{textAlign: 'center'}}>
                                 <div style={{position:'relative'}}>
-                                    <img src={`http://kopis.or.kr/${el.poster._text}`} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.prfnm._text}/>
+                                    <img src={el.poster} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.prfId}/>
                                     <span style={{position:'absolute',color:'#ffffff',left:'2rem',bottom:'-0.3rem',fontSize:'3.5rem',fontWeight:'700',letterSpacing:'-0.5rem'}}>{el.rnum._text}</span>
                                 </div>
                             </div>
-                            <p style={{margin:'0.3rem 0',fontSize:'1.25rem',fontWeight:'500',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{el.prfnm._text}</p>
-                            <p style={{margin:'0.3rem 0',color:'#575757',fontSize:'1rem',fontWeight:'300',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{el.prfplcnm._text}</p>
-                            <p style={{margin:'0.3rem 0',color:'#A6A6A6',fontSize:'1rem',fontWeight:'300'}}>{el.prfpd._text}</p>
+                            <p style={{margin:'0.3rem 0',fontSize:'1.25rem',fontWeight:'500',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{el.title}</p>
+                            <p style={{margin:'0.3rem 0',color:'#575757',fontSize:'1rem',fontWeight:'300',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{el.facilityName}</p>
+                            <p style={{margin:'0.3rem 0',color:'#A6A6A6',fontSize:'1rem',fontWeight:'300'}}>{el.startDate}~{el.endDate}</p>
                             {/* <Button 
                                 size='md'
                                 color='blue'>예매하기</Button> */}
