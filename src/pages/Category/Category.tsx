@@ -23,7 +23,11 @@ const Category = () => {
     
 
     return (
-            isLoading ? <></> :<CategoryView isLoading={isLoading} data={data}/>
+            isLoading ? <></> 
+            :
+            typeof data === "string"
+            ?<></>
+            :<CategoryView isLoading={isLoading} data={data}/>
     )
 }
 
