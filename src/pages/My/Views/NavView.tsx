@@ -1,10 +1,6 @@
 
-import useLogout from "../../../hooks/mutation/auth/useLogout"
-import ReservationInfo from "../ReservationInfo"
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useLocation,useNavigate } from "react-router-dom"
-import useGetMemberInfo from "../../../hooks/query/member/useGetMemberInfo";
-import useGetAllReservationInfo from "../../../hooks/query/reservation/useGetAllReservationInfo";
 
 const NavView = () => {
     const {state}=useLocation();
