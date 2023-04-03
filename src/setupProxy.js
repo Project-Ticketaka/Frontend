@@ -15,22 +15,22 @@ module.exports = function (app){
 	app.use(
     	"/performance",
       	createProxyMiddleware({
-        	target: 'http://a705ec0d1338843baa8c7c38234753cf-1514463484.ap-northeast-2.elb.amazonaws.com/',
-          	changeOrigin: true,
+        	target: 'http://ticketaka-ing-370568305.ap-northeast-2.elb.amazonaws.com',
+          	
         })
     )
 
 	app.use(
     	"/reservation",
       	createProxyMiddleware({
-        	target: 'http://a705ec0d1338843baa8c7c38234753cf-1514463484.ap-northeast-2.elb.amazonaws.com/',
+        	target: 'http://ticketaka-ing-370568305.ap-northeast-2.elb.amazonaws.com',
         })
     )
 
 	app.use(
     	"/member",
       	createProxyMiddleware({
-        	target: 'http://a705ec0d1338843baa8c7c38234753cf-1514463484.ap-northeast-2.elb.amazonaws.com/',
+        	target: 'http://ticketaka-ing-370568305.ap-northeast-2.elb.amazonaws.com/',
           	changeOrigin: true,
         })
     )

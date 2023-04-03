@@ -10,7 +10,7 @@ const useLogout = (navigate: TNavigate) => {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
             console.log(data);
             console.log(data.headers);
-            localStorage.clear();
+            localStorage.removeItem("accessToken");
             navigate("/", { replace: true });
         },
         onError: ((error: unknown, variables: unknown, context: unknown) =>{
