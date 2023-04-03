@@ -10,7 +10,6 @@ const NavView = () => {
     const {state}=useLocation();
     const my=useRef(state);
     const navigate = useNavigate();
-    const { mutate: logoutMutate } = useLogout(navigate);
     
     console.log(state);
     
@@ -20,8 +19,8 @@ const NavView = () => {
     }
 
     const onLogout = () => {
-        alert('Logout!')
-        logoutMutate({});
+        localStorage.removeItem("accessToken");
+        navigate("/", { replace: true });
     }
 
     return (

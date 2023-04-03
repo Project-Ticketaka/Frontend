@@ -11,9 +11,6 @@ const MembnerAPI = {
     checkDuplicateMember: (data: IAuthData) => {
       return client.post("/member/checkDuplicateEmail",data);
     },
-    logout: () => {
-      return client.post("/member/logout");
-    },
     getMemberInfo: () => {
         return client.get(`/member/info`);
     },
