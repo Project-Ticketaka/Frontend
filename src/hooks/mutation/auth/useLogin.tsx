@@ -8,18 +8,18 @@ import customHistory from "../../../utils/history";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { IError } from "../../../types/axios";
+import { setItemWithExpireTime } from "../../../utils/localStorage";
 
 const useLogin = (navigate: TNavigate) => {
     const {state}=useLocation();
-  
-  
+
     return useMutation((userInfo: ILoginData) => MemberAPI.login(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>,variables:ILoginData) => {
             // console.log(data);
             console.log(data.headers);
-            
-            localStorage.setItem("accessToken", data.headers["authorization"]);
-            
+
+            //localStorage.setItem("accessToken", data.headers["authorization"]);
+            setItemWithExpireTime("accessToken", data.headers["authorization"], 1800000);
             // console.log(state);
             if(state){
                 //메인->로그인
