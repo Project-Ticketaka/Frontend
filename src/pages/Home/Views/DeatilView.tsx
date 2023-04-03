@@ -60,6 +60,7 @@ const DeatilView = ({performanceData}:any) => {
     console.log(performanceData.code)
 
     registerLocale("ko", ko); //한국어 설정
+    
     const [selectedDate,setSelectedDate] = useState(performanceData.data.performanceDetailInfo.startDate)
     
     const [selectedTime,setSelectedTime] = useState('')
@@ -88,7 +89,7 @@ const DeatilView = ({performanceData}:any) => {
         
     // },[customHistory]);
 
-    const { data, isLoading } = useGetPerformanceSession(selectedTimeId);
+    const { data, isLoading } = useGetPerformanceSession(sessionTimeList[0].prfSessionId);
 
     const selectSessionTime = (id:string, time:string) => {
         // alert(`${id}, ${time}`);

@@ -1,4 +1,4 @@
-import { TNavigate } from "../types/navigate";
+
 
 // 만료 시간과 함께 데이터를 저장
 export function setItemWithExpireTime(keyName:string, keyValue:string, tts:number) {
