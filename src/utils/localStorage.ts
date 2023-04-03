@@ -32,7 +32,7 @@ export function getItemWithExpireTime(keyName:string) {
     if(Date.now() > obj.expire) {
         // 만료시간이 지난 item 삭제
         localStorage.removeItem("accessToken");
-        
+        window.location.href = "/login";
         // null 리턴
         return null;
     }
