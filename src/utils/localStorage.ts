@@ -16,7 +16,7 @@ export function setItemWithExpireTime(keyName:string, keyValue:string, tts:numbe
 }            
 
 // 만료 시간을 체크하며 데이터 읽기
-export function getItemWithExpireTime(keyName:string, navigate: TNavigate) {
+export function getItemWithExpireTime(keyName:string) {
     // localStorage 값 읽기 (문자열)
     const objString = localStorage.getItem(keyName);
     
@@ -32,7 +32,7 @@ export function getItemWithExpireTime(keyName:string, navigate: TNavigate) {
     if(Date.now() > obj.expire) {
         // 만료시간이 지난 item 삭제
         localStorage.removeItem("accessToken");
-        navigate("/", { replace: true });
+        
         // null 리턴
         return null;
     }
