@@ -3,10 +3,10 @@ import MapView from "./Views/MapView"
 
 const Map = ({lat,lng}:any) => {
     const { naver } = window;
-    const mapElement = useRef(null);
+    //const mapElement = useRef(null);
     useEffect(()=>{
         
-        if (!mapElement.current || !naver) return;
+        //if (!mapElement.current || !naver) return;
 
         //로케이션표시 Google maps에서 원하는 장소 찾은 후 주변검색을 누르면 좌표를 찾을 수 있다.
         const location = new naver.maps.LatLng(lat, lng);
@@ -21,7 +21,7 @@ const Map = ({lat,lng}:any) => {
             },
         };
         
-        const map = new naver.maps.Map(mapElement.current, mapOptions);
+        const map = new naver.maps.Map('map', mapOptions);
         //지도상에 핀 표시 할 부분
         new naver.maps.Marker({
             position: location,
@@ -31,8 +31,8 @@ const Map = ({lat,lng}:any) => {
     
     },[]);
     return (
-        <MapView mapElement={mapElement}/>
+        <MapView/>
     )
 }
 
-export default React.memo(Map)
+export default Map

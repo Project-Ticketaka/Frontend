@@ -34,11 +34,11 @@ const ChargeButton = styled(Button)`
     height: fit-content;
     width: 100%;
     
-    padding: 0.3rem 3rem;
-
+    //padding: 0.3rem 3rem;
+    border-radius: 2rem;
     // width: 100%;
     // height: fit-content;
-    // padding: 0.7rem 3rem;
+    padding: 0.7rem 3rem;
     
     color: #ffffff;
     background: #FF7F8F;
