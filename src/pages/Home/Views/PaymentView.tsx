@@ -35,22 +35,17 @@ const ChargeButton = styled(Button)`
     width: 100%;
     
     padding: 0.3rem 3rem;
+
+    // width: 100%;
+    // height: fit-content;
+    // padding: 0.7rem 3rem;
     
-    color: #858585;
-    
-    border:0.2rem #CACACA solid;
-    border-radius: 2rem;
+    color: #ffffff;
+    background: #FF7F8F;
 
     &:hover {
-        border:0.2rem #FF7F8F solid;
-        background: #ffffff;
+        background: #E57583;
     }
-
-    &.active{
-        border:0.2rem #FF7F8F solid;
-        color: #333;
-    }
-
 `;
 
 
