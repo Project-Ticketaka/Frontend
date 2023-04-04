@@ -85,7 +85,7 @@ const ReservationInfoView = ({data}:any) => {
         {data.map((item:any)=>{
             return(
                 <>
-                <li style={{display:'flex',justifyContent:'center',padding:'0 18rem',cursor:'pointer'}} onClick={()=>handleClickOpen(item)}>
+                <li key={item.reservationId} style={{display:'flex',justifyContent:'center',padding:'0 18rem',cursor:'pointer'}} onClick={()=>handleClickOpen(item)}>
                     <div style={{height:'13rem',width:'100%',justifyContent:'center',alignItems:'center',display:'flex',backgroundColor:'#F2F2F2',borderRadius:'1rem'}}>
                         <img src={item.reservationPoster} alt="poster" style={{height:'13rem',borderRadius:'1rem 0 0 1rem'}}/>
                         <div style={{width:'100%',display:'grid',gridTemplateRows: 'repeat(3, 1fr)',margin:'0 3rem',alignItems:'center'}}>
@@ -121,21 +121,21 @@ const ReservationInfoView = ({data}:any) => {
                     <div style={{display:'flex',flexDirection:'column',gap:'1rem',width:'30rem'}}>
                         <div style={{justifyContent:'center',alignItems:'center',display:'flex',flexDirection:'row',gap:'2rem'}}>
                         <img src={detail.reservationPoster} alt="poster" style={{height:'13rem',borderRadius:'1rem'}}/>
-                        <ul style={{margin:'0',padding:'0',alignItems:'center'}}>
-                            <li style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1rem'}}>
+                        <ul  style={{margin:'0',padding:'0',alignItems:'center'}}>
+                            <li key={`${detail.reservationId}poster`} style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1rem'}}>
                                 <p style={{margin:'0',padding:'0',fontSize:'1.4rem',fontWeight:'700'}}>{detail.performanceTitle}</p>
                             </li>
-                            <li style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1.5rem',marginTop:'1rem'}}>
-                                <p style={{margin:'0',padding:'0'}}>일시</p>
-                                    <p style={{margin:'0',padding:'0',fontSize:'1.4rem',fontWeight:'500'}}>{detail.reservationDate}</p>
-                                </li>
-                                <li style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1.5rem',marginTop:'1rem'}}>
-                                <p style={{margin:'0',padding:'0'}}>회차</p>
-                                    <p style={{margin:'0',padding:'0',fontSize:'1.4rem',fontWeight:'500'}}>{detail.reservationTime}</p>
-                                </li>
-                                <li style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1.5rem',marginTop:'1rem'}}>
-                                <p style={{margin:'0',padding:'0'}}>인원</p>
-                                <p style={{margin:'0',padding:'0',fontSize:'1.4rem',fontWeight:'500'}}>{detail.reservationTicketCount} 명</p>
+                            <li key={`${detail.reservationId} date`} style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1.5rem',marginTop:'1rem'}}>
+                              <p style={{margin:'0',padding:'0'}}>일시</p>
+                              <p style={{margin:'0',padding:'0',fontSize:'1.4rem',fontWeight:'500'}}>{detail.reservationDate}</p>
+                            </li>
+                            <li key={`${detail.reservationId} session`} style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1.5rem',marginTop:'1rem'}}>
+                              <p style={{margin:'0',padding:'0'}}>회차</p>
+                              <p style={{margin:'0',padding:'0',fontSize:'1.4rem',fontWeight:'500'}}>{detail.reservationTime}</p>
+                            </li>
+                            <li key={`${detail.reservationId} people`} style={{display:'flex',flexDirection:'row',alignItems:'center',gap:'1.5rem',marginTop:'1rem'}}>
+                              <p style={{margin:'0',padding:'0'}}>인원</p>
+                              <p style={{margin:'0',padding:'0',fontSize:'1.4rem',fontWeight:'500'}}>{detail.reservationTicketCount} 명</p>
                             </li>
                         </ul>
                         </div>

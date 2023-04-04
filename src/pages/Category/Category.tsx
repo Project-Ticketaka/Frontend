@@ -21,12 +21,11 @@ const Category = () => {
     
     const { data, isLoading } = useGetPerformanceByCategory(category[params.cat||'']);
     
-
     return (
             isLoading ? <></> 
             :
             typeof data === "string"
-            ?<></>
+            ?<NoData data={data}/>
             :<CategoryView isLoading={isLoading} data={data}/>
     )
 }

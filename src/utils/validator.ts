@@ -15,7 +15,7 @@ export const birthDateValidator = (birthDate: string) => {
 };
 
 export const phoneValidator = (phone: string) => {
-    return !!phone.match(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/g);
+    return !!phone.match(/^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/g);
     /*01로 시작하고 (0,1,6,7,8,9 중 하나의 문자) 
     -은 있을수도 없을수도 
     (숫자만 들어가면서 3~4 길이의 문자) 

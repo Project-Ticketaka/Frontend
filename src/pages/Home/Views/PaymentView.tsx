@@ -56,7 +56,7 @@ const PaymentView = ({paymentInfo}:any) => {
     const { mutate: withdrawReservation } = useWithdrawReservation();
 
     const goCharge = () => {
-        console.log(paymentInfo)
+        //console.log(paymentInfo)
         createReservationMutate(paymentInfo);
     }
 
@@ -86,7 +86,7 @@ const PaymentView = ({paymentInfo}:any) => {
   return (
     <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%',gap:'1.5rem'}}>
         <h1 style={{margin:'0', padding:'0'}}>₩ 결제하기</h1>
-        <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center',justifyContent:'space-between'}}>
+        <div style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
                 <div style={{display:'flex',flexDirection:'row',gap:'1.5rem',alignItems:'center',flex:'2'}}>
                     <img src={paymentInfo.reservationInfo.detail.data.performanceDetailInfo.poster} alt={paymentInfo.reservationInfo.detail.data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
                     
@@ -95,8 +95,8 @@ const PaymentView = ({paymentInfo}:any) => {
                         <p style={{fontSize:"1.2rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedDate}</p>
                         <p style={{fontSize:"1.2rem", fontWeight:'500'}}>{paymentInfo.reservationInfo.selectedTime}</p>
                         <div style={{display:'flex', alignItems:'center',gap:'0.4rem'}}>
-                            <svg style={{width:'1.2rem'}} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.6461 8.64708C10.9752 8.64708 12.8617 6.76059 12.8617 4.43145C12.8617 2.10231 10.9752 0.21582 8.6461 0.21582C6.31697 0.21582 4.43047 2.10231 4.43047 4.43145C4.43047 6.76059 6.31697 8.64708 8.6461 8.64708ZM8.6461 10.7549C5.83217 10.7549 0.214844 12.1671 0.214844 14.9705V17.0783H17.0774V14.9705C17.0774 12.1671 11.46 10.7549 8.6461 10.7549Z" fill="black"/>
+                            <svg style={{width:'1.2rem'}} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                                <path d="M8.6461 8.64708C10.9752 8.64708 12.8617 6.76059 12.8617 4.43145C12.8617 2.10231 10.9752 0.21582 8.6461 0.21582C6.31697 0.21582 4.43047 2.10231 4.43047 4.43145C4.43047 6.76059 6.31697 8.64708 8.6461 8.64708ZM8.6461 10.7549C5.83217 10.7549 0.214844 12.1671 0.214844 14.9705V17.0783H17.0774V14.9705C17.0774 12.1671 11.46 10.7549 8.6461 10.7549Z" fill="#FF7F8F"/>
                             </svg>
                             <p style={{fontSize:"1.2rem", fontWeight:'500', margin:'0'}}>{paymentInfo.reservationInfo.people}</p>
                         </div>
@@ -114,7 +114,7 @@ const PaymentView = ({paymentInfo}:any) => {
                     </div>
                     <p style={{margin:'0',color:'#4A4A4A'}}>최종 결제 금액</p>
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center',justifyContent:'end'}}>
-                        <p style={{margin:'0',fontSize:'1.7rem',color:'#5C7D92'}}>₩ {Number(paymentInfo.reservationInfo.seatPrice*paymentInfo.reservationInfo.people).toLocaleString('ko-KR')}</p>
+                        <p style={{margin:'0',fontSize:'1.7rem',color:'#FF7F8F'}}>₩{Number(paymentInfo.reservationInfo.seatPrice*paymentInfo.reservationInfo.people).toLocaleString('ko-KR')}</p>
                         <ChargeButton size="large" onClick={()=>goCharge()}>
                             결제하기
                         </ChargeButton>

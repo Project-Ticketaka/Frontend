@@ -28,9 +28,9 @@ const CategoryView = ({isLoading,data}:any) => {
         <MainContainer>
             {   
                 performanceData.length=== 0?
-                Array(data.content.length).fill(0).map(()=>{
+                Array(data.content.length).fill(0).map((_,idx)=>{
                         return(
-                            <div style={{}}>
+                            <div key={idx}>
                                 <div style={{justifyContent: 'center',display:'flex'}}>
                                     
                                     <div style={{width:'9rem',height:'11.7rem',borderRadius:'5px',backgroundColor:'#B8B8B8'}}></div>
@@ -46,7 +46,7 @@ const CategoryView = ({isLoading,data}:any) => {
                                 :
                                 performanceData.map((el:any)=>{
                     return(
-                        <div style={{width:'13rem',cursor:'pointer'}}  onClick={()=>navigate(`/detail/${el.prfId}`)}>
+                        <div key={el.prfId} style={{width:'13rem',cursor:'pointer'}}  onClick={()=>navigate(`/detail/${el.prfId}`)}>
                             <div style={{textAlign: 'center'}}>
                                 <div>
                                     <img src={el.poster} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.title}/>

@@ -56,9 +56,6 @@ const ReservationButton = styled(Button)`
 
 const DeatilView = ({performanceData}:any) => {
 
-    //console.log(typeof performanceData==='undefined');
-    console.log(performanceData.code)
-
     registerLocale("ko", ko); //한국어 설정
     
     const [selectedDate,setSelectedDate] = useState(performanceData.data.performanceDetailInfo.startDate)
@@ -90,7 +87,7 @@ const DeatilView = ({performanceData}:any) => {
         
     // },[customHistory]);
 
-    const { data, isLoading } = useGetPerformanceSession(selectedTimeId);
+    const { data } = useGetPerformanceSession(selectedTimeId);
     
     const selectSessionTime = (id:string, time:string) => {
         // alert(`${id}, ${time}`);
@@ -110,7 +107,7 @@ const DeatilView = ({performanceData}:any) => {
 
     const goReservation = () => {
 
-        if(selectedTime&&seatType){
+        if(selectedTime&&seatType&&(data!.remainingSeat>=0)){
             alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
         }else{
             alert('회차 및 좌석을 선택해 주세요!')
@@ -119,8 +116,6 @@ const DeatilView = ({performanceData}:any) => {
         
         if(localStorage.getItem("accessToken")){
             let reservationInfo = {
-                memberId: localStorage.getItem("memberEmail"),
-                memberEmail: localStorage.getItem("memberEmail"), 
                 selectedDate:selectedDate,
                 selectedTime:selectedTime,
                 people:people,
@@ -156,8 +151,6 @@ const DeatilView = ({performanceData}:any) => {
         
     return(
         
-        
-            
             <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%'}}>
             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
             {/* InfoView {pfId} */}
@@ -195,7 +188,8 @@ const DeatilView = ({performanceData}:any) => {
                                 sessionTimeList.map((sessionTime:any)=>{
                                     return(
                                     // <span style={{border:'0.2rem #FF7F8F solid', borderRadius:'2rem', padding:'0.3rem 1rem',fontSize:'1.3rem',color:'#858585'}}>{time}</span>
-                                        <SessionButton className={sessionTime.prfSessionId===selectedTimeId?'active':'inactive'} value={sessionTime.prfSessionTime} size="large" variant="outlined" id={sessionTime.prfSessionId}  onClick={()=>selectSessionTime(sessionTime.prfSessionId,sessionTime.prfSessionTime)}>{sessionTime.prfSessionTime}</SessionButton>
+                                        <SessionButton key={sessionTime.prfSessionId} className={sessionTime.prfSessionId===selectedTimeId?'active':'inactive'} value={sessionTime.prfSessionTime} size="large" variant="outlined" id={sessionTime.prfSessionId}  onClick={()=>selectSessionTime(sessionTime.prfSessionId,sessionTime.prfSessionTime)}>{sessionTime.prfSessionTime}</SessionButton>
+                                        
                                     )
                                 })
                             }
@@ -239,13 +233,13 @@ const DeatilView = ({performanceData}:any) => {
                 <>
                     <div>
                 <ul style={{display: 'flex', flexWrap:'wrap', listStyle:'none',paddingLeft:'0px',margin:'0',paddingRight:'10rem',gap:'2rem'}}>
-                    <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pf')}>
+                    <li key='pfpf' style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pf')}>
                         
-                            <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem',borderBottom:'0.35rem #597A8D solid'}}>공연 상세 정보</p>
+                            <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem',borderBottom:'0.35rem #FF7F8F solid'}}>공연 상세 정보</p>
                         
                         
                     </li>
-                    <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pl')}>
+                    <li key='pfpl' style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pl')}>
                         
                             <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem'}}>장소 정보</p>
                         
@@ -266,14 +260,13 @@ const DeatilView = ({performanceData}:any) => {
             <>
             <div>
                 <ul style={{display: 'flex', flexWrap:'wrap', listStyle:'none',paddingLeft:'0px',margin:'0',paddingRight:'10rem',gap:'2rem'}}>
-                    <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pf')}>
-                    
+                    <li key='plpf' style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pf')}>
                         <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem'}}>공연 상세 정보</p>
                     
                     </li>
-                    <li style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pl')}>
+                    <li key='plpl' style={{cursor:'pointer',userSelect:'none'}} onClick={()=>onSetInform('pl')}>
                     
-                        <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem',borderBottom:'0.35rem #597A8D solid'}}>장소 정보</p>
+                        <p style={{display: 'inline-block', padding: '5px 10px',marginBottom: '0.7rem',borderBottom:'0.35rem #FF7F8F solid'}}>장소 정보</p>
                         
                     </li>
                 </ul>

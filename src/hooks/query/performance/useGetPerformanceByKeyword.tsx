@@ -6,7 +6,7 @@ import { IPerformanceByCategoryResponse } from "../../../types/performance";
 const useGetPerformanceByKeyword = (keyword: string | undefined) => {
     return useQuery(["getPerformanceByKeyword", keyword], () => PerformanceAPI.getPerformanceByKeyword(keyword), {
         select: (data: AxiosResponse<IPerformanceByCategoryResponse>) => {
-            console.table(data.data)
+            //console.table(data.data)
             return data.data;
         },
     });

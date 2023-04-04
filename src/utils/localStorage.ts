@@ -36,7 +36,7 @@ export function getItemWithExpireTime(keyName:string) {
         // null 리턴
         return null;
     }
-    
+    //console.log(obj)
     // 만료기간이 남아있는 경우, value 값 리턴
     return obj.value;
 }

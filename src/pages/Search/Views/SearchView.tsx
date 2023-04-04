@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { Button } from "@mui/material";
-import red from '@mui/icons-material'
 import { useNavigate } from "react-router-dom";
 import NoData from "../../../components/Common/NoData";
 import { useEffect, useState } from "react";
@@ -38,9 +37,9 @@ const SearchView = ({data,keyword}:any) => {
         <ul style={{margin:'0',padding:'0'}}>
             {
                 searchResult.length=== 0?
-                Array(data.data.content.length).fill(0).map(()=>{
+                Array(data.data.content.length).fill(0).map((_,idx)=>{
                     return(
-                        <li style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'1.5rem 0',borderBottom:'1px #CACACA solid'}}>
+                        <li key={idx} style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'1.5rem 0',borderBottom:'1px #CACACA solid'}}>
                         
                             <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center'}}>
                             {/* <img src={el.poster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>*/}
@@ -61,7 +60,7 @@ const SearchView = ({data,keyword}:any) => {
                 })
             :data.data.content.map((el:any)=>{
                 return(
-                <li style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'1.5rem 0',borderBottom:'1px #CACACA solid'}}>
+                <li key={el.prfId} style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'1.5rem 0',borderBottom:'1px #CACACA solid'}}>
                 
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center'}}>
                     <img src={el.poster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>

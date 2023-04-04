@@ -38,8 +38,9 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
             {title:'서커스/마술',id:'e3b'},
             {title:'뮤지컬',id:'g3a'},
         ],
-        goMyPage: () => {  
-            window.localStorage.getItem('accessToken')
+        goMyPage: () => {
+            
+            localStorage.getItem('accessToken')
             ?navigate('/my/info',{state:'info'})
             :navigate('/login')
         },

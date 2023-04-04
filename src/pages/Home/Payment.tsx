@@ -4,7 +4,7 @@ import PaymentView from "./Views/PaymentView"
 
 const Payment = () => {
     const { state } = useLocation();
-    console.log(state)
+    //console.log(state)
     return (
         <PaymentView paymentInfo={state}/>
     )

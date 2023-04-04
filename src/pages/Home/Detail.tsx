@@ -1,4 +1,4 @@
-import { Search } from "@mui/icons-material";
+
 import React from "react";
 import { useParams } from "react-router-dom";
 import NoData from "../../components/Common/NoData";
@@ -7,9 +7,9 @@ import DeatilView from "./Views/DeatilView"
 
 const Detail = () => {
     const params = useParams();
-    console.log(params?.prf_id);
+    //console.log(params?.prf_id);
     const { data, isLoading } = useGetPerformanceById(params?.prf_id);
-    console.log(data)
+    //console.log(data)
     
     return ( 
         isLoading? <></> : 

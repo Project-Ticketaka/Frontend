@@ -7,8 +7,8 @@ const useGetPerformanceByCategory = (genre: string | undefined) => {
     return useQuery(["getPerformanceByCategory", genre], () => PerformanceAPI.getPerformanceByCategory(genre), {
         select: (data: AxiosResponse<IPerformanceByCategoryResponse>) => {
             
-            console.log(data.data.data)
-            console.log(data.data)
+            // console.log(data.data.data)
+            // console.log(data.data)
 
             return(
                 data.data.code === 202

@@ -10,20 +10,25 @@ client.interceptors.request.use(
     
     const accessToken = getItemWithExpireTime("accessToken");
 
+    //console.log(accessToken);
+
     if (accessToken) {
       config.headers = {};
       config.headers["authorization"] = accessToken;
     }
-    
       return config;
     },
-    (error:any) => Promise.reject(error)
+    (error) => Promise.reject(error)
 );
 
 client.interceptors.response.use(
   (res: AxiosResponse) => res,
   (error: AxiosError) => {
-
+    if(error.response?.status === 401) {
+      alert("토큰이 만료되었습니다. 다시 로그인 해주세요!")
+      localStorage.removeItem("accessToken")
+      window.location.href = "/"
+    }
     return Promise.reject(error);
   }
 );
