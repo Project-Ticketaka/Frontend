@@ -21,7 +21,7 @@ export interface ISignUpProps extends IAuthForm {
     onBirthDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onPhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSignUp: () => void;
-    validData: { isEmailValid: boolean; isPasswordValid: boolean; isPasswordCheckValid:boolean; isNameValid: boolean; isBirthDateValid: boolean; isPhoneValid: boolean; };
+    validData: { isEmailValid: boolean; isNotEmailDuplicate:boolean; isPasswordValid: boolean; isPasswordCheckValid:boolean; isNameValid: boolean; isBirthDateValid: boolean; isPhoneValid: boolean; };
     passwordCheck: string;
     name: string;
     gender: string;

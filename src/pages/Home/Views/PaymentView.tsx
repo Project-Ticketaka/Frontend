@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material"
-import CustomButton from "../../../components/Common/Button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import useCreateReservation from "../../../hooks/mutation/performance/useCreateReservation";
-import { IReservationInfo } from "../../../types/reservation";
 import customHistory from "../../../utils/history";
 import useWithdrawReservation from "../../../hooks/mutation/performance/useWithdrawReservation";
 
@@ -122,9 +120,9 @@ const PaymentView = ({paymentInfo}:any) => {
                     <p style={{margin:'0',color:'#4A4A4A'}}>최종 결제 금액</p>
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center',justifyContent:'end'}}>
                         <p style={{margin:'0',fontSize:'1.7rem',color:'#5C7D92'}}>₩ {Number(paymentInfo.reservationInfo.seatPrice*paymentInfo.reservationInfo.people).toLocaleString('ko-KR')}</p>
-                        <CustomButton color="blue" size="lg" onClick={()=>goCharge()}>
+                        <ChargeButton size="large" onClick={()=>goCharge()}>
                             결제하기
-                        </CustomButton>
+                        </ChargeButton>
                     </div>
                 </div>
         </div>

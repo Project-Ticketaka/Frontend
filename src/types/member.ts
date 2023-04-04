@@ -21,6 +21,6 @@ export interface IMemberResponse {
     data: IMemberInfo;
   }
 
-  export interface IAuthResponse {
+export interface IAuthResponse {
     message: string;
-  }
+}

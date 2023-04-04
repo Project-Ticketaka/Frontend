@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ko from 'date-fns/locale/ko';
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Map from "../Map";
 import styled from "@emotion/styled";
@@ -64,12 +64,13 @@ const DeatilView = ({performanceData}:any) => {
     const [selectedDate,setSelectedDate] = useState(performanceData.data.performanceDetailInfo.startDate)
     
     const [selectedTime,setSelectedTime] = useState('')
-    const [selectedTimeId,setSelectedTimeId] = useState('')
+    const [sessionTimeList,setSessionTimeList] = useState(performanceData.data.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
+    const [selectedTimeId,setSelectedTimeId] = useState(sessionTimeList[0].prfSessionId)
     
     const [seatType,setSeatType] = useState('')
     const [seatPrice,setSeatPrice] = useState(0)
     
-    const [sessionTimeList,setSessionTimeList] = useState(performanceData.data.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
+    
 
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
@@ -89,8 +90,8 @@ const DeatilView = ({performanceData}:any) => {
         
     // },[customHistory]);
 
-    const { data, isLoading } = useGetPerformanceSession(sessionTimeList[0].prfSessionId);
-
+    const { data, isLoading } = useGetPerformanceSession(selectedTimeId);
+    console.log(data)
     const selectSessionTime = (id:string, time:string) => {
         // alert(`${id}, ${time}`);
         setSelectedTimeId(id)

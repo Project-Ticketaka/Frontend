@@ -5,7 +5,6 @@ import MemberAPI from "../../../api/member";
 import { IAuthResponse, IAuthData, ILoginData } from "../../../types/member";
 import { TNavigate } from "../../../types/navigate";
 import customHistory from "../../../utils/history";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { IError } from "../../../types/axios";
 import { setItemWithExpireTime } from "../../../utils/localStorage";
