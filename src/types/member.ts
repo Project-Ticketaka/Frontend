@@ -1,7 +1,9 @@
 export interface IAuthData {
     email: string;
 }
-
+export interface ICheckAuthenticationData extends IAuthData {
+    authNum: number | undefined;
+}
 export interface ILoginData extends IAuthData{
     password: string;
 }

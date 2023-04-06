@@ -7,6 +7,7 @@ const Layout = () => {
     const params = useParams();
     //console.log(params.cat);
     const [menu,setMenu] = useState(params.cat||'home');
+    
     const navigate = useNavigate();
     
     const layoutProps: ILayoutProps = {

@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../Common/Logo";
 import { IHeaderProps } from "../types";
@@ -62,7 +62,7 @@ const Search = styled.div`
         width: 100%;
         box-sizing: border-box;
         border: 0px;
-        border-bottom: 1px solid #333;
+        border-bottom: 2px solid #000000;
         padding: 0.5rem 0.5rem 0.5rem 2rem;
         line-height: 1.5rem;
         outline: none;

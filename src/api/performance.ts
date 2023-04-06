@@ -1,4 +1,4 @@
-import { ICheckData, ICheckReservationData, ICreateReservationData } from "../types/performance";
+import { ICheckData, ICreateReservationData } from "../types/performance";
 import client from "./client";
 
 const PerformanceAPI = {
@@ -11,8 +11,8 @@ const PerformanceAPI = {
   getPerformanceByKeyword: (keyword: string | undefined) => {
     return client.get(`/performance/search?keyword=${keyword}`);
   },
-  getPerformanceByCategory: (genre: string | undefined) => {
-    return client.get(`/performance/cat?genre=${genre}`);
+  getPerformanceByCategory: (genre: string | undefined, page: number) => {
+    return client.get(`/performance/cat?genre=${genre}&page=${page}`);
   },
   getPerformanceSession: (prf_session_id: string | undefined) => {
     //공연의 회차를 클릭하면 남은 좌석에 대한 정보를 불러옴

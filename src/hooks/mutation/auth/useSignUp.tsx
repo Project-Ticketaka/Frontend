@@ -12,7 +12,7 @@ const useSignUp = (navigate: TNavigate) => {
         },
         onError: ((error: unknown, variables: ISignUpData, context: unknown) =>{
             alert('회원가입 실패!');
-            console.log(variables);
+            //console.log(variables);
         })
     });
 };

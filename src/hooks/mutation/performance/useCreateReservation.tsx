@@ -1,9 +1,9 @@
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { useMutation } from "react-query";
 
 import { TNavigate } from "../../../types/navigate";
-import { IReservationInfo, IReservationResponse } from "../../../types/reservation";
-import { ICheckReservationData,ICreateReservationData } from "../../../types/performance";
+import { IReservationResponse } from "../../../types/reservation";
+import { ICheckReservationData } from "../../../types/performance";
 import PerformanceAPI from "../../../api/performance";
 import customHistory from "../../../utils/history";
 
@@ -21,8 +21,8 @@ const useCreateReservation = (navigate:TNavigate) => {
         },
         onError: ((error: unknown, variables: ICheckReservationData, context: unknown) =>{
             alert('예매 실패!');
-            console.log(error);
-            console.log(variables);
+            // console.log(error);
+            // console.log(variables);
             customHistory.back()
         })
     });

@@ -2,12 +2,13 @@ import { useParams } from "react-router-dom";
 import NoData from "../../components/Common/NoData";
 import useGetPerformanceByCategory from "../../hooks/query/performance/useGetPerformanceByCategory";
 import CategoryView from "./Views/CategoryView"
+import { useState } from "react";
 
-const Category = () => {
+const Category:any = () => {
 
     let category:{[key : string] : string }={
         'a4':'연극',
-        'b3c':'무용(서양/한국무용)',
+        'b3c':'무용',
         'c3a':'서양음악(클래식)',
         'c4':'한국음악(국악)',
         'c3d':'대중음악',
@@ -18,16 +19,18 @@ const Category = () => {
     
     const params = useParams();
     // console.log(category[params.cat||''])
+    const [page, setPage] = useState(0);
+    const { data, isLoading } = useGetPerformanceByCategory(category[params.cat||''], page);
     
-    const { data, isLoading } = useGetPerformanceByCategory(category[params.cat||'']);
     
     return (
-            isLoading ? <></> 
-            :
-            typeof data === "string"
-            ?<NoData data={data}/>
-            :<CategoryView isLoading={isLoading} data={data}/>
+        isLoading?
+        <></>
+        :typeof data === "string"
+        ?<NoData data={data}/>
+        :<CategoryView data={data} setPage={setPage}/>
     )
+    //isLoading={isLoading} data={data} page={page} setPage={setPage}
 }
 
 export default Category

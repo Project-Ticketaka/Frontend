@@ -71,4 +71,4 @@ const LayoutView = ({menu,onSetMenu}:ILayoutProps) => {
     )
 }
 
-export default LayoutView
+export default React.memo(LayoutView)

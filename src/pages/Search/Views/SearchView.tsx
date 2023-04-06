@@ -25,7 +25,7 @@ const SearchView = ({data,keyword}:any) => {
     useEffect(()=>{
         setTimeout(()=>{
             setSearchResult(data.data.content)
-        },2000)
+        },200)
     })
     if (data.code!==202){
   return (

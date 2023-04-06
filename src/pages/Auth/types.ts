@@ -15,13 +15,16 @@ export interface ILoginProps extends IAuthForm {
 
 export interface ISignUpProps extends IAuthForm {
     onEmailDuplicateCheck: () => void;
+    onAuthNumChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onCheckAuthentication: () => void;
     onPasswordCheckChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSetGender: (g:string) => void;
     onBirthDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onPhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSignUp: () => void;
-    validData: { isEmailValid: boolean; isNotEmailDuplicate:boolean; isPasswordValid: boolean; isPasswordCheckValid:boolean; isNameValid: boolean; isBirthDateValid: boolean; isPhoneValid: boolean; };
+    validData: { isEmailValid: boolean; isNotEmailDuplicate:boolean; isCheckAuthentication:boolean; isPasswordValid: boolean; isPasswordCheckValid:boolean; isNameValid: boolean; isBirthDateValid: boolean; isPhoneValid: boolean; };
+    authNum: number | undefined;
     passwordCheck: string;
     name: string;
     gender: string;

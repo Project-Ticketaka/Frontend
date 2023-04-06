@@ -43,6 +43,8 @@ const GenderButtonGroup = styled.div`
 const SignUpView = ({
     onEmailChange,
     onEmailDuplicateCheck,
+    onAuthNumChange,
+    onCheckAuthentication,
     onPasswordChange,
     onPasswordCheckChange,
     onNameChange,
@@ -51,6 +53,7 @@ const SignUpView = ({
     onPhoneChange,
     onSignUp,
     email,
+    authNum,
     password,
     passwordCheck,
     name,
@@ -80,6 +83,23 @@ const SignUpView = ({
                     />
                     <DuplicateCheckButton variant="contained" onClick={onEmailDuplicateCheck}>
                         중복체크
+                    </DuplicateCheckButton>
+                    
+                </li>
+
+                <li >
+                {validData.isCheckAuthentication?<></>
+                :<span style={{fontSize:'0.8rem',color:'#E57583'}}>이메일 인증을 완료해 주세요!</span>}
+                </li>
+                <li style={{display:'flex',justifyContent:'space-between',marginBottom:'1rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>    
+                    <AuthInput 
+                        type="number" 
+                        placeholder={`${email||"이메일"}로 전송된 인증번호를 입력해 주세요!`}
+                        value={authNum}
+                        onChange={onAuthNumChange}
+                    />
+                    <DuplicateCheckButton variant="contained" onClick={onCheckAuthentication}>
+                        인증하기
                     </DuplicateCheckButton>
                     
                 </li>
@@ -152,7 +172,7 @@ const SignUpView = ({
                 </li>
                 <li style={{display:'flex',justifyContent:'center',marginBottom:'1rem'}}>
                     {/* <Button onClick={onSignUp}  state={`${validData.isEmailValid&&validData.isPasswordValid&&validData.isPasswordCheckValid&&validData.isNameValid&&validData.isBirthDateValid&&validData.isPhoneValid}`}>회원가입 !</Button> */}
-                    <SignUpButton className={validData.isEmailValid&&validData.isNotEmailDuplicate&&validData.isPasswordValid&&validData.isPasswordCheckValid&&validData.isNameValid&&validData.isBirthDateValid&&validData.isPhoneValid?'active':'inactive'} onClick={onSignUp} variant="contained">회원가입!</SignUpButton>
+                    <SignUpButton className={validData.isEmailValid&&validData.isNotEmailDuplicate&&validData.isCheckAuthentication&&validData.isPasswordValid&&validData.isPasswordCheckValid&&validData.isNameValid&&validData.isBirthDateValid&&validData.isPhoneValid?'active':'inactive'} onClick={onSignUp} variant="contained">회원가입!</SignUpButton>
                 </li>
             </ul>
         </Container>

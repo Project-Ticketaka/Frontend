@@ -1,7 +1,6 @@
 import styled from "@emotion/styled"
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
-
 const MainContainer = styled.div`
     padding: 1rem;
     padding-top: 0;
@@ -11,17 +10,39 @@ const MainContainer = styled.div`
 
 `
 
-const CategoryView = ({isLoading,data}:any) => {
+const CategoryView = ({data,setPage}:any) => {
     const navigate = useNavigate();
-    // console.log(data);
-    const [performanceData,setPerformanceData]=useState([])
+    
+    const [performanceData,setPerformanceData]=useState([]);
+    
+    console.log(performanceData)
+    
+    const handleScroll = useCallback((): void => {
+        const { innerHeight } = window;
+        const { scrollHeight } = document.body;
+        const { scrollTop } = document.documentElement;
+    
+        if (Math.round(scrollTop + innerHeight) >= scrollHeight) {
+            console.log("api호출")
+            setPerformanceData((prevPerformanceData: any) => prevPerformanceData.concat(data.content));
+            setPage((prevPage: number) => prevPage + 1);
+        }
+    }, [performanceData]);
     
     useEffect(()=>{
         setTimeout(()=>{
             setPerformanceData(data.content)
-        },3000)
+        },200)
     })
-    //console.log(performanceData)
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, true);
+    
+        return () => {
+            window.removeEventListener('scroll', handleScroll, true);
+        }
+    }, [handleScroll]);
+
     
     return (
     <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem',padding:'2rem 0'}}>
@@ -67,4 +88,4 @@ const CategoryView = ({isLoading,data}:any) => {
   )
 }
 
-export default CategoryView
+export default React.memo(CategoryView)

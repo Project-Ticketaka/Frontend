@@ -5,12 +5,14 @@ import useCheckDuplicateMember from "../../hooks/mutation/auth/useCheckDuplicate
 import { birthDateValidator, emailValidator, nameValidator, passwordValidator, phoneValidator } from "../../utils/validator";
 import { ISignUpProps } from "./types";
 import SignUpView from "./Views/SignUpView"
+import useCheckAuthentication from "../../hooks/mutation/auth/ useCheckAuthentication";
 
 const SignUp = () => {
   
     const navigate = useNavigate();
     
     const [email, setEmail] = useState("");
+    const [authNum, setAuthNum] = useState<number | undefined>();
     const [password, setPassword] = useState("");
     const [passwordCheck, setPasswordCheck] = useState("");
     const [name, setName] = useState("");
@@ -21,6 +23,7 @@ const SignUp = () => {
     const [validData, setValidData] = useState({
         isEmailValid: false,
         isNotEmailDuplicate: false,
+        isCheckAuthentication: false,
         isPasswordValid: false,
         isPasswordCheckValid: false,
         isNameValid: false,
@@ -39,9 +42,11 @@ const SignUp = () => {
 
     const { mutate: signUpMutate } = useSignUp(navigate);
     const { mutate: checkDuplicateMemberMutate } = useCheckDuplicateMember();
+    const { mutate: checkAuthenticationMutate } = useCheckAuthentication();
     
     const signUpProps: ISignUpProps = {
         email,
+        authNum,
         password,
         passwordCheck,
         name,
@@ -58,6 +63,14 @@ const SignUp = () => {
             checkDuplicateMemberMutate({"email":email});
             if(location.state.status) setValidData((p) => ({ ...p, isNotEmailDuplicate: true }))
             else setValidData((p) => ({ ...p, isNotEmailDuplicate: false }))
+        },
+        onAuthNumChange: (e) => {
+            setAuthNum(Number(e.target.value));
+        },
+        onCheckAuthentication: ()=>{
+            checkAuthenticationMutate({"email":email,"authNum": authNum});
+            if(location.state.checkAuthentication) setValidData((p) => ({ ...p, isCheckAuthentication: true }))
+            else setValidData((p) => ({ ...p, isCheckAuthentication: false }))
         },
         onPasswordChange: (e) => {
             passwordValidator(e.target.value)
@@ -100,7 +113,7 @@ const SignUp = () => {
             setPhone(e.target.value);
         },
         onSignUp: () => {
-            console.table(validData);
+            //console.table(validData);
             // 필수 입력값을 다 입력하지 않았을때는 경고창
             if (isNotEnterEmail||isNotEnterPassword||isNotEnterName||isNotEnterBirthDate||isNotEnterPhone){
                 if (isNotEnterEmail&&isNotEnterPassword&&isNotEnterName&&isNotEnterBirthDate&&isNotEnterPhone) alert('이메일, 비밀번호, 이름, 생년월일, 핸드폰번호를 입력해주세요!')

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import useGetPerformanceByRank from "../../hooks/query/performance/useGetPerformanceByRank";
 import HomeView from "./Views/HomeView"
+import React from "react";
 
 const Home = () => {
 
@@ -20,4 +20,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default React.memo(Home)

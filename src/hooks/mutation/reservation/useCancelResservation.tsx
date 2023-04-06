@@ -7,13 +7,13 @@ const useCancelReservation = (navigate:TNavigate) => {
     return useMutation((rsvId: number) => ReservationAPI.cancelReservation(rsvId), {
         
         onSuccess: (data: AxiosResponse<any>) => {
-            console.log(data);
+            // console.log(data);
             navigate('/my/rsv',{state:'rsv'});
             window.location.reload()
         },
         onError: ((error: unknown, variables: number, context: unknown) =>{
             alert('예약 취소 실패!');
-            console.log(error);
+            // console.log(error);
             
         })
     });

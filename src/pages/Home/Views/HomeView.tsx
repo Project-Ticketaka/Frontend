@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { media } from "../../../styles/media"
+import React, { useEffect, useState } from "react"
 
 const MainContainer = styled.div`
     padding: 1rem;
@@ -14,6 +14,12 @@ const MainContainer = styled.div`
     }
 `
 const HomeView = ({top10,onGoToDetail}:any) => {
+    const [top10List,setTop10List]=useState([]);
+    useEffect(()=>{
+        setTimeout(()=>{
+            setTop10List(top10)
+        },200)
+    })
     return (
         <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
         <div style={{width:'100%', height:'15rem',backgroundColor:'#B65C87'}}>
@@ -23,8 +29,8 @@ const HomeView = ({top10,onGoToDetail}:any) => {
         {/* <div style={{padding:'1rem',paddingTop:'0',display:'grid' ,gridTemplateColumns: 'repeat(5, 1fr)',gap:'1rem'}}> */}
         <MainContainer>
             {
-                top10.length!==0
-                ?top10.map((el:any)=>{
+                top10List.length!==0
+                ?top10List.map((el:any)=>{
                     return(
                         <div key={el.prfId} style={{width:'13rem',cursor:'pointer'}}  onClick={()=>onGoToDetail(el.prfId)}>
                             <div style={{textAlign: 'center'}}>
@@ -66,4 +72,4 @@ const HomeView = ({top10,onGoToDetail}:any) => {
     )
 }
 
-export default HomeView
+export default React.memo(HomeView)
