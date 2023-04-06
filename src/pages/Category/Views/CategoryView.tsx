@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 const MainContainer = styled.div`
     padding: 1rem;
@@ -10,10 +10,16 @@ const MainContainer = styled.div`
 
 `
 
-const CategoryView = ({data,setPage}:any) => {
+const CategoryView = ({performanceData,setPerformanceData,data,setPage}:any) => {
     const navigate = useNavigate();
     
-    const [performanceData,setPerformanceData]=useState([]);
+    
+    
+    useEffect(()=>{
+        setTimeout(()=>{
+            setPerformanceData(data.content)
+        },200)
+    })
     
     console.log(performanceData)
     
@@ -22,19 +28,13 @@ const CategoryView = ({data,setPage}:any) => {
         const { scrollHeight } = document.body;
         const { scrollTop } = document.documentElement;
     
-        if (Math.round(scrollTop + innerHeight) >= scrollHeight) {
+        if (Math.round(scrollTop + innerHeight) >= scrollHeight && !data.last) {
             console.log("api호출")
             setPerformanceData((prevPerformanceData: any) => prevPerformanceData.concat(data.content));
             setPage((prevPage: number) => prevPage + 1);
         }
-    }, [performanceData]);
+    }, [data.content, data.last, setPage, setPerformanceData]);
     
-    useEffect(()=>{
-        setTimeout(()=>{
-            setPerformanceData(data.content)
-        },200)
-    })
-
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, true);
     

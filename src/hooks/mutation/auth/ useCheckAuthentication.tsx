@@ -8,14 +8,14 @@ const useCheckAuthentication = () => {
     const navigate = useNavigate();
     return useMutation((checkAuthenticationData: ICheckAuthenticationData) => MemberAPI.checkAuthentication(checkAuthenticationData), {
         onSuccess: (data: AxiosResponse<IAuthResponse>) => {
-            console.log(data);
+            //console.log(data);
             alert('인증 완료되었습니다!');
-            navigate("/sign-up",{state:{"checkAuthentication":true}});
+            navigate("/sign-up",{state:{checkAuthentication:true}});
         },
         onError: ((error: any, variables: ICheckAuthenticationData, context: any) =>{
-            console.log(error);
+            //console.log(error);
             alert('인증 실패!');
-            navigate("/sign-up",{state:{"checkAuthenticationData":false}});
+            navigate("/sign-up",{state:{checkAuthenticationData:false}});
         })
         
     });

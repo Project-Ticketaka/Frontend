@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import useSignUp from "../../hooks/mutation/auth/useSignUp";
 import useCheckDuplicateMember from "../../hooks/mutation/auth/useCheckDuplicateMember";
 import { birthDateValidator, emailValidator, nameValidator, passwordValidator, phoneValidator } from "../../utils/validator";
@@ -8,7 +8,7 @@ import SignUpView from "./Views/SignUpView"
 import useCheckAuthentication from "../../hooks/mutation/auth/ useCheckAuthentication";
 
 const SignUp = () => {
-  
+
     const navigate = useNavigate();
     
     const [email, setEmail] = useState("");
@@ -37,11 +37,9 @@ const SignUp = () => {
     const isNotEnterBirthDate = birth.length === 0;
     const isNotEnterPhone = phone.length === 0;
 
-    const location = useLocation();
-
-
     const { mutate: signUpMutate } = useSignUp(navigate);
-    const { mutate: checkDuplicateMemberMutate } = useCheckDuplicateMember();
+    const { mutate:checkDuplicateMemberMutate } = useCheckDuplicateMember();
+    
     const { mutate: checkAuthenticationMutate } = useCheckAuthentication();
     
     const signUpProps: ISignUpProps = {
@@ -60,17 +58,28 @@ const SignUp = () => {
             setEmail(e.target.value);
         },
         onEmailDuplicateCheck: ()=>{
-            checkDuplicateMemberMutate({"email":email});
-            if(location.state.status) setValidData((p) => ({ ...p, isNotEmailDuplicate: true }))
-            else setValidData((p) => ({ ...p, isNotEmailDuplicate: false }))
+            checkDuplicateMemberMutate({"email":email},{
+                onSuccess: data=>{
+                    setValidData((p) => ({ ...p, isNotEmailDuplicate: true }))
+                },
+                onError: error => {
+                    setValidData((p) => ({ ...p, isNotEmailDuplicate: false }))
+                }
+            });
         },
         onAuthNumChange: (e) => {
             setAuthNum(Number(e.target.value));
         },
         onCheckAuthentication: ()=>{
-            checkAuthenticationMutate({"email":email,"authNum": authNum});
-            if(location.state.checkAuthentication) setValidData((p) => ({ ...p, isCheckAuthentication: true }))
-            else setValidData((p) => ({ ...p, isCheckAuthentication: false }))
+            checkAuthenticationMutate({"email":email,"authNum": authNum},{
+                onSuccess: data=>{
+                    setValidData((p) => ({ ...p, isCheckAuthentication: true }))
+                },
+                onError: error => {
+                    setValidData((p) => ({ ...p, isCheckAuthentication: false }))
+                }
+            });
+        
         },
         onPasswordChange: (e) => {
             passwordValidator(e.target.value)

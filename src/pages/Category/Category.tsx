@@ -18,17 +18,18 @@ const Category:any = () => {
     }
     
     const params = useParams();
+    const genre = category[params.cat||''];
     // console.log(category[params.cat||''])
     const [page, setPage] = useState(0);
-    const { data, isLoading } = useGetPerformanceByCategory(category[params.cat||''], page);
-    
+    const { data, isLoading } = useGetPerformanceByCategory(genre, page);
+    const [performanceData,setPerformanceData]=useState([]);
     
     return (
         isLoading?
         <></>
         :typeof data === "string"
         ?<NoData data={data}/>
-        :<CategoryView data={data} setPage={setPage}/>
+        :<CategoryView performanceData={performanceData} setPerformanceData={setPerformanceData} data={data} setPage={setPage}/>
     )
     //isLoading={isLoading} data={data} page={page} setPage={setPage}
 }
