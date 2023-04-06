@@ -1,5 +1,6 @@
 import { IAuthData, ICheckAuthenticationData, ILoginData, ISignUpData } from "../types/member";
 import client from "./client";
+import tokenClient from "./tokenClient";
 
 const MembnerAPI = {
     signUp: (data: ISignUpData) => {
@@ -15,7 +16,7 @@ const MembnerAPI = {
       return client.post("/member/checkDuplicateEmail",data);
     },
     getMemberInfo: () => {
-        return client.get(`/member/info`);
+        return tokenClient.get(`/member/info`);
     },
 };
 
