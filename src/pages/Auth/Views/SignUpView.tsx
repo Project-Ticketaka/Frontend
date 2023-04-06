@@ -61,7 +61,7 @@ const SignUpView = ({
     birth,
     phone,
     validData
-  }: ISignUpProps) => {
+}: ISignUpProps) => {
     
     return (
         <Container>
@@ -80,8 +80,9 @@ const SignUpView = ({
                         placeholder="이메일"
                         value={email}
                         onChange={onEmailChange}
+                        disabled={!!validData.isNotEmailDuplicate}
                     />
-                    <DuplicateCheckButton variant="contained" onClick={onEmailDuplicateCheck}>
+                    <DuplicateCheckButton variant="contained" onClick={onEmailDuplicateCheck} disabled={!!validData.isNotEmailDuplicate}>
                         중복체크
                     </DuplicateCheckButton>
                     
@@ -93,12 +94,13 @@ const SignUpView = ({
                 </li>
                 <li style={{display:'flex',justifyContent:'space-between',marginBottom:'1rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>    
                     <AuthInput 
-                        type="number" 
+                        type="text" 
                         placeholder={`${email||"이메일"}로 전송된 인증번호를 입력해 주세요!`}
                         value={authNum}
                         onChange={onAuthNumChange}
+                        disabled={!!validData.isCheckAuthentication}
                     />
-                    <DuplicateCheckButton variant="contained" onClick={onCheckAuthentication}>
+                    <DuplicateCheckButton variant="contained" onClick={onCheckAuthentication} disabled={!!validData.isCheckAuthentication}>
                         인증하기
                     </DuplicateCheckButton>
                     

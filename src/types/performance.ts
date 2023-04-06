@@ -96,7 +96,9 @@ export interface IPerformanceByRankResponse {
 export interface IPerformanceByCategoryResponse {
 	code: number;
 	data: {
-		content: IPerformanceSearch[];
+		content: 
+			IPerformanceSearch[]
+		,
 		pageable: {
             sort: {
                 empty: boolean;
@@ -121,7 +123,7 @@ export interface IPerformanceByCategoryResponse {
         last: boolean;
         empty: boolean;
 	};
-	description: string;
+	description: string | undefined;
 }
 export interface IPerformanceReservationInfo {
 	selectedDate: string;

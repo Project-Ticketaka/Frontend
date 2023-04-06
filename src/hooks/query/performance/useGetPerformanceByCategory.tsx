@@ -8,7 +8,7 @@ const useGetPerformanceByCategory = (genre: string | undefined, page: number) =>
         select: (data: AxiosResponse<IPerformanceByCategoryResponse>) => {
             
             // console.log(data.data.data)
-            // console.log(data.data)
+            //console.log(data)
 
             return(
                 data.data.code === 202
@@ -17,6 +17,7 @@ const useGetPerformanceByCategory = (genre: string | undefined, page: number) =>
             );
             
         },
+        keepPreviousData:true
     });
 }
 

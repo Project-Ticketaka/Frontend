@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import NoData from "../../components/Common/NoData";
-import useGetPerformanceByCategory from "../../hooks/query/performance/useGetPerformanceByCategory";
 import CategoryView from "./Views/CategoryView"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PerformanceAPI from "../../api/performance";
 
 const Category:any = () => {
 
@@ -21,17 +21,40 @@ const Category:any = () => {
     const genre = category[params.cat||''];
     // console.log(category[params.cat||''])
     const [page, setPage] = useState(0);
-    const { data, isLoading } = useGetPerformanceByCategory(genre, page);
-    const [performanceData,setPerformanceData]=useState([]);
+    const [data, setData] = useState([]);
+    const [error, setError] = useState({});
+    const [isLast, setIsLast] = useState(false);
+    //const page = useRef(0);
+    //const { data, isLoading, isPreviousData } = useGetPerformanceByCategory(genre,page);
+    
+    useEffect(()=>{
+        PerformanceAPI.getPerformanceByCategory(genre,page).then(res=>{
+            if(res.data.code===202){
+                setError(res.data)
+            }else{
+                setData(data.concat(res.data.data.content))
+                setIsLast(res.data.data.last)
+            }
+            
+        }).catch((error)=>{
+            console.log(error)
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[page,genre])
+
     
     return (
-        isLoading?
-        <></>
-        :typeof data === "string"
-        ?<NoData data={data}/>
-        :<CategoryView performanceData={performanceData} setPerformanceData={setPerformanceData} data={data} setPage={setPage}/>
+        // isLoading?
+        // <></>
+        // :typeof data === "string"
+        // ?<NoData data={data}/>
+        // :<CategoryView genre={genre} data={data} setPage={setPage}/>
+        JSON.stringify(error) === '{}'?
+        <CategoryView setPage={setPage} data={data} isLast={isLast}/>
+        :
+        <NoData data={error}/>
     )
-    //isLoading={isLoading} data={data} page={page} setPage={setPage}
+    
 }
 
 export default Category
