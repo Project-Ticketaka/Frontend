@@ -3,6 +3,7 @@ import NoData from "../../components/Common/NoData";
 import CategoryView from "./Views/CategoryView"
 import { useEffect, useState } from "react";
 import PerformanceAPI from "../../api/performance";
+import useGetPerformanceByCategory from "../../hooks/query/performance/useGetPerformanceByCategory";
 
 const Category:any = () => {
 
@@ -21,36 +22,40 @@ const Category:any = () => {
     const genre = category[params.cat||''];
     // console.log(category[params.cat||''])
     const [page, setPage] = useState(0);
-    const [data, setData] = useState([]);
+    const [perfprmanceData, setPerformanceData] = useState([]);
     const [error, setError] = useState({});
     const [isLast, setIsLast] = useState(false);
     //const page = useRef(0);
-    //const { data, isLoading, isPreviousData } = useGetPerformanceByCategory(genre,page);
+    const { data, isLoading } = useGetPerformanceByCategory(genre,page);
     
     useEffect(()=>{
         PerformanceAPI.getPerformanceByCategory(genre,page).then(res=>{
+            //console.log(data)
             if(res.data.code===202){
                 setError(res.data)
             }else{
-                setData(data.concat(res.data.data.content))
+                setPerformanceData(perfprmanceData.concat(res.data.data.content))
                 setIsLast(res.data.data.last)
             }
             
         }).catch((error)=>{
+            console.log(data)
             console.log(error)
         });
+
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[page,genre])
 
     
     return (
-        // isLoading?
-        // <></>
+        isLoading?
+        <></>
         // :typeof data === "string"
         // ?<NoData data={data}/>
         // :<CategoryView genre={genre} data={data} setPage={setPage}/>
-        JSON.stringify(error) === '{}'?
-        <CategoryView setPage={setPage} data={data} isLast={isLast}/>
+        :JSON.stringify(error) === '{}'?
+        <CategoryView setPage={setPage} data={perfprmanceData} isLast={isLast}/>
         :
         <NoData data={error}/>
     )

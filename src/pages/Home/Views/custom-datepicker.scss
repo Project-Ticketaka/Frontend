@@ -26,6 +26,11 @@
     }
 }
 
+.react-datepicker__day {
+    disabled: true
+
+}
+
 .react-datepicker__day-names {
     :nth-child(1){
         color: #CB5252;

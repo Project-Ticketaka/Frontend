@@ -49,9 +49,9 @@ const HomeView = ({top10,onGoToDetail}:any) => {
                     )
                 })
                 :
-                Array(10).fill(0).map(()=>{
+                Array(10).fill(0).map((_,idx)=>{
                     return(
-                    <div style={{}}>
+                    <div key={idx} style={{}}>
                         <div style={{justifyContent: 'center',display:'flex'}}>
                             
                             <div style={{width:'9rem',height:'11.7rem',borderRadius:'5px',backgroundColor:'#B8B8B8'}}></div>

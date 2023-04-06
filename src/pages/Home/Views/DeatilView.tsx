@@ -68,16 +68,19 @@ const DeatilView = ({performanceData}:any) => {
     const [seatPrice,setSeatPrice] = useState(0)
     
     
-
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
     
     const onChangeDate = (e:any) =>{
-        //console.log(`${new Date(e).getFullYear()}-${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}-${new Date(e).getDate()>=10?new Date(e).getDate():'0'+(new Date(e).getDate())}`)
-        //console.log(performanceData.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===`${new Date(e).getFullYear()}.${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}.${new Date(e).getDate()}`))
-        setSelectedDate(`${new Date(e).getFullYear()}-${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}-${new Date(e).getDate()>=10?new Date(e).getDate():'0'+(new Date(e).getDate())}`)
+        
+        if(performanceData.data.prfSessionList.some((item:any) => item.prfSessionDate===`${new Date(e).getFullYear()}-${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}-${new Date(e).getDate()>=10?new Date(e).getDate():'0'+(new Date(e).getDate())}`)){
+            setSelectedDate(`${new Date(e).getFullYear()}-${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}-${new Date(e).getDate()>=10?new Date(e).getDate():'0'+(new Date(e).getDate())}`)
         setSelectedTime('')
         setSessionTimeList(performanceData.data.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===`${new Date(e).getFullYear()}-${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}-${new Date(e).getDate()>=10?new Date(e).getDate():'0'+(new Date(e).getDate())}`))
+        }
+        else{
+            alert("해당 날짜에는 공연이 없습니다!")
+        }
     }
     
     
@@ -179,7 +182,7 @@ const DeatilView = ({performanceData}:any) => {
                         minDate={new Date(performanceData.data.performanceDetailInfo.startDate)}
                         maxDate={new Date(performanceData.data.performanceDetailInfo.endDate)}
                         popperPlacement="auto" //화면 중앙에 팝업이 출현
-                        />
+                    />
                     
                     <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gridTemplateRows:'repea(4,1fr)',gap:'1.3rem',marginTop:'0.5rem'}}>
                         <div style={{gridRow:'span 3'}}>
@@ -202,8 +205,8 @@ const DeatilView = ({performanceData}:any) => {
                             performanceData.data.performanceDetailInfo.ticketPrice.map((seat: any,idx:number)=>{
                                 return(
                                     seatType===seat.seatType
-                                    ?<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seatType,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>■</span>{seat.seatType} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
-                                    :<p style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seatType,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>□</span>{seat.seatType} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                    ?<p key={seat.seatType} style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seatType,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>■</span>{seat.seatType} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
+                                    :<p key={seat.seatType} style={{margin:'0 0 1rem 0',cursor:'pointer',verticalAlign:'middle'}} onClick={()=>onSetSeatType(seat.seatType,seat.price)}><span style={{fontSize:'1.3rem',marginRight:'1rem',color:`${seat_grade[idx]}`,userSelect:'none',verticalAlign:'middle'}}>□</span>{seat.seatType} | {Number(seat.price).toLocaleString('ko-KR')}원</p>
                                     
                                 )
                             })
@@ -251,7 +254,7 @@ const DeatilView = ({performanceData}:any) => {
                 
                 {
                     performanceData.data.performanceDetailInfo.styUrls.map((url: string | undefined,idx: any)=>{
-                        return(<img src={url} alt={`공연 상세 정보 ${idx}`} style={{display:'block',margin:'auto',width:'fit-content'}}/>)})
+                        return(<img key={idx} src={url} alt={`공연 상세 정보 ${idx}`} style={{display:'block',margin:'auto',width:'fit-content'}}/>)})
                 }
                 </div>
                 </>
