@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
+import noPoster from "../../../assets/images/noPoster.png"
 
 const MainContainer = styled.div`
     padding: 1rem;
@@ -50,8 +51,11 @@ const CategoryView = ({data,setPage,isLast}:any) => {
                         <div key={el.prfId} style={{width:'13rem',cursor:'pointer'}}  onClick={()=>navigate(`/detail/${el.prfId}`)}>
                             <div style={{textAlign: 'center'}}>
                                 <div>
+                                {el.poster?
                                     <img src={el.poster} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.title}/>
-                                    
+                                    :
+                                    <img src={noPoster} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.title}/>
+                                }
                                 </div>
                             </div>
                             <p style={{margin:'0.3rem 0',fontSize:'1.25rem',fontWeight:'500',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{el.title}</p>

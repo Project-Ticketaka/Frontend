@@ -10,6 +10,7 @@ import './custom-datepicker.scss';
 import useCheckReservation from "../../../hooks/mutation/performance/useCheckReservation";
 import useGetPerformanceSession from "../../../hooks/query/performance/useGetPerformanceSession";
 import React from "react";
+import noPoster from "../../../assets/images/noPoster.png"
 
 const SessionButton = styled(Button)`
     
@@ -164,7 +165,10 @@ const DeatilView = ({performanceData}:any) => {
             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
             {/* InfoView {pfId} */}
                 <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',marginTop:'1rem',flex:'1'}}>
+                {performanceData.data.performanceDetailInfo.poster?
                     <img src={performanceData.data.performanceDetailInfo.poster} alt={performanceData.data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
+                    :<img src={noPoster} alt={performanceData.data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
+                }
                     <div style={{display:'flex',flexDirection:'column',gap:'1.5rem',width:'100%'}}>
                         
                         <span style={{width:'fit-content',fontSize:"1.5rem", fontWeight:'500', margin:'0',whiteSpace:'pre-line',wordWrap:'break-word'}}>{performanceData.data.performanceDetailInfo.title}</span>

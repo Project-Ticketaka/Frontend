@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import React from "react";
+import noPoster from '../../../assets/images/noPoster.png'
 
 const ReservationButton = styled(Button)`
     color: #ffffff;
@@ -52,7 +53,10 @@ const SearchView = ({data,setPage,isLast,keyword}:any) => {
                 <li key={el.prfId} style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'1.5rem 0',borderBottom:'1px #CACACA solid'}}>
                 
                     <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',alignItems:'center'}}>
-                    <img src={el.poster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>
+                    {el.poster?
+                        <img src={el.poster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>
+                        :<img src={noPoster} alt={el.title} style={{width:'7rem',height:'9rem',borderRadius:'5px'}}/>
+                    }
                     <div style={{display:'flex',flexDirection:'column',gap:'1rem',alignSelf:'center'}}>
                         <div>
                             <p style={{fontSize:"1.4rem", fontWeight:'500', margin:'0'}}>{el.title}</p>
