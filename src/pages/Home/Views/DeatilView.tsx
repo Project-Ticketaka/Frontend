@@ -60,9 +60,14 @@ const DeatilView = ({performanceData}:any) => {
     
     const [selectedDate,setSelectedDate] = useState(performanceData.data.performanceDetailInfo.startDate)
     
-    const [sessionTimeList,setSessionTimeList] = useState(performanceData.data.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
+    // const [sessionTimeList,setSessionTimeList] = useState(performanceData.data.prfSessionList[0].filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===selectedDate))
+    const [sessionTimeList,setSessionTimeList] = useState([performanceData.data.prfSessionList[0]])
+    
+    // console.log(sessionTimeList)
+    //const [selectedTime,setSelectedTime] = useState(sessionTimeList.length<=1?sessionTimeList.prfSessionTime:sessionTimeList[0].prfSessionTime)
     const [selectedTime,setSelectedTime] = useState(sessionTimeList[0].prfSessionTime)
     const [selectedTimeId,setSelectedTimeId] = useState(sessionTimeList[0].prfSessionId)
+    
     
     const [seatType,setSeatType] = useState('')
     const [seatPrice,setSeatPrice] = useState(0)
@@ -70,6 +75,7 @@ const DeatilView = ({performanceData}:any) => {
     
     const [inform,setInform] = useState('pf')
     const navigate=useNavigate()
+    
     
     const onChangeDate = (e:any) =>{
         

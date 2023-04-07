@@ -30,7 +30,7 @@ const Category:any = () => {
     
     useEffect(()=>{
         PerformanceAPI.getPerformanceByCategory(genre,page).then(res=>{
-            //console.log(data)
+            // console.log(res.data)
             if(res.data.code===202){
                 setError(res.data)
             }else{

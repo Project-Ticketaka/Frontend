@@ -13,7 +13,7 @@ const ReservationIcon = styled(ReceiptLongIcon)`
     fill: #ffffff;
 `
 
-const SearchView = ({data,setPage,isLast}:any) => {
+const SearchView = ({data,setPage,isLast,keyword}:any) => {
 
     const navigate = useNavigate();
 
@@ -41,8 +41,10 @@ const SearchView = ({data,setPage,isLast}:any) => {
 
         return (
     
-    <div style={{padding:'1rem 1rem 2rem 1rem',display:'flex',flexDirection:'column',width:'100%'}}>
-        
+    <div style={{padding:'1rem',display:'flex',flexDirection:'column',width:'100%'}}>
+        <div>
+            <span style={{color:'#FF7F8F', fontSize:'1.3rem',margin:'0 0.5rem'}}>“{keyword}” </span>에 대한 검색결과 
+        </div>
         <ul style={{margin:'0',padding:'0'}}>
             {
             data.map((el:any)=>{

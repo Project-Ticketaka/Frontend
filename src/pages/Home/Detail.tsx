@@ -9,7 +9,7 @@ const Detail = () => {
     const params = useParams();
     //console.log(params?.prf_id);
     const { data, isLoading } = useGetPerformanceById(params?.prf_id);
-    //console.log(data)
+    // console.log(data)
     
     return ( 
         isLoading? <></> : 
