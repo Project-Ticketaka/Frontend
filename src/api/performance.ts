@@ -9,8 +9,8 @@ const PerformanceAPI = {
   getPerformanceById: (prf_id: string | undefined) => {
     return client.get(`/performance?p=${prf_id}`);
   },
-  getPerformanceByKeyword: (keyword: string | undefined) => {
-    return client.get(`/performance/search?keyword=${keyword}`);
+  getPerformanceByKeyword: (keyword: string | undefined, page: number) => {
+    return client.get(`/performance/search?keyword=${keyword}&page=${page}`);
   },
   getPerformanceByCategory: (genre: string | undefined, page: number) => {
     return client.get(`/performance/cat?genre=${genre}&page=${page}`);

@@ -26,7 +26,7 @@ const Category:any = () => {
     const [error, setError] = useState({});
     const [isLast, setIsLast] = useState(false);
     //const page = useRef(0);
-    const { data, isLoading } = useGetPerformanceByCategory(genre,page);
+    const { isLoading } = useGetPerformanceByCategory(genre,page);
     
     useEffect(()=>{
         PerformanceAPI.getPerformanceByCategory(genre,page).then(res=>{
@@ -39,11 +39,9 @@ const Category:any = () => {
             }
             
         }).catch((error)=>{
-            console.log(data)
-            console.log(error)
+            // console.log(data)
+            // console.log(error)
         });
-
-        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[page,genre])
 

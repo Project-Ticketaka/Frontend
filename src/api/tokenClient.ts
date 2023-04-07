@@ -11,7 +11,7 @@ tokenClient.interceptors.request.use(
     
     //console.log(notRequireTokenList.includes(String(config.url)))
     const accessToken = getItemWithExpireTime("accessToken");
-    console.log(config)
+    // console.log(config)
     
     
       if (accessToken) {
@@ -19,7 +19,6 @@ tokenClient.interceptors.request.use(
         config.headers["authorization"] = accessToken;
       }
       return config;
-    
     
     },
     (error) => Promise.reject(error)
