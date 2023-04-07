@@ -230,6 +230,25 @@
 
 img {
   vertical-align: middle;
+  
+    image-rendering: -moz-crisp-edges;         /* Firefox */
+    image-rendering: -o-crisp-edges;         /* Opera */
+    image-rendering: -webkit-optimize-contrast;/* Webkit 표준 X */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;  /* IE 표준 X */
+
+    
+    -ms-transform: translateZ(0); // ie
+    -moz-transform: translateZ(0); // firefox
+    
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  
+    
+      -moz-backface-visibility: hidden; // firefox
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+  
 }
 
 .d-block {

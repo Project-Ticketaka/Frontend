@@ -1,7 +1,7 @@
-import img1 from '../../../assets/images/banner1.png'
-import img2 from '../../../assets/images/banner2.png'
-import img3 from '../../../assets/images/banner3.png'
-import img4 from '../../../assets/images/banner4.png'
+import img1 from '../../../assets/images/banner1.svg'
+import img2 from '../../../assets/images/banner2.svg'
+import img3 from '../../../assets/images/banner3.svg'
+import img4 from '../../../assets/images/banner4.svg'
 import Carousel from 'react-bootstrap/Carousel';
 import './CarouselView.scss';
 
