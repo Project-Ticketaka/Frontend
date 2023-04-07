@@ -19,8 +19,6 @@ const Detail = () => {
             <NoData data={{code:202,description:'조회한 데이터를 찾을 수 없습니다.'}}/>
         </div>
     )
-    
-    
 }
 
 export default React.memo(Detail)

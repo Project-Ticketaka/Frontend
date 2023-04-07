@@ -163,20 +163,20 @@ const DeatilView = ({performanceData}:any) => {
             <div style={{padding:'2rem 1rem',display:'flex',flexDirection:'column',width:'100%'}}>
             <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between'}}>
             {/* InfoView {pfId} */}
-                <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',marginTop:'1rem'}}>
+                <div style={{display:'flex',flexDirection:'row',gap:'1.3rem',marginTop:'1rem',flex:'1'}}>
                     <img src={performanceData.data.performanceDetailInfo.poster} alt={performanceData.data.performanceDetailInfo.title} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}}/>
                     <div style={{display:'flex',flexDirection:'column',gap:'1.5rem',width:'100%'}}>
                         
-                        <p style={{fontSize:"1.5rem", fontWeight:'500', margin:'0',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{performanceData.data.performanceDetailInfo.title}</p>
-                        
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {performanceData.data.facilityDTO.facilityName}</p>
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {performanceData.data.performanceDetailInfo.runtime}</p>
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {performanceData.data.performanceDetailInfo.viewingAge}</p>
-                        <p style={{fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {performanceData.data.performanceDetailInfo.startDate} ~ {performanceData.data.performanceDetailInfo.endDate}</p>
+                        <span style={{width:'fit-content',fontSize:"1.5rem", fontWeight:'500', margin:'0',whiteSpace:'pre-line',wordWrap:'break-word'}}>{performanceData.data.performanceDetailInfo.title}</span>
+                        <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {performanceData.data.facilityDTO.facilityName}</span>
+                        <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {performanceData.data.performanceDetailInfo.runtime}</span>
+                        <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {performanceData.data.performanceDetailInfo.viewingAge}</span>
+                        <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {performanceData.data.performanceDetailInfo.startDate} ~ {performanceData.data.performanceDetailInfo.endDate}</span>
                         
                     </div>
                 </div>
                 
+                <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',flex:'1'}}>
                 <DatePicker
                         wrapperClassName="datepicker"
                         selected={new Date(selectedDate)}
@@ -231,7 +231,7 @@ const DeatilView = ({performanceData}:any) => {
                             </ReservationButton>
     
                     </div>
-    
+                </div>
             </div>
     
             
