@@ -13,9 +13,8 @@ const Search = () => {
     const [keyword, setKeyword] = useState(state.keyword);
     const [page, setPage] = useState(state.page);
     const [searchData, setSearchData] = useState(state.data.content);
-    const [error, setError] = useState({});
+    const [error, setError] = useState(state.data.code===202?state.data:{});
     const [isLast, setIsLast] = useState(state.data.last);
-    
     
     useEffect(()=>{
         console.log(keyword)
@@ -36,7 +35,7 @@ const Search = () => {
             console.log(error)
         });
         }
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[page, isLast, keyword])
 
