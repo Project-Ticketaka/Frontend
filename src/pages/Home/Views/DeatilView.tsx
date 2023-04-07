@@ -110,20 +110,19 @@ const DeatilView = ({performanceData}:any) => {
         setSeatPrice(Number(seat_price))
     }
 
-    const [people,setPeople] = useState(200)
+    const [people,setPeople] = useState(1)
 
 
     const { mutate: checkReservationMutate } = useCheckReservation(navigate);
 
     const goReservation = () => {
-        
+        console.log(data)
         if(selectedTime&&seatType&&(data!.remainingSeat>=people)){
             alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
-        }else if(data!.remainingSeat<=people){
+        }else if(data!.remainingSeat<people){
             alert('예약이 불가능합니다😭')
             return;
-        }
-        else{
+        }else{
             alert('회차 및 좌석을 선택해 주세요!')
             return;
         }
