@@ -173,7 +173,11 @@ const DeatilView = ({performanceData}:any) => {
                         
                         <span style={{width:'fit-content',fontSize:"1.5rem", fontWeight:'500', margin:'0',whiteSpace:'pre-line',wordWrap:'break-word'}}>{performanceData.data.performanceDetailInfo.title}</span>
                         <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>장소 | {performanceData.data.facilityDTO.facilityName}</span>
+                        {performanceData.data.performanceDetailInfo.runtime?
                         <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | {performanceData.data.performanceDetailInfo.runtime}</span>
+                        :
+                        <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람시간 | 미정</span>
+                        }
                         <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>관람등급 | {performanceData.data.performanceDetailInfo.viewingAge}</span>
                         <span style={{width:'fit-content',fontSize:"0.9rem", color:'#575757', padding:'0', margin:'0.1rem 0 0 0'}}>기간 | {performanceData.data.performanceDetailInfo.startDate} ~ {performanceData.data.performanceDetailInfo.endDate}</span>
                         
