@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+//import { ReactQueryDevtools } from "react-query/devtools";
 
 const theme = createTheme({
   typography: {
@@ -54,7 +54,7 @@ root.render(
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools />
+          {/* <ReactQueryDevtools /> */}
             <App />
         </QueryClientProvider>
       </BrowserRouter>

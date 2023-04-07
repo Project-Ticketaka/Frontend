@@ -17,7 +17,7 @@ const PerformanceAPI = {
   },
   getPerformanceSession: (prf_session_id: string | undefined) => {
     //공연의 회차를 클릭하면 남은 좌석에 대한 정보를 불러옴
-    return tokenClient.get(`/performance/session/${prf_session_id}`);
+    return client.get(`/performance/session/${prf_session_id}`);
   },
   checkReservation: (data: ICheckData) => {
     //예약하기 버튼을 눌렀을 때 유저가 선택한 회차에 선택한 인원 수 만큼 예약이 가능한지 확인 후 결제하기 페이지로 넘어감

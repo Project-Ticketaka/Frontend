@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
+import CarouselView from "./CarouselView";
 
 const MainContainer = styled.div`
     padding: 1rem;
@@ -15,19 +16,64 @@ const MainContainer = styled.div`
 `
 const HomeView = ({top10,onGoToDetail}:any) => {
     const [top10List,setTop10List]=useState([]);
+
+   
     useEffect(()=>{
+        
         setTimeout(()=>{
             setTop10List(top10)
-        },200)
+        },150)
     })
     return (
-        <div style={{display:'flex',flexDirection:'column',width:'100%',gap:'1rem'}}>
-        <div style={{width:'100%', height:'15rem',backgroundColor:'#B65C87'}}>
+        <div style={{display:'flex',flexDirection:'column',width:'100%'}}>
+        {/* <div style={{width:'100%', height:'15rem',backgroundColor:'#B65C87'}}>
 
-        </div>
-        <p style={{margin:'0 1rem',fontSize:'2rem',fontWeight:'300'}}>오늘의 TOP 10!</p>
+        </div> */}
+        {/* <div className="container">
+        <div className="slide">
+                <div style={{display:'flex',justifyContent:'space-between',width:'100%',height:'fit-content',position:'absolute',zIndex:'1'}}>
+                    <div className="btn" onClick={() => { moveSlide(-1); }}>&lt;</div>
+                    <div className="btn" onClick={() => { moveSlide(1); }}>&gt;</div>
+                </div>
+                <div className="window">
+                    <div className="flexbox" style={style}>
+                        {images.current.map((img, i) => (
+                        <div key={i} className="img" style={{ backgroundImage: `url(${img})` }}></div>
+                            // 
+                        ))} 
+                        <img key={img1} className="img" src={img1} alt={"1"}></img>
+                        <img key={img2} className="img" src={img2} alt={"2"}></img>
+                        <img key={img3} className="img" src={img3} alt={"3"}></img>
+                    </div>
+                </div>
+            </div> */}
+            
+                {/* <div className="window">
+                    <div style={{display:'flex',justifyContent:'space-between',width:'100%',height:'fit-content',position:'absolute',zIndex:'1'}}>
+                        <div className="btn" onClick={() => { moveSlide(-1); }}>&lt;</div>
+                        <div className="btn" onClick={() => { moveSlide(1); }}>&gt;</div>
+                    </div>
+                    <div className="flexbox" style={style}>
+                        {/* {images.current.map((img, i) => (
+                        <div key={i} className="img" style={{ backgroundImage: `url(${img})` }}></div>
+                            // 
+                        ))} 
+                        <img key={img1} className="img" src={img1} alt={"1"}></img>
+                        <img key={img2} className="img" src={img2} alt={"2"}></img>
+                        <img key={img3} className="img" src={img3} alt={"3"}></img>
+                    </div>
+                </div>
+                <div className="position">
+                    {images.current.map((x, i) => (
+                        <div key={i} className={i === current ? 'dot current' : 'dot'}></div>))}
+                </div>
+        </div> */}
+        <CarouselView/>
+
         {/* <div style={{padding:'1rem',paddingTop:'0',display:'grid' ,gridTemplateColumns: 'repeat(5, 1fr)',gap:'1rem'}}> */}
+        <p style={{margin:'0.7rem 0 1rem 1rem',fontSize:'1.7rem',fontWeight:'500'}}>오늘의 TOP 10!</p>
         <MainContainer>
+            
             {
                 top10List.length!==0
                 ?top10List.map((el:any)=>{
@@ -36,7 +82,7 @@ const HomeView = ({top10,onGoToDetail}:any) => {
                             <div style={{textAlign: 'center'}}>
                                 <div style={{position:'relative'}}>
                                     <img src={el.poster} style={{width:'9rem',height:'11.7rem',borderRadius:'5px'}} alt={el.prfId}/>
-                                    <span style={{position:'absolute',color:'#ffffff',left:'2rem',bottom:'-0.3rem',fontSize:'3.5rem',fontWeight:'700',letterSpacing:'-0.5rem'}}>{el.rnum._text}</span>
+                                    <span style={{textShadow: '2px 2px 4px rgba(50, 50, 50, 0.53)',position:'absolute',color:'#ffffff',left:'2rem',bottom:'-0.3rem',fontSize:'3.5rem',fontWeight:'700',letterSpacing:'-0.5rem'}}>{el.rnum}</span>
                                 </div>
                             </div>
                             <p style={{margin:'0.3rem 0',fontSize:'1.25rem',fontWeight:'500',textOverflow:'ellipsis',whiteSpace:'nowrap',overflow:'hidden'}}>{el.title}</p>
