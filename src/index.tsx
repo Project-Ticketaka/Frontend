@@ -1,3 +1,5 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -5,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
 //import { ReactQueryDevtools } from "react-query/devtools";
 
 const theme = createTheme({
@@ -33,6 +36,32 @@ const theme = createTheme({
   },
 });
 
+const toastConfig: object = {
+  autoClose: 1500,
+  bodyStyle: { fontSize: "14px" },
+  closeButton: true,
+  closeOnClick: true,
+  limit: 1,
+  pauseOnHover: false,
+  position: "top-right",
+  // progressStyle: {
+  //   background: `linear-gradient(
+  //     to right,
+  //     #4cd964,
+  //     #5ac8fa,
+  //     #007aff,
+  //     #34aadc,
+  //     #5856d6,
+  //     #ff2d55
+  //   )`,
+  // },
+  style: {
+    maxWidth: "1000px",
+    width: "max-content",
+    zIndex: 1000000,
+  },
+  theme: "light",
+};
 
 const queryOptions = {
   defaultOptions: {
@@ -51,10 +80,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <ToastContainer {...toastConfig} />
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           {/* <ReactQueryDevtools /> */}
+          
             <App />
         </QueryClientProvider>
       </BrowserRouter>

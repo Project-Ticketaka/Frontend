@@ -6,8 +6,9 @@ $focus: #FF7F8F;
     align-items: center;
     justify-content: center;
     
-    border: 1.5px solid $border;
-    border-radius: 5px;
+    border: none;
+    border-bottom: 1.5px solid $border;
+    //border-radius: 5px;
     outline: none;
 
     font-size: 1rem;
@@ -21,11 +22,11 @@ $focus: #FF7F8F;
     
     &::placeholder{
         color: $placeholder;
-        font-weight: 300;
+        font-weight: 100;
     }
 
     &:focus {
-        border: 1.5px solid $focus;
+        border-bottom: 1.8px solid $focus;
         outline: none;
     }
 

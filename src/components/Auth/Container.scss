@@ -1,9 +1,30 @@
+// .Container{
+//     //align-content: center;
+//     min-height: 100vmin;
+//     display: grid;
+//     //grid-template-columns: repeat(3, 1fr);
+//     place-items: center;
+//     //padding: 0 1.5rem;
+    
+//     @media (max-width: 767px){
+//         /* 브라우저 사이즈 767px 이하일때*/
+//         display: flex;
+//         align-self: center;
+//         justify-content: center;
+//         align-items: center;
+//         min-height: 100vh;
+//     }
+    
+// }
+
+
 .Container{
     align-content: center;
     min-height: 100vmin;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    //background-color: #FF7F8F10;
     
     @media (max-width: 767px){
         /* 브라우저 사이즈 767px 이하일때*/

@@ -7,6 +7,8 @@ import { ISignUpProps } from "./types";
 import SignUpView from "./Views/SignUpView"
 import useCheckAuthentication from "../../hooks/mutation/auth/ useCheckAuthentication";
 
+import useToastMessage from "../../hooks/common/useToastMessage";
+
 const SignUp = () => {
 
     const navigate = useNavigate();
@@ -41,7 +43,7 @@ const SignUp = () => {
     const { mutate:checkDuplicateMemberMutate } = useCheckDuplicateMember();
     
     const { mutate: checkAuthenticationMutate } = useCheckAuthentication();
-    
+    const showToast = useToastMessage();
     const signUpProps: ISignUpProps = {
         email,
         authNum,
@@ -58,14 +60,19 @@ const SignUp = () => {
             setEmail(e.target.value);
         },
         onEmailDuplicateCheck: ()=>{
-            checkDuplicateMemberMutate({"email":email},{
-                onSuccess: data=>{
-                    setValidData((p) => ({ ...p, isNotEmailDuplicate: true }))
-                },
-                onError: error => {
-                    setValidData((p) => ({ ...p, isNotEmailDuplicate: false }))
-                }
-            });
+            if(isNotEnterEmail) showToast("error", "이메일을 입력해주세요!");
+            else if(!validData.isEmailValid) showToast("error", "올바른 이메일을 입력해주세요!");
+            else{
+                checkDuplicateMemberMutate({"email":email},{
+                    onSuccess: data=>{
+                        setValidData((p) => ({ ...p, isNotEmailDuplicate: true }))
+                    },
+                    onError: error => {
+                        setValidData((p) => ({ ...p, isNotEmailDuplicate: false }))
+                    }
+                });
+            }
+            
         },
         onAuthNumChange: (e) => {
             setAuthNum(Number(e.target.value));

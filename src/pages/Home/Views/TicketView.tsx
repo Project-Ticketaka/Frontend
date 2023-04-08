@@ -1,4 +1,3 @@
-import barcode_example from '../../../assets/images/barcode_example.png'
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -8,6 +7,7 @@ const TicketView = ({reservationInfo}:any) => {
         setTimeout(function() {
             navigate('/my/rsv',{state:'rsv'});
         }, 5000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
   return (
     <div style={{padding:'2rem 1rem',width:'100%',justifyContent:'center',alignItems:'center',display:'flex',position:'relative'}}>

@@ -3,7 +3,10 @@ import { ILoginData } from "../../types/member";
 interface IAuthForm extends ILoginData {
     onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    validData: { isEmailValid: boolean; isPasswordValid: boolean };
+    validData: { 
+        isEmailValid: boolean | null; 
+        isPasswordValid: boolean | null; 
+    };
     isNotEnterEmail: boolean;
     isNotEnterPassword: boolean;
 }
@@ -23,7 +26,16 @@ export interface ISignUpProps extends IAuthForm {
     onBirthDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onPhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSignUp: () => void;
-    validData: { isEmailValid: boolean; isNotEmailDuplicate:boolean; isCheckAuthentication:boolean; isPasswordValid: boolean; isPasswordCheckValid:boolean; isNameValid: boolean; isBirthDateValid: boolean; isPhoneValid: boolean; };
+    validData: { 
+        isEmailValid: boolean | null; 
+        isNotEmailDuplicate:boolean | null; 
+        isCheckAuthentication:boolean | null; 
+        isPasswordValid: boolean | null; 
+        isPasswordCheckValid:boolean | null; 
+        isNameValid: boolean | null; 
+        isBirthDateValid: boolean | null;
+        isPhoneValid: boolean | null; 
+    };
     authNum: number | undefined;
     passwordCheck: string;
     name: string;

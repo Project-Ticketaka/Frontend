@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import CarouselView from "./CarouselView";
 
 const MainContainer = styled.div`

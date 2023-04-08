@@ -8,10 +8,11 @@ import customHistory from "../../../utils/history";
 import { useLocation } from "react-router-dom";
 import { IError } from "../../../types/axios";
 import { setItemWithExpireTime } from "../../../utils/localStorage";
+import useToastMessage from "../../common/useToastMessage";
 
 const useLogin = (navigate: TNavigate) => {
     const {state}=useLocation();
-
+    const showToast = useToastMessage();
     return useMutation((userInfo: ILoginData) => MemberAPI.login(userInfo), {
         onSuccess: (data: AxiosResponse<IAuthResponse>,variables:ILoginData) => {
             // console.log(data);
@@ -22,9 +23,11 @@ const useLogin = (navigate: TNavigate) => {
             // console.log(state);
             if(state){
                 //메인->로그인
+                showToast("success","로그인 성공!")
                 navigate("/", { replace: true });
             }else{
                 //다른 화면 -> 로그인
+                showToast("success","로그인 성공!")
                 customHistory.back();
             }
             
@@ -32,7 +35,8 @@ const useLogin = (navigate: TNavigate) => {
             
         },
         onError: ((error: AxiosError<IError>, variables: IAuthData, context: any) =>{
-            alert(`${error.response?.data?.description}!`);
+            //alert(`${error.response?.data?.description}!`);
+            showToast("error",`${error.response?.data?.description}!`)
             // alert('로그인 실패!');
         })
     });

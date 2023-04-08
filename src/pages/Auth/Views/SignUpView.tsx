@@ -8,11 +8,6 @@ import { ISignUpProps } from "../types"
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 
-const Row = styled.li`
-    display: flex;
-    
-    margin: 1rem 0;
-`
 
 const DuplicateCheckButton = styled(Button)`
     color: #ffffff;
@@ -60,21 +55,29 @@ const SignUpView = ({
     gender,
     birth,
     phone,
-    validData
+    validData,
+    isNotEnterEmail,
+    isNotEnterPassword,
+    isNotEnterName,
+    isNotEnterBirthDate,
+    isNotEnterPhone
 }: ISignUpProps) => {
     
     return (
         <Container>
-            <ul style={{listStyle:'none',margin:'0',padding:'0',width:'100%'}}>
-                <Row>
+
+            <ul style={{listStyle:'none',margin:'5rem',padding:'0',gridColumn:'2',width:'100%'}}>
+                
+                
+                <div style={{display:'flex',justifyContent:'center',marginBottom:'1.3rem'}}>
                     <Logo/>
-                </Row>
+                </div>
                 
                 <li >
-                {validData.isNotEmailDuplicate?<></>
-                :<span style={{fontSize:'0.8rem',color:'#E57583'}}>중복체크를 진행해 주세요!</span>}
+                {(isNotEnterEmail||validData.isEmailValid)?<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#ffffff00',userSelect:'none'}}>이메일은 @, .을 포함해야 합니다!</span>
+                :<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#E57583'}}>이메일은 @, .을 포함해야 합니다!</span>}
                 </li>
-                <li style={{display:'flex',justifyContent:'space-between',marginBottom:'1rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>    
+                <li style={{display:'flex',justifyContent:'space-between',marginBottom:'1.3rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>    
                     <AuthInput 
                         type="email" 
                         placeholder="이메일"
@@ -89,14 +92,14 @@ const SignUpView = ({
                 </li>
 
                 <li >
-                {validData.isCheckAuthentication?<></>
-                :<span style={{fontSize:'0.8rem',color:'#E57583'}}>이메일 인증을 완료해 주세요!</span>}
+                {(authNum===undefined||validData.isCheckAuthentication)?<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#ffffff00',userSelect:'none'}}>이메일 인증을 완료해 주세요!</span>
+                :<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#E57583'}}>이메일 인증을 완료해 주세요!</span>}
                 </li>
-                <li style={{display:'flex',justifyContent:'space-between',marginBottom:'1rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>    
+                <li style={{display:'flex',justifyContent:'space-between',marginBottom:'1.3rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>    
                     <AuthInput 
                         type="text" 
                         placeholder={`${email||"이메일"}로 전송된 인증번호를 입력해 주세요!`}
-                        value={authNum}
+                        value={authNum?authNum:""}
                         onChange={onAuthNumChange}
                         disabled={!!validData.isCheckAuthentication}
                     />
@@ -106,32 +109,39 @@ const SignUpView = ({
                     
                 </li>
 
-                <li style={{display:'flex',alignItems:'center',gap:'0.5rem'}}>
-                    {validData.isPasswordValid?<></>
-                    :<span style={{fontSize:'0.8rem',color:'#E57583'}}>비밀번호는 8자 이상이어야 합니다!</span>}
-                    {validData.isPasswordCheckValid?<></>
-                    :<span style={{fontSize:'0.8rem',color:'#E57583'}}>비밀번호가 일치하지 않습니다!</span>}
+                <li style={{display:'flex',justifyContent:'space-between'}}>
+                    
+                    
                 </li>
-                <li style={{display:'flex',justifyContent:'space-between',marginBottom:'1rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>
+                <li style={{display:'flex',marginBottom:'1.3rem',alignItems:'center',gap:'0.5rem',height:'fit-content'}}>
+                    <div style={{display:'flex',flexDirection:'column',flex:'1'}}>
+                    {(isNotEnterPassword||validData.isPasswordValid)?<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#ffffff00',userSelect:'none'}}>비밀번호는 8자 이상이어야 합니다!</span>
+                    :<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#E57583'}}>비밀번호는 8자 이상이어야 합니다!</span>}
                     <AuthInput 
                         type="password" 
                         placeholder="비밀번호 ( 8자리 이상 )"
                         value={password}
                         onChange={onPasswordChange}
                     />
+                    </div>
+
+                    <div style={{display:'flex',flexDirection:'column',flex:'1'}}>
+                    {( isNotEnterPassword || validData.isPasswordCheckValid)?<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#ffffff00',userSelect:'none'}}>비밀번호가 일치하지 않습니다!</span>
+                    :<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#E57583'}}>비밀번호가 일치하지 않습니다!</span>}
                     <AuthInput 
                         type="password" 
-                        placeholder="비밀번호 확인 ( 8자리 이상 )"
+                        placeholder="비밀번호 확인"
                         value={passwordCheck}
                         onChange={onPasswordCheckChange}
                     />    
+                    </div>
                 </li>
 
                 <li >
-                {validData.isNameValid?<></>
-                :<span style={{fontSize:'0.8rem',color:'#E57583'}}>이름은 2글자 이상 입력해주세요!</span>}
+                {( isNotEnterName || validData.isNameValid)?<span style={{fontSize:'0.8rem',color:'#ffffff00',userSelect:'none'}}>이름은 2글자 이상 입력해주세요!</span>
+                :<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#E57583'}}>이름은 2글자 이상 입력해주세요!</span>}
                 </li>
-                <li style={{display:'flex',justifyContent:'center',marginBottom:'1rem',alignItems:'center',gap:'0.5rem'}}>
+                <li style={{display:'flex',justifyContent:'center',marginBottom:'1.3rem',alignItems:'center',gap:'0.5rem'}}>
                     <AuthInput 
                         type="text" 
                         placeholder="이름"
@@ -147,23 +157,23 @@ const SignUpView = ({
                 
                 
                 <li>
-                {validData.isBirthDateValid?<></>
-                :<span style={{fontSize:'0.8rem',color:'#E57583'}}>생년월일 8자리를 입력해주세요! (YYYYMMDD)</span>}
+                {( isNotEnterBirthDate || validData.isBirthDateValid)?<span style={{fontSize:'0.8rem',color:'#ffffff00',userSelect:'none'}}>생년월일 8자리를 입력해주세요! (YYYYMMDD)</span>
+                :<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#E57583'}}>생년월일 8자리를 입력해주세요! (YYYYMMDD)</span>}
                 </li>
-                <li style={{display:'flex',justifyContent:'center',marginBottom:'1rem'}}>
+                <li style={{display:'flex',justifyContent:'center',marginBottom:'1.3rem'}}>
                 <AuthInput 
                     type="text" 
-                    placeholder="생년월일 8자리 ( YYYY-MM-DD )"
+                    placeholder="생년월일 8자리 ( YYYYMMDD )"
                     value={birth}
                     onChange={onBirthDateChange}
                 />
                 </li>
 
                 <li>
-                {validData.isPhoneValid?<></>
-                :<span style={{fontSize:'0.8rem',color:'#E57583'}}>핸드폰번호를 올바르게 입력해주세요! (예시: 010-1234-1234)</span>}
+                {( isNotEnterPhone || validData.isPhoneValid)?<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#ffffff00',userSelect:'none'}}>핸드폰번호를 올바르게 입력해주세요! (예시: 010-1234-1234)</span>
+                :<span style={{fontWeight:'300',fontSize:'0.8rem',color:'#E57583'}}>핸드폰번호를 올바르게 입력해주세요! (예시: 010-1234-1234)</span>}
                 </li>
-                <li style={{display:'flex',justifyContent:'center',marginBottom:'1rem'}}>
+                <li style={{display:'flex',justifyContent:'center',marginBottom:'2rem'}}>
                 <AuthInput 
                     type="phone" 
                     placeholder="핸드폰번호"
@@ -172,11 +182,13 @@ const SignUpView = ({
                 />
                 
                 </li>
-                <li style={{display:'flex',justifyContent:'center',marginBottom:'1rem'}}>
+                <li style={{display:'flex',justifyContent:'center'}}>
                     {/* <Button onClick={onSignUp}  state={`${validData.isEmailValid&&validData.isPasswordValid&&validData.isPasswordCheckValid&&validData.isNameValid&&validData.isBirthDateValid&&validData.isPhoneValid}`}>회원가입 !</Button> */}
                     <SignUpButton className={validData.isEmailValid&&validData.isNotEmailDuplicate&&validData.isCheckAuthentication&&validData.isPasswordValid&&validData.isPasswordCheckValid&&validData.isNameValid&&validData.isBirthDateValid&&validData.isPhoneValid?'active':'inactive'} onClick={onSignUp} variant="contained">회원가입!</SignUpButton>
                 </li>
             </ul>
+
+            
         </Container>
   )
 }

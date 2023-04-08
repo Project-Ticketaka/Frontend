@@ -11,6 +11,7 @@ import useCheckReservation from "../../../hooks/mutation/performance/useCheckRes
 import useGetPerformanceSession from "../../../hooks/query/performance/useGetPerformanceSession";
 import React from "react";
 import noPoster from "../../../assets/images/noPoster.png"
+import useToastMessage from "../../../hooks/common/useToastMessage";
 
 const SessionButton = styled(Button)`
     
@@ -86,7 +87,8 @@ const DeatilView = ({performanceData}:any) => {
         setSessionTimeList(performanceData.data.prfSessionList.filter((data: { prfSessionId: string,prfSessionDate: string,prfSessionTime:string,available:boolean })=>data.prfSessionDate===`${new Date(e).getFullYear()}-${new Date(e).getMonth()>=10?new Date(e).getMonth()+1:'0'+(new Date(e).getMonth()+1)}-${new Date(e).getDate()>=10?new Date(e).getDate():'0'+(new Date(e).getDate())}`))
         }
         else{
-            alert("해당 날짜에는 공연이 없습니다!")
+            //alert("해당 날짜에는 공연이 없습니다!")
+            showToast("warning","해당 날짜에는 공연이 없습니다!")
         }
     }
     
@@ -114,34 +116,36 @@ const DeatilView = ({performanceData}:any) => {
 
 
     const { mutate: checkReservationMutate } = useCheckReservation(navigate);
-
+    const showToast = useToastMessage();
     const goReservation = () => {
-        console.log(data)
+        //console.log(data)
         if(selectedTime&&seatType&&(data!.remainingSeat>=people)){
-            alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
-        }else if(data!.remainingSeat<people){
-            alert('예약이 불가능합니다😭')
-            return;
-        }else{
-            alert('회차 및 좌석을 선택해 주세요!')
+            //alert(`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
+            //showToast('success',`${selectedDate} ${selectedTime}회차 ${seatType} ${people}명  총 ${seatPrice*people}원`)
+        }else if(!(selectedTime&&seatType)){
+            showToast('warning','회차 및 좌석을 선택해 주세요!')
             return;
         }
-        
-        if(localStorage.getItem("accessToken")){
-            let reservationInfo = {
-                selectedDate:selectedDate,
-                selectedTime:selectedTime,
-                people:people,
-                seatType: seatType,
-                seatPrice: seatPrice,
-                detail:performanceData,
+        else if(data!.remainingSeat<people){
+            showToast('error','예약이 불가능합니다😭')
+            return;
+        }
+            if(localStorage.getItem("accessToken")){
+                let reservationInfo = {
+                    selectedDate:selectedDate,
+                    selectedTime:selectedTime,
+                    people:people,
+                    seatType: seatType,
+                    seatPrice: seatPrice,
+                    detail:performanceData,
+                }
+                checkReservationMutate({checkData:{"prfSessionId":selectedTimeId,"count":people},"reservationInfo":reservationInfo})
+            }else{
+                // alert('로그인해주세요!')
+                showToast('warning','로그인해주세요!')
+                navigate('/login')
             }
-            checkReservationMutate({checkData:{"prfSessionId":selectedTimeId,"count":people},"reservationInfo":reservationInfo})
-        }else{
-            alert('로그인해주세요!')
-            navigate('/login')
-        }
-
+        
         
     }
     
@@ -152,7 +156,7 @@ const DeatilView = ({performanceData}:any) => {
     const onSetPeople = (amount:number) => {
         if(amount <0){
             people===1
-            ? alert('선택 가능한 최소 인원은 1명입니다!')
+            ? showToast('warning','선택 가능한 최소 인원은 1명입니다!')
             : setPeople(people-1);
         }else{
             setPeople(people+1);

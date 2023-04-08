@@ -10,6 +10,7 @@ const Search = () => {
     const {state} = useLocation();
     
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [keyword, setKeyword] = useState(state.keyword);
     const [page, setPage] = useState(state.page);
     const [searchData, setSearchData] = useState(state.data.content);

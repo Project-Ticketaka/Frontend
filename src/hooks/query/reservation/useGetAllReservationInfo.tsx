@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { AxiosResponse } from "axios";
 import ReservationAPI from "../../../api/reservation";
-import { IGetAllReservationInfo, IReservationInfo } from "../../../types/reservation";
+import { IGetAllReservationInfo } from "../../../types/reservation";
 
 const useGetAllReservationInfo = () => {
     return useQuery(["getAllReservationInfo"], () => ReservationAPI.getAllReservationInfo(), {

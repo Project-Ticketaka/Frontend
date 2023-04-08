@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { getItemWithExpireTime } from "../utils/localStorage";
+import useToastMessage from "../hooks/common/useToastMessage";
 
 const baseURL: string = process.env.REACT_APP_BASE_URL as string;
 
@@ -27,8 +28,10 @@ tokenClient.interceptors.request.use(
 tokenClient.interceptors.response.use(
   (res: AxiosResponse) => res,
   (error: AxiosError) => {
+    const showToast = useToastMessage();
     if(error.response?.status === 401) {
-      alert("토큰이 만료되었습니다. 다시 로그인 해주세요!")
+      // alert("토큰이 만료되었습니다. 다시 로그인 해주세요!")
+      showToast('warning',"토큰이 만료되었습니다. 다시 로그인 해주세요!")
       localStorage.removeItem("accessToken")
       window.location.href = "/"
     }
