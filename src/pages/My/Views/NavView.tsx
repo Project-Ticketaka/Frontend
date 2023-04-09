@@ -19,16 +19,16 @@ const NavView = () => {
         navigate(`/my/${m}`,{state:my.current})
     }
 
+    const doLogout = () => {
+        localStorage.removeItem("accessToken");
+        navigate("/", { replace: true });
+    }
     const onLogout = () => {
         showToastElement(
             <div style={{display:'flex',flexDirection:'column'}}>
                 <p>정말로 로그아웃하시겠습니까?</p>
-                
                 <span style={{color:'#E57583',textAlign:'end'}}
-                onClick={()=>{
-                    localStorage.removeItem("accessToken");
-                    navigate("/", { replace: true });
-                }}>확인</span>
+                onClick={doLogout}>확인</span>
                 
             </div>
         )
