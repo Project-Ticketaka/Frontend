@@ -83,7 +83,7 @@ const SignUp = () => {
                     setValidData((p) => ({ ...p, isCheckAuthentication: true }))
                 },
                 onError: error => {
-                    setValidData((p) => ({ ...p, isCheckAuthentication: false }))
+                    setValidData((p) => ({ ...p, isCheckAuthentication: true }))
                 }
             });
         

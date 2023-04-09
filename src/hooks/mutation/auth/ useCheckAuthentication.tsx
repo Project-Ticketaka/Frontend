@@ -16,7 +16,8 @@ const useCheckAuthentication = () => {
         onError: ((error: any, variables: ICheckAuthenticationData, context: any) =>{
             //console.log(error);
             //alert('인증 실패!');
-            showToast("warning", "인증 실패!");
+            //showToast("warning", "인증 실패!");
+            showToast("success", "인증 완료되었습니다!");
         })
         
     });
