@@ -122,7 +122,7 @@ npm start
 
 ## 🛠 사용한 프레임워크 및 라이브러리 설명
 
-**[🔗 package.json 바로가기](https://github.com/Project-Ticketaka/Frontend/blob/main/package-lock.json)**
+**[🔗 package.json 바로가기](https://github.com/Project-Ticketaka/Frontend/blob/main/package.json)**
 
 ### Typescript, eslint, prettier
 
