@@ -78,13 +78,13 @@
 ![예매는 로그인 필수!](https://user-images.githubusercontent.com/80504636/231174920-67826aa9-bfae-4b29-b866-fc91e92fb10f.gif)
 
 
-![예매메일](https://github.com/Project-Ticketaka/Data/assets/68692931/a192763c-214d-40f9-905f-2c167e511348)
-
 **⚠️ 예매와 관련된 기능은 모두 로그인 후 이용 가능합니다. 만약 로그인이 되어있지 않으면 로그인 페이지로 자동 리다이렉트 됩니다.**
 
 ### 공연 예매하기
 
 ![공연 예매하기](https://user-images.githubusercontent.com/80504636/231174483-ed1bbd0e-dd88-4018-b13c-573d71254b37.gif)
+
+![예매메일](https://github.com/Project-Ticketaka/Data/assets/68692931/a192763c-214d-40f9-905f-2c167e511348)
 
 - 공연 정보 조회 화면에서 예매가 가능합니다.
 - 공연이 있는 날에는 달력에 하이라이트가 되어있습니다. ( 필수 입력 )
