@@ -1,6 +1,6 @@
 ![Frame 5](https://user-images.githubusercontent.com/80504636/231182322-8ed980b0-361c-48bd-8e9d-ddafbf2ccf73.png)
 
-### 🔗 **[배포물 바로가기](https://ticketaka.shop)**
+### 🔗 ~~**[배포물 바로가기](https://ticketaka.shop)**~~
 <br/>
 
 ---
